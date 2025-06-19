@@ -1,0 +1,442 @@
+/* login-estilo.css - Nexus OS Login v2.0 - Estilo com Placeholder Simples (CORRIGIDO) */
+
+:root {
+    /* Cores Modo Claro */
+    --login-cor-primaria-claro: #FF7700;
+    --login-cor-secundaria-claro: #E66A00;
+    --login-cor-acento-claro: #FFC107;
+    --login-cor-fundo-claro: #f4f7f9;
+    --login-cor-superficie-claro: #ffffff;
+    --login-cor-texto-principal-claro: #2c3e50;
+    --login-cor-texto-secundario-claro: #7f8c8d;
+    --login-cor-placeholder-claro: #a0aec0; /* Cor para placeholder */
+    --login-cor-borda-input-claro: #dfe4ea;
+    --login-cor-borda-input-focus-claro: var(--login-cor-primaria-claro);
+    --login-cor-glow-foco-claro: rgba(255, 119, 0, 0.2);
+    --login-cor-erro-claro: #e74c3c;
+
+    /* Cores Modo Escuro */
+    --login-cor-primaria-escuro: #FF8C00;
+    --login-cor-secundaria-escuro: #e67e22;
+    --login-cor-acento-escuro: #FFD700;
+    --login-cor-fundo-escuro: #0e121b;
+    --login-cor-superficie-escuro: #1a1f2c;
+    --login-cor-texto-principal-escuro: #e0e6f1;
+    --login-cor-texto-secundario-escuro: #a0aec0;
+    --login-cor-placeholder-escuro: #718096; /* Cor para placeholder */
+    --login-cor-borda-input-escuro: #3a4155;
+    --login-cor-borda-input-focus-escuro: var(--login-cor-primaria-escuro);
+    --login-cor-glow-foco-escuro: rgba(255, 140, 0, 0.3);
+    --login-cor-erro-escuro: #f17c6e;
+
+    /* Tipografia */
+    --login-fonte-principal: 'Poppins', sans-serif;
+    --login-fonte-destaque: 'Poppins', sans-serif;
+
+    /* Transições, Bordas, Sombras */
+    --login-transicao-rapida: all 0.25s ease-in-out;
+    --login-transicao-padrao: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --login-raio-borda-input: 10px;
+    --login-raio-borda-container: 20px;
+    --login-sombra-card-claro: 0 15px 35px rgba(50, 50, 93, 0.08), 0 5px 15px rgba(0, 0, 0, 0.05);
+    --login-sombra-card-escuro: 0 15px 35px rgba(0, 0, 0, 0.25), 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* === Reset e Globais === (Mantido como antes) */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { font-size: 16px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body {
+    font-family: var(--login-fonte-principal);
+    line-height: 1.6;
+    overflow: hidden;
+    display: flex;
+    min-height: 100vh;
+    transition: background-color var(--login-transicao-padrao), color var(--login-transicao-padrao);
+    perspective: 1000px;
+}
+body.modo-claro {
+    background-color: var(--login-cor-fundo-claro);
+    color: var(--login-cor-texto-principal-claro);
+}
+body.modo-escuro {
+    background-color: var(--login-cor-fundo-escuro);
+    color: var(--login-cor-texto-principal-escuro);
+}
+#login-page-wrapper {
+    width: 100%; height: 100vh; display: flex;
+    align-items: center; justify-content: center; padding: 20px;
+}
+#login-container {
+    display: flex; width: 100%; max-width: 1200px;
+    height: auto; min-height: 700px; max-height: 90vh;
+    border-radius: var(--login-raio-borda-container);
+    overflow: hidden; animation: zoomInPageLogin 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+body.modo-claro #login-container { box-shadow: var(--login-sombra-card-claro); }
+body.modo-escuro #login-container { box-shadow: var(--login-sombra-card-escuro); }
+@keyframes zoomInPageLogin { /* Renomeado para evitar conflito */
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* === ASIDE BOAS-VINDAS (Lado Esquerdo) === (Mantido como antes) */
+#aside-boas-vindas {
+    flex: 1.3; padding: 50px 60px; display: flex; flex-direction: column;
+    justify-content: center; align-items: center; text-align: center;
+    position: relative; color: #fff; overflow: hidden;
+}
+.background-slideshow { position: absolute; inset: 0; z-index: 0; }
+.bg-slide {
+    position: absolute; inset: 0; background-size: cover; background-position: center;
+    opacity: 0; transition: opacity 1.2s ease-in-out, transform 7s linear;
+    transform: scale(1.05);
+}
+.bg-slide.ativo { opacity: 1; transform: scale(1); }
+.bg-slide.ken-burns-active { animation: kenBurnsEffectLogin 15s infinite alternate ease-in-out; } /* Renomeado */
+@keyframes kenBurnsEffectLogin {
+    0% { transform: scale(1) rotate(0deg) translateX(0) translateY(0); }
+    100% { transform: scale(1.1) rotate(1deg) translateX(-2%) translateY(1%); }
+}
+.overlay-gradiente-boas-vindas {
+    position: absolute; inset: 0;
+    background: linear-gradient(160deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.65) 100%); z-index: 1;
+}
+.conteudo-boas-vindas {
+    position: relative; z-index: 2; max-width: 550px;
+    animation: fadeInContentLogin 1s 0.5s ease-out forwards; opacity: 0;
+}
+@keyframes fadeInContentLogin { /* Já definido, mas pode ser renomeado se precisar */
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.logo-login { display: flex; align-items: center; justify-content: center; margin-bottom: 25px; }
+.logo-animado-login {
+    font-size: 3.8rem; margin-right: 15px; color: var(--login-cor-acento-escuro);
+    filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.6));
+    animation: pulseLogoLogin 4s infinite cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+@keyframes pulseLogoLogin {
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.6));}
+    50% { transform: scale(1.08); filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));}
+}
+.logo-login h2 {
+    font-family: var(--login-fonte-destaque); font-size: 2.6rem; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 1.5px; line-height: 1;
+}
+.destaque-logo-login { color: var(--login-cor-acento-escuro); font-weight: 900; }
+#aside-boas-vindas .titulo-boas-vindas {
+    font-size: clamp(1.8rem, 2.5vw, 2.6rem); font-weight: 700;
+    margin-bottom: 15px; line-height: 1.25; text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+#aside-boas-vindas .tagline-boas-vindas {
+    font-size: clamp(1rem, 1.5vw, 1.1rem); margin-bottom: 35px;
+    opacity: 0.9; line-height: 1.7; max-width: 480px; margin-left: auto; margin-right: auto;
+}
+.slide-info-container { min-height: 2.5em; margin-bottom: 15px;}
+#slide-info-text.texto-slide-info {
+    font-size: 1.1rem; font-weight: 600; opacity: 0; transform: translateY(10px);
+    transition: opacity 0.5s ease, transform 0.5s ease; color: rgba(255,255,255,0.9);
+}
+#slide-info-text.visivel { opacity: 1; transform: translateY(0); }
+.dots-container { text-align: center; }
+.dot {
+    cursor: pointer; height: 12px; width: 12px; margin: 0 6px;
+    background-color: rgba(255,255,255,0.3); border-radius: 50%; display: inline-block;
+    border: 2px solid transparent;
+    transition: background-color 0.4s ease, transform 0.3s ease, border-color 0.4s ease;
+}
+.dot.ativo, .dot:hover {
+    background-color: rgba(255,255,255,0.8); transform: scale(1.25);
+    border-color: rgba(255,255,255,0.9);
+}
+.efeito-gloom-container { position: absolute; inset: 0; z-index: 0; pointer-events: none; mix-blend-mode: overlay; }
+.gloom-shape {
+    position: absolute; border-radius: 50%; opacity: 0.1;
+    filter: blur(100px); animation: gloomAnimationLogin 25s infinite alternate ease-in-out; /* Renomeado */
+}
+.gloom-shape.shape1 { width: 450px; height: 450px; background-color: var(--login-cor-acento-escuro); top: -20%; left: -20%; animation-delay: 0s; }
+.gloom-shape.shape2 { width: 400px; height: 400px; background-color: var(--login-cor-secundaria-escuro); bottom: -25%; right: -15%; animation-delay: -12s; }
+.gloom-shape.shape3 { width: 350px; height: 350px; background-color: #8e44ad; top: 40%; right: 10%; animation-delay: -7s; }
+@keyframes gloomAnimationLogin {
+    0%   { transform: scale(0.9) translate(0px, 0px) rotate(0deg); opacity: 0.08; }
+    25%  { transform: scale(1.1) translate(30px, -40px) rotate(15deg); opacity: 0.12; }
+    50%  { transform: scale(1) translate(-20px, 30px) rotate(-10deg); opacity: 0.1; }
+    75%  { transform: scale(1.2) translate(-40px, -20px) rotate(20deg); opacity: 0.15; }
+    100% { transform: scale(0.9) translate(0px, 0px) rotate(0deg); opacity: 0.08; }
+}
+
+/* === ASIDE FORMULÁRIO (Lado Direito) === */
+#aside-formulario {
+    flex: 1; padding: 40px 5vw; display: flex;
+    justify-content: center; align-items: center; position: relative; overflow-y: auto;
+}
+body.modo-claro #aside-formulario { background-color: var(--login-cor-superficie-claro); }
+body.modo-escuro #aside-formulario { background-color: var(--login-cor-fundo-escuro); }
+
+.container-formulario-login {
+    width: 100%; max-width: 400px; padding: 45px 40px;
+    border-radius: var(--login-raio-borda-container);
+    animation: fadeInFormLogin 1s 0.7s ease-out forwards; opacity: 0; position: relative;
+}
+body.modo-claro .container-formulario-login { background-color: var(--login-cor-superficie-claro); }
+body.modo-escuro .container-formulario-login { background-color: var(--login-cor-superficie-escuro); }
+
+@keyframes fadeInFormLogin { /* Já definido, mas pode ser renomeado se precisar */
+    from { opacity: 0; transform: scale(0.98) translateY(15px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.area-autenticacao { display: none; }
+.area-autenticacao.ativa { display: block; animation: switchFormAreaLogin 0.5s ease-in-out forwards; }
+@keyframes switchFormAreaLogin { /* Já definido, mas pode ser renomeado se precisar */
+    from { opacity: 0; transform: translateX(15px); }
+    to { opacity: 1; transform: translateX(0px); }
+}
+.area-autenticacao:not(.ativa).foi-desativada { /* Classe JS para animação de saída */
+    animation: switchFormAreaOutLogin 0.4s ease-in-out forwards;
+}
+@keyframes switchFormAreaOutLogin {
+    from { opacity: 1; transform: translateX(0px); }
+    to { opacity: 0; transform: translateX(-15px); }
+}
+
+
+#aside-formulario .titulo-form {
+    font-size: 2rem; font-weight: 700; text-align: center; margin-bottom: 12px;
+    font-family: var(--login-fonte-destaque);
+}
+body.modo-claro #aside-formulario .titulo-form { color: var(--login-cor-primaria-claro); }
+body.modo-escuro #aside-formulario .titulo-form { color: var(--login-cor-primaria-escuro); }
+
+.subtitulo-form { text-align: center; font-size: 1rem; margin-bottom: 35px; }
+body.modo-claro .subtitulo-form { color: var(--login-cor-texto-secundario-claro); }
+body.modo-escuro .subtitulo-form { color: var(--login-cor-texto-secundario-escuro); }
+
+/* ESTILOS DO CAMPO DE FORMULÁRIO COM PLACEHOLDER SIMPLES */
+.campo-form-login { position: relative; margin-bottom: 28px; }
+.campo-form-login input {
+    width: 100%;
+    /* Padding: Top/Bottom | Direita (para toggle senha) | Esquerda (para ícone) */
+    padding: 18px 50px 18px 55px;
+    font-size: 1rem;
+    border-radius: var(--login-raio-borda-input);
+    transition: border-color var(--login-transicao-rapida), 
+                box-shadow var(--login-transicao-rapida), 
+                background-color var(--login-transicao-rapida);
+    border: 1px solid;
+    background-color: transparent; /* Input transparente, cor do form */
+    caret-color: var(--login-cor-primaria-claro); /* Cor do cursor de texto */
+}
+body.modo-escuro .campo-form-login input {
+    caret-color: var(--login-cor-primaria-escuro);
+}
+
+/* Cores de borda e texto do input */
+body.modo-claro .campo-form-login input {
+    border-color: var(--login-cor-borda-input-claro);
+    color: var(--login-cor-texto-principal-claro);
+    background-color: color-mix(in srgb, var(--login-cor-fundo-claro) 90%, black 10%); /* Fundo do input levemente mais escuro que o fundo geral da página */
+}
+body.modo-escuro .campo-form-login input {
+    border-color: var(--login-cor-borda-input-escuro);
+    color: var(--login-cor-texto-principal-escuro);
+    background-color: color-mix(in srgb, var(--login-cor-fundo-escuro) 90%, white 10%); /* Fundo do input levemente mais claro que o fundo geral da página */
+}
+
+/* Estilização do Placeholder */
+.campo-form-login input::placeholder {
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+    opacity: 1;
+    transform: translateX(0);
+}
+body.modo-claro .campo-form-login input::placeholder { color: var(--login-cor-placeholder-claro); }
+body.modo-escuro .campo-form-login input::placeholder { color: var(--login-cor-placeholder-escuro); }
+
+/* Placeholder desaparece no foco */
+.campo-form-login input:focus::placeholder {
+    opacity: 0;
+    transform: translateX(10px); /* Leve deslize para o lado ao desaparecer */
+}
+
+/* Estilo de foco do input */
+.campo-form-login input:focus {
+    outline: none;
+}
+body.modo-claro .campo-form-login input:focus {
+    border-color: var(--login-cor-borda-input-focus-claro);
+    box-shadow: 0 0 0 3.5px var(--login-cor-glow-foco-claro);
+    background-color: var(--login-cor-superficie-claro); /* Fundo do input igual ao do formulário no foco */
+}
+body.modo-escuro .campo-form-login input:focus {
+    border-color: var(--login-cor-borda-input-focus-escuro);
+    box-shadow: 0 0 0 3.5px var(--login-cor-glow-foco-escuro);
+    background-color: var(--login-cor-superficie-escuro);
+}
+
+/* Ícone dentro do input */
+.icone-input {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    left: 20px; font-size: 1.2rem;
+    transition: color var(--login-transicao-rapida), transform 0.3s ease;
+    pointer-events: none;
+}
+body.modo-claro .icone-input { color: var(--login-cor-texto-secundario-claro); }
+body.modo-escuro .icone-input { color: var(--login-cor-texto-secundario-escuro); }
+.campo-form-login input:focus ~ .icone-input {
+    transform: translateY(-50%) scale(1.1) rotate(-5deg); /* Animação do ícone */
+    body.modo-claro & { color: var(--login-cor-primaria-claro); }
+    body.modo-escuro & { color: var(--login-cor-primaria-escuro); }
+}
+
+.toggle-senha { /* Botão de mostrar/ocultar senha */
+    position: absolute; top: 50%; transform: translateY(-50%);
+    right: 18px; background: none; border: none;
+    font-size: 1.2rem; cursor: pointer; padding: 5px;
+    z-index: 2;
+    opacity: 0.7;
+    transition: color var(--login-transicao-rapida), opacity var(--login-transicao-rapida);
+}
+body.modo-claro .toggle-senha { color: var(--login-cor-texto-secundario-claro); }
+body.modo-escuro .toggle-senha { color: var(--login-cor-texto-secundario-escuro); }
+.toggle-senha:hover, .toggle-senha:focus {
+    opacity: 1;
+    body.modo-claro & { color: var(--login-cor-primaria-claro); }
+    body.modo-escuro & { color: var(--login-cor-primaria-escuro); }
+    outline: none;
+}
+
+/* Mensagem de erro (Mantida como antes, já está boa) */
+.mensagem-erro {
+    display: block; font-size: 0.8rem; padding-left: 20px; margin-top: 6px;
+    height: 0; overflow: hidden; opacity: 0; transform: translateY(-5px);
+    transition: height 0.2s ease-out, opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+body.modo-claro .mensagem-erro { color: var(--login-cor-erro-claro); }
+body.modo-escuro .mensagem-erro { color: var(--login-cor-erro-escuro); }
+.campo-form-login input.erro-validacao ~ .mensagem-erro {
+    height: auto; opacity: 1; transform: translateY(0);
+}
+.campo-form-login input.erro-validacao {
+    body.modo-claro & { border-color: var(--login-cor-erro-claro) !important; box-shadow: 0 0 0 3.5px rgba(231, 76, 60, 0.1) !important; }
+    body.modo-escuro & { border-color: var(--login-cor-erro-escuro) !important; box-shadow: 0 0 0 3.5px rgba(241, 124, 110, 0.2) !important; }
+}
+.campo-form-login input.erro-validacao:focus {
+    body.modo-claro & { border-color: var(--login-cor-erro-claro) !important; box-shadow: 0 0 0 3.5px rgba(231, 76, 60, 0.25) !important; }
+    body.modo-escuro & { border-color: var(--login-cor-erro-escuro) !important; box-shadow: 0 0 0 3.5px rgba(241, 124, 110, 0.35) !important; }
+}
+
+/* Restante do CSS (opcoes-login, botao-login, etc.) mantido como na sua última versão,
+   pois já estavam bem estilizados e não dependiam do label flutuante.
+   A responsividade também pode ser mantida.
+*/
+
+.opcoes-login { display: flex; justify-content: space-between; align-items: center; margin-bottom: 35px; font-size: 0.9rem; }
+.checkbox-lembrar { display: inline-flex; align-items: center; cursor: pointer; user-select: none; gap: 8px; }
+.checkbox-lembrar input[type="checkbox"] { position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0; }
+.checkmark-custom {
+    width: 20px; height: 20px; border: 2px solid; border-radius: 5px;
+    display: inline-block; position: relative;
+    transition: background-color 0.2s ease, border-color 0.2s ease; flex-shrink: 0;
+}
+body.modo-claro .checkmark-custom { border-color: var(--login-cor-borda-input-claro); }
+body.modo-escuro .checkmark-custom { border-color: var(--login-cor-borda-input-escuro); }
+.checkbox-lembrar input:checked + .checkmark-custom { animation: checkmarkPopLogin 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+body.modo-claro .checkbox-lembrar input:checked + .checkmark-custom { background-color: var(--login-cor-primaria-claro); border-color: var(--login-cor-primaria-claro); }
+body.modo-escuro .checkbox-lembrar input:checked + .checkmark-custom { background-color: var(--login-cor-primaria-escuro); border-color: var(--login-cor-primaria-escuro); }
+.checkmark-custom::after {
+    content: ""; position: absolute; display: none;
+    left: 6px; top: 2px; width: 5px; height: 10px;
+    border: solid white; border-width: 0 2.5px 2.5px 0;
+    transform: rotate(45deg) scale(0.9);
+}
+.checkbox-lembrar input:checked + .checkmark-custom::after { display: block; }
+@keyframes checkmarkPopLogin {
+    0% { transform: scale(0.7); opacity: 0.5; }
+    80% { transform: scale(1.15); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.link-form { text-decoration: none; font-weight: 500; transition: color var(--login-transicao-rapida), opacity var(--login-transicao-rapida); }
+body.modo-claro .link-form { color: var(--login-cor-primaria-claro); }
+body.modo-escuro .link-form { color: var(--login-cor-primaria-escuro); }
+.link-form:hover { text-decoration: underline; opacity: 0.85; }
+
+.link-voltar { display: inline-flex; align-items: center; margin-top: 30px; font-size: 0.95rem; }
+.link-voltar i { margin-right: 8px; font-size: 0.9em; }
+
+.botao-login {
+    width: 100%; padding: 18px 25px; font-size: 1.05rem; font-weight: 600;
+    border: none; border-radius: var(--login-raio-borda-input); cursor: pointer;
+    text-transform: uppercase; letter-spacing: 0.8px;
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.2s ease, box-shadow var(--login-transicao-rapida), background-position 0.6s ease;
+    position: relative; overflow: hidden; background-size: 250% auto; color: white;
+}
+.botao-login i { margin-left: 12px; font-size: 1.1rem; transition: transform 0.3s ease; }
+.botao-login span { position: relative; z-index: 1; }
+body.modo-claro .botao-login.primario {
+    background-image: linear-gradient(to right, var(--login-cor-primaria-claro) 0%, var(--login-cor-secundaria-claro) 50%, var(--login-cor-primaria-claro) 100%);
+    box-shadow: 0 6px 18px -7px var(--login-cor-primaria-claro);
+}
+body.modo-escuro .botao-login.primario {
+    background-image: linear-gradient(to right, var(--login-cor-primaria-escuro) 0%, var(--login-cor-secundaria-escuro) 50%, var(--login-cor-primaria-escuro) 100%);
+    box-shadow: 0 6px 22px -7px var(--login-cor-primaria-escuro);
+}
+.botao-login:hover:not(:disabled) { background-position: right center; transform: translateY(-3px) scale(1.01); }
+.botao-login:hover:not(:disabled) i { transform: translateX(5px) rotate(10deg); }
+body.modo-claro .botao-login:hover:not(:disabled) { box-shadow: 0 10px 25px -7px var(--login-cor-primaria-claro); }
+body.modo-escuro .botao-login:hover:not(:disabled) { box-shadow: 0 10px 30px -7px var(--login-cor-primaria-escuro); }
+.botao-login:active:not(:disabled) { transform: translateY(-1px) scale(0.99); box-shadow: none; }
+.botao-login:disabled { opacity: 0.6; cursor: not-allowed; box-shadow: none !important; transform: none !important; }
+
+.aviso-seguranca {
+    text-align: center; font-size: 0.85rem; margin-top: 35px;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+body.modo-claro .aviso-seguranca { color: var(--login-cor-texto-secundario-claro); opacity: 0.85; }
+body.modo-escuro .aviso-seguranca { color: var(--login-cor-texto-secundario-escuro); opacity: 0.75; }
+.aviso-seguranca i { font-size: 1rem; body.modo-claro & { color: #28a745; } body.modo-escuro & { color: #34c759; } }
+
+.toggle-tema-login { position: absolute; top: 25px; right: 25px; }
+.botao-icone-login {
+    background: transparent; border: none; font-size: 1.5rem;
+    cursor: pointer; position: relative; padding: 10px; border-radius: 50%;
+    transition: transform var(--login-transicao-rapida), color var(--login-transicao-rapida), background-color var(--login-transicao-rapida), text-shadow var(--login-transicao-rapida);
+}
+.botao-icone-login:hover { transform: scale(1.15) rotate(10deg); }
+.botao-icone-login:focus-visible { outline: 2px solid; outline-offset: 2px; }
+body.modo-claro .botao-icone-login { color: var(--login-cor-texto-secundario-claro); }
+body.modo-claro .botao-icone-login:hover { color: var(--login-cor-primaria-claro); background-color: rgba(0,0,0,0.04); text-shadow: 0 0 8px var(--login-cor-glow-foco-claro); }
+body.modo-claro .botao-icone-login:focus-visible { outline-color: var(--login-cor-primaria-claro); }
+body.modo-escuro .botao-icone-login { color: var(--login-cor-texto-secundario-escuro); }
+body.modo-escuro .botao-icone-login:hover { color: var(--login-cor-primaria-escuro); background-color: rgba(255,255,255,0.06); text-shadow: 0 0 10px var(--login-cor-glow-foco-escuro); }
+body.modo-escuro .botao-icone-login:focus-visible { outline-color: var(--login-cor-primaria-escuro); }
+
+/* Responsividade (Mantida como na sua versão anterior, pois já estava bem ajustada) */
+@media (max-width: 1024px) {
+    #login-page-wrapper { padding: 0; align-items: stretch; }
+    #login-container { flex-direction: column; max-width: none; min-height: 100vh; max-height: none; border-radius: 0; box-shadow: none !important; }
+    #aside-boas-vindas, #aside-formulario { flex: none; width: 100%; padding: 40px 25px; }
+    #aside-boas-vindas { min-height: 40vh; order: 1; }
+    #aside-formulario { min-height: 60vh; order: 2; overflow-y: auto; }
+    .container-formulario-login { padding: 30px 25px; margin: 0 auto; }
+    .toggle-tema-login { top: 20px; right: 20px; }
+}
+@media (max-width: 600px) {
+    html { font-size: 15px; }
+    #aside-boas-vindas { padding: 30px 20px; min-height: 0; }
+    #aside-boas-vindas .titulo-boas-vindas { font-size: 1.6rem; }
+    #aside-boas-vindas .tagline-boas-vindas { font-size: 0.9rem; margin-bottom: 20px; }
+    .logo-login h2 { font-size: 2rem; }
+    .logo-animado-login { font-size: 3rem; }
+    .slide-info-container, .dots-container { display: none; }
+    #aside-formulario { padding: 30px 20px; }
+    .container-formulario-login { padding: 25px 20px; }
+    #aside-formulario .titulo-form { font-size: 1.7rem; }
+    .subtitulo-form { font-size: 0.9rem; margin-bottom: 25px; }
+    .campo-form-login input { padding: 16px 45px 16px 48px; font-size: 0.95rem; }
+    .icone-input { left: 16px; font-size: 1.1rem; }
+    .opcoes-login { flex-direction: column; align-items: flex-start; gap: 12px; margin-bottom: 25px; }
+    .botao-login { padding: 16px; font-size: 0.95rem; }
+    .aviso-seguranca { font-size: 0.8rem; margin-top: 25px; }
+}

@@ -1,0 +1,5813 @@
+/* --------------------------------------------------------------------------
+   1. VARIÁVEIS GLOBAIS (ROOT)
+      Definições de cores, tipografia, espaçamentos, bordas, sombras,
+      transições e z-index para o tema claro (padrão).
+   -------------------------------------------------------------------------- */
+:root {
+    /* Cores Primárias e Destaques */
+    --cor-primaria-nexus: #FF7700;
+    /* Laranja Nexus Principal */
+    --cor-primaria-hover-nexus: #E66A00;
+    /* Laranja mais escuro para hover */
+    --cor-primaria-active-nexus: #CC5D00;
+    /* Laranja ainda mais escuro para active */
+    --cor-primaria-transparente-nexus: rgba(255, 119, 0, 0.1);
+    /* Laranja com baixa opacidade */
+    --cor-primaria-brilho-nexus: rgba(255, 119, 0, 0.5);
+    /* Laranja para efeitos de brilho/glow */
+    --cor-primaria-rgb-nexus: 255, 119, 0;
+    /* Componentes RGB para uso em rgba() */
+
+    --cor-secundaria-nexus: #FFAA33;
+    /* Laranja secundário, mais claro */
+    --cor-destaque-logo-nexus: #FFB700;
+    /* Amarelo/Laranja para destaque no logo */
+
+    /* Cores Neutras (Modo Claro) */
+    --cor-fundo-app-claro: #f8f9fa;
+    /* Fundo principal da aplicação */
+    --cor-fundo-elemento-claro: #FFFFFF;
+    /* Fundo de cards, modais, inputs */
+    --cor-fundo-elemento-claro-rgb: 255, 255, 255;
+    /* Para rgba() */
+    --cor-fundo-hover-claro: #f1f3f5;
+    /* Fundo para estados de hover sutil */
+    --cor-fundo-ativo-claro: #e9ecef;
+    /* Fundo para estados ativos/selecionados */
+    --cor-fundo-desabilitado-claro: #e9ecef;
+    /* Fundo para elementos desabilitados */
+
+    --cor-texto-principal-claro: #212529;
+    /* Texto principal, escuro */
+    --cor-texto-secundario-claro: #6c757d;
+    /* Texto secundário, cinza */
+    --cor-texto-contraste-claro: #FFFFFF;
+    /* Texto sobre fundos escuros/coloridos (ex: botões primários) */
+    --cor-texto-link-claro: var(--cor-primaria-nexus);
+    /* Cor padrão para links */
+    --cor-texto-desabilitado-claro: #adb5bd;
+    /* Texto para elementos desabilitados */
+
+    --cor-borda-claro: #dee2e6;
+    /* Cor de borda geral */
+    --cor-borda-input-claro: #ced4da;
+    /* Borda para inputs */
+    --cor-borda-input-focus-claro: var(--cor-primaria-nexus);
+    /* Borda de input em foco */
+    --cor-borda-desabilitado-claro: #ced4da;
+    /* Borda para inputs desabilitados */
+
+    /* Cores de Status */
+    --cor-sucesso: #198754;
+    --cor-sucesso-rgb: 25, 135, 84;
+    --cor-sucesso-hover: #157347;
+    --cor-sucesso-active: #146c40;
+    --cor-sucesso-transparente: rgba(var(--cor-sucesso-rgb), 0.1);
+
+    --cor-aviso: #ffc107;
+    --cor-aviso-rgb: 255, 193, 7;
+    --cor-aviso-hover: #ffba00;
+    --cor-aviso-active: #f5b000;
+    --cor-aviso-activef: #e0c11298;
+    --cor-aviso-transparente: rgba(var(--cor-aviso-rgb), 0.15);
+    --cor-texto-aviso-claro: #664d03;
+    /* Texto escuro para contraste com fundo amarelo */
+
+    --cor-perigo: #dc3545;
+    --cor-perigo-rgb: 220, 53, 69;
+    --cor-perigo-hover: #bb2d3b;
+    --cor-perigo-active: #b02a37;
+    --cor-perigo-transparente: rgba(var(--cor-perigo-rgb), 0.1);
+
+    --cor-info: #0dcaf0;
+    --cor-info-rgb: 13, 202, 240;
+    --cor-info-hover: #0baccc;
+    --cor-info-active: #0a9cb9;
+    --cor-info-transparente: rgba(var(--cor-info-rgb), 0.1);
+
+    /* Tipografia */
+    --fonte-principal: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --fonte-destaque: 'Poppins', var(--fonte-principal);
+    /* Orbitron para títulos, Poppins como fallback */
+    --tamanho-fonte-base: 16px;
+    /* Define 1rem */
+    --altura-linha-base: 1.6;
+    /* Altura de linha padrão */
+    --tamanho-fonte-xs: 0.75rem;
+    /* 12px */
+    --tamanho-fonte-pequeno: 0.875rem;
+    /* 14px */
+    --tamanho-fonte-medio: 1rem;
+    /* 16px (padrão) */
+    --tamanho-fonte-grande: 1.125rem;
+    /* 18px */
+    --tamanho-fonte-xl: 1.25rem;
+    /* 20px */
+    --tamanho-fonte-xxl: 1.5rem;
+    /* 24px */
+    /* Pesos da Fonte Poppins */
+    --peso-leve: 300;
+    --peso-normal: 400;
+    --peso-medio: 500;
+    --peso-semibold: 600;
+    --peso-bold: 700;
+    --peso-extrabold: 800;
+    --peso-black: 900;
+    /* Para números de destaque, etc. */
+
+    /* Escala de Espaçamentos */
+    --esp-0: 0rem;
+    /* 0px */
+    --esp-xxs: 0.125rem;
+    /* 2px */
+    --esp-xs: 0.25rem;
+    /* 4px */
+    --esp-sm: 0.5rem;
+    /* 8px */
+    --esp-md: 1rem;
+    /* 16px */
+    --esp-lg: 1.5rem;
+    /* 24px */
+    --esp-xl: 2rem;
+    /* 32px */
+    --esp-xxl: 2.5rem;
+    /* 40px */
+    --esp-xxxl: 3rem;
+    /* 48px */
+
+    /* Bordas e Sombras */
+    --raio-borda-sm: 4px;
+    --raio-borda-md: 6px;
+    --raio-borda-lg: 10px;
+    --raio-borda-xl: 16px;
+    --raio-borda-circulo: 50%;
+    --raio-borda-pilula: 50rem;
+    /* Para botões/tags em formato de pílula */
+    --raio-borda-nenhum: 0;
+
+    --sombra-sutil-claro: 0 1px 3px rgba(0, 0, 0, 0.05);
+    --sombra-card-claro: 0 4px 10px rgba(0, 0, 0, 0.07);
+    --sombra-elevada-claro: 0 8px 20px rgba(0, 0, 0, 0.025);
+    --sombra-interna-claro: inset 0 1px 2px rgba(0, 0, 0, 0.04);
+    --sombra-texto-claro: 1px 1px 1px rgba(0, 0, 0, 0.1);
+
+    --sombra-glow-primaria: 0 0 10px var(--cor-primaria-brilho-nexus),
+        0 0 18px var(--cor-primaria-brilho-nexus);
+    --sombra-texto-glow-primaria: 0 0 5px var(--cor-primaria-brilho-nexus);
+
+    /* Transições */
+    --transicao-instantanea: all 0s ease;
+    --transicao-muito-rapida: all 0.1s ease-out;
+    --transicao-rapida: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transicao-padrao: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    --transicao-lenta: all 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    --transicao-muito-lenta: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Z-Index - Camadas da Interface */
+    --z-escondido: -1;
+    --z-conteudo-base: 1;
+    --z-elemento-secao: 10;
+    /* Cards, tabelas dentro de seções */
+    --z-elemento-flutuante-secao: 20;
+    /* Paginação, elementos sobrepostos na seção */
+    --z-dropdown: 7500;
+    --z-cabecalho: 8000;
+    --z-flutuante: 8900;
+    /* Botão do App Launcher */
+    --z-launcher-overlay: 8950;
+    /* Overlay de fundo do App Launcher */
+    --z-launcher: 8960;
+    /* App Launcher em si */
+    --z-modal-overlay: 9000;
+    --z-modal: 9010;
+    --z-toast: 9500;
+    --z-loading: 10000;
+    /* Overlay de carregamento inicial */
+}
+
+/* --------------------------------------------------------------------------
+   2. MODO ESCURO - VARIÁVEIS
+      Sobrescreve as variáveis do :root quando a classe .modo-escuro
+      é aplicada ao <body>.
+   -------------------------------------------------------------------------- */
+body.modo-escuro {
+    /* Cores Primárias e Destaques (Modo Escuro) */
+    --cor-primaria-nexus: #FF8C00;
+    /* Laranja um pouco mais vibrante para contraste no escuro */
+    --cor-primaria-hover-nexus: #FFA500;
+    --cor-primaria-active-nexus: #FFB340;
+    --cor-primaria-transparente-nexus: rgba(255, 140, 0, 0.15);
+    --cor-primaria-brilho-nexus: rgba(255, 140, 0, 0.55);
+    --cor-primaria-rgb-nexus: 255, 140, 0;
+
+    --cor-secundaria-nexus: #FFAD33;
+    --cor-destaque-logo-nexus: #FFD700;
+    /* Dourado, mais vibrante no escuro */
+
+    /* Cores Neutras (Modo Escuro) */
+    --cor-fundo-app-escuro: #10141f;
+    /* Fundo azul escuro/quase preto */
+    --cor-fundo-elemento-escuro: #1a1f2c;
+    /* Fundo de elementos um pouco mais claro */
+    --cor-fundo-elemento-escuro-rgb: 26, 31, 44;
+    --cor-fundo-hover-escuro: #242a38;
+    --cor-fundo-ativo-escuro: #2e3545;
+    --cor-fundo-desabilitado-escuro: #242a38;
+
+    --cor-texto-principal-escuro: #e8ecf1;
+    /* Texto principal, branco/cinza claro */
+    --cor-texto-secundario-escuro: #9fa8b4;
+    /* Texto secundário, cinza mais claro */
+    --cor-texto-contraste-escuro: #0a0c12;
+    /* Texto sobre fundos claros/coloridos (raro no modo escuro) */
+    --cor-texto-link-escuro: var(--cor-primaria-nexus);
+    --cor-texto-desabilitado-escuro: #5f6a7a;
+
+    --cor-borda-escuro: #2f384c;
+    --cor-borda-input-escuro: #3e485c;
+    --cor-borda-input-focus-escuro: var(--cor-primaria-nexus);
+    --cor-borda-desabilitado-escuro: #3e485c;
+
+    --cor-texto-aviso-claro: #fff5cc;
+    /* Para modo escuro, o texto sobre fundo de aviso precisa ser claro */
+
+    /* Sombras (Modo Escuro) */
+    --sombra-sutil-escuro: 0 1px 3px rgba(0, 0, 0, 0.25);
+    --sombra-card-escuro: 0 4px 12px rgba(0, 0, 0, 0.3);
+    --sombra-elevada-escuro: 0 8px 24px rgba(0, 0, 0, 0.35);
+    --sombra-interna-escuro: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+    --sombra-texto-escuro: 1px 1px 1px rgba(0, 0, 0, 0.3);
+
+    --sombra-glow-primaria: 0 0 12px var(--cor-primaria-brilho-nexus),
+        0 0 22px var(--cor-primaria-brilho-nexus);
+    --sombra-texto-glow-primaria: 0 0 7px var(--cor-primaria-brilho-nexus);
+}
+
+/* --------------------------------------------------------------------------
+   3. RESET E ESTILOS BASE DETALHADOS
+      Normalização de estilos entre navegadores e definição de padrões
+      para elementos HTML comuns.
+   -------------------------------------------------------------------------- */
+html {
+    font-size: var(--tamanho-fonte-base);
+    line-height: var(--altura-linha-base);
+    scroll-behavior: smooth;
+    /* Rolagem suave para âncoras */
+    height: 100%;
+    /* Garante que html e body possam ocupar 100% da altura */
+    -webkit-text-size-adjust: 100%;
+    /* Previne zoom automático de texto em iOS */
+    -moz-tab-size: 4;
+    /* Tamanho da tabulação */
+    tab-size: 4;
+}
+
+body {
+    font-family: var(--fonte-principal);
+    font-weight: var(--peso-normal);
+    background-color: var(--cor-fundo-app-claro);
+    color: var(--cor-texto-principal-claro);
+    transition: background-color var(--transicao-padrao), color var(--transicao-padrao);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* Garante que o body ocupe pelo menos toda a altura da viewport */
+    margin: 0;
+    overflow-x: hidden;
+    /* Previne scroll horizontal indesejado no body */
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    /* Melhora renderização de fontes em WebKit */
+    -moz-osx-font-smoothing: grayscale;
+    /* Melhora renderização de fontes em Firefox (macOS) */
+}
+
+body.modo-escuro {
+    background-color: var(--cor-fundo-app-escuro);
+    color: var(--cor-texto-principal-escuro);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    /* Modelo de caixa universal */
+    margin: 0;
+    padding: 0;
+    border-width: 0;
+    /* Reset de largura de borda */
+    border-style: solid;
+    /* Estilo padrão para quando bordas forem aplicadas */
+    border-color: transparent;
+    /* Bordas são transparentes por padrão */
+}
+
+/* Melhorias para elementos de texto semânticos */
+h1,
+.h1-style {
+    font-size: clamp(1.8rem, 1.5vw + 1.5rem, 2.25rem);
+    font-weight: var(--peso-extrabold);
+    line-height: 1.2;
+    margin-bottom: var(--esp-lg);
+}
+
+h2,
+.h2-style {
+    font-size: clamp(1.5rem, 1vw + 1.3rem, 1.75rem);
+    font-weight: var(--peso-bold);
+    line-height: 1.25;
+    margin-bottom: var(--esp-lg);
+}
+
+h3,
+.h3-style {
+    font-size: clamp(1.3rem, 0.8vw + 1.1rem, 1.5rem);
+    font-weight: var(--peso-bold);
+    line-height: 1.3;
+    margin-bottom: var(--esp-md);
+}
+
+h4,
+.h4-style {
+    font-size: clamp(1.1rem, 0.6vw + 0.9rem, 1.25rem);
+    font-weight: var(--peso-semibold);
+    line-height: 1.35;
+    margin-bottom: var(--esp-md);
+}
+
+h5,
+.h5-style {
+    font-size: clamp(1rem, 0.5vw + 0.8rem, 1.1rem);
+    font-weight: var(--peso-semibold);
+    line-height: 1.4;
+    margin-bottom: var(--esp-sm);
+}
+
+h6,
+.h6-style {
+    font-size: 1rem;
+    font-weight: var(--peso-semibold);
+    line-height: 1.45;
+    margin-bottom: var(--esp-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--fonte-destaque);
+    color: inherit;
+    letter-spacing: -0.25px;
+    /* Ajuste fino para melhor leitura */
+}
+
+p {
+    margin-bottom: var(--esp-md);
+    font-size: var(--tamanho-fonte-medio);
+    line-height: 1.7;
+}
+
+small,
+.texto-pequeno {
+    font-size: var(--tamanho-fonte-pequeno);
+}
+
+.texto-xs {
+    font-size: var(--tamanho-fonte-xs);
+}
+
+a {
+    color: var(--cor-texto-link-claro);
+    text-decoration: none;
+    background-color: transparent;
+    transition: color var(--transicao-rapida), opacity var(--transicao-rapida), text-decoration-color var(--transicao-rapida);
+    text-decoration-line: underline;
+    text-decoration-color: transparent;
+    /* Começa transparente */
+    text-underline-offset: 0.15em;
+    /* Distância do sublinhado */
+}
+
+a:hover,
+a:focus {
+    color: var(--cor-primaria-hover-nexus);
+    text-decoration-color: currentColor;
+    /* Usa a cor atual do texto para sublinhado */
+    opacity: 0.9;
+}
+
+/* Foco Acessível */
+a:focus-visible {
+    /* Estilo de foco apenas para navegação por teclado */
+    outline: 2px solid var(--cor-primaria-transparente-nexus);
+    outline-offset: 2px;
+    border-radius: var(--raio-borda-sm);
+    text-decoration-color: currentColor;
+}
+
+body.modo-escuro a {
+    color: var(--cor-texto-link-escuro);
+}
+
+body.modo-escuro a:hover,
+body.modo-escuro a:focus {
+    color: var(--cor-primaria-hover-nexus);
+}
+
+strong,
+b {
+    font-weight: var(--peso-bold);
+}
+
+em,
+i {
+    font-style: italic;
+}
+
+/* FontAwesome usa <i> e não será afetado se tiver suas próprias regras */
+
+hr {
+    box-sizing: content-box;
+    height: 0;
+    overflow: visible;
+    border: 0;
+    border-top: 1px solid var(--cor-borda-claro);
+    margin: var(--esp-lg) 0;
+}
+
+body.modo-escuro hr {
+    border-top-color: var(--cor-borda-escuro);
+}
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+button {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    margin: 0;
+    overflow: visible;
+    text-transform: none;
+    -webkit-appearance: button;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid transparent;
+    /* Já resetado, mas para clareza */
+    padding: 0;
+    color: inherit;
+    /* Herdar cor para botões de texto simples */
+}
+
+/* Foco acessível para botões */
+button:focus-visible {
+    outline: 2px solid var(--cor-primaria-nexus);
+    outline-offset: 2px;
+    border-radius: var(--raio-borda-sm);
+}
+
+button::-moz-focus-inner {
+    border-style: none;
+    padding: 0;
+}
+
+input,
+textarea,
+select {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    margin: 0;
+    color: inherit;
+    /* Herdar cor, especialmente para inputs */
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    padding: 0;
+}
+
+textarea {
+    overflow: auto;
+    resize: vertical;
+}
+
+figure {
+    margin: 0 0 var(--esp-md) 0;
+}
+
+figcaption {
+    font-size: var(--tamanho-fonte-pequeno);
+    color: var(--cor-texto-secundario-claro);
+    margin-top: var(--esp-sm);
+}
+
+body.modo-escuro figcaption {
+    color: var(--cor-texto-secundario-escuro);
+}
+
+blockquote {
+    margin: 0 0 var(--esp-lg) var(--esp-lg);
+    padding: var(--esp-md) var(--esp-lg);
+    border-left: 4px solid var(--cor-primaria-nexus);
+    background-color: var(--cor-fundo-hover-claro);
+    font-style: italic;
+    color: var(--cor-texto-secundario-claro);
+}
+
+body.modo-escuro blockquote {
+    background-color: var(--cor-fundo-hover-escuro);
+    color: var(--cor-texto-secundario-escuro);
+}
+
+blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+code,
+kbd,
+pre,
+samp {
+    font-family: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.9em;
+    /* Levemente menor que o texto ao redor */
+}
+
+pre {
+    display: block;
+    padding: var(--esp-md);
+    margin: 0 0 var(--esp-lg);
+    color: var(--cor-texto-principal-claro);
+    word-break: break-all;
+    word-wrap: break-word;
+    background-color: var(--cor-fundo-hover-claro);
+    border: 1px solid var(--cor-borda-claro);
+    border-radius: var(--raio-borda-md);
+    overflow: auto;
+}
+
+body.modo-escuro pre {
+    color: var(--cor-texto-principal-escuro);
+    background-color: var(--cor-fundo-hover-escuro);
+    border-color: var(--cor-borda-escuro);
+}
+
+details {
+    display: block;
+}
+
+summary {
+    display: list-item;
+    /* Para mostrar o marcador padrão (triângulo) */
+    cursor: pointer;
+    font-weight: var(--peso-semibold);
+    padding: var(--esp-sm) 0;
+    color: var(--cor-texto-link-claro);
+}
+
+summary:hover,
+summary:focus-visible {
+    color: var(--cor-primaria-hover-nexus);
+}
+
+summary:focus-visible {
+    outline: 2px solid var(--cor-primaria-transparente-nexus);
+    outline-offset: 1px;
+    border-radius: var(--raio-borda-sm);
+}
+
+body.modo-escuro summary {
+    color: var(--cor-texto-link-escuro);
+}
+
+body.modo-escuro summary:hover,
+body.modo-escuro summary:focus-visible {
+    color: var(--cor-primaria-hover-nexus);
+}
+
+
+/* --------------------------------------------------------------------------
+   4. SCROLLBAR PERSONALIZADA NEXUS
+      Estilização sutil da barra de rolagem para elementos com .custom-scrollbar.
+   -------------------------------------------------------------------------- */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    /* Largura da scrollbar vertical */
+    height: 8px;
+    /* Altura da scrollbar horizontal */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: var(--cor-fundo-hover-claro);
+    border-radius: var(--raio-borda-pilula);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: var(--cor-primaria-transparente-nexus);
+    border-radius: var(--raio-borda-pilula);
+    border: 2px solid var(--cor-fundo-hover-claro);
+    /* Cria um "espaçamento" */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(var(--cor-primaria-rgb-nexus), 0.3);
+}
+
+body.modo-escuro .custom-scrollbar::-webkit-scrollbar-track {
+    background: var(--cor-fundo-hover-escuro);
+}
+
+body.modo-escuro .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgba(var(--cor-primaria-rgb-nexus), 0.25);
+    border-color: var(--cor-fundo-hover-escuro);
+}
+
+body.modo-escuro .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(var(--cor-primaria-rgb-nexus), 0.4);
+}
+
+/* Para Firefox (menos customizável) */
+.custom-scrollbar {
+    scrollbar-width: thin;
+    /* "auto" ou "thin" */
+    scrollbar-color: rgba(var(--cor-primaria-rgb-nexus), 0.2) var(--cor-fundo-hover-claro);
+    /* thumb track */
+}
+
+body.modo-escuro .custom-scrollbar {
+    scrollbar-color: rgba(var(--cor-primaria-rgb-nexus), 0.25) var(--cor-fundo-hover-escuro);
+}
+
+/* --------------------------------------------------------------------------
+   5. CLASSES UTILITÁRIAS EXPANDIDAS
+      Classes genéricas para formatação rápida.
+   -------------------------------------------------------------------------- */
+/* Visibilidade e Opacidade */
+.escondido,
+[hidden] {
+    display: none !important;
+}
+
+/* [hidden] para semântica HTML5 */
+.sr-only {
+    /* Apenas para leitores de tela */
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+.invisivel {
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
+/* Ocupa espaço mas não é visível */
+.opacidade-0 {
+    opacity: 0 !important;
+}
+
+.opacidade-50 {
+    opacity: 0.5 !important;
+}
+
+.opacidade-100 {
+    opacity: 1 !important;
+}
+
+/* Cores de Texto */
+.texto-primario {
+    color: var(--cor-primaria-nexus) !important;
+}
+
+.texto-secundario {
+    color: var(--cor-texto-secundario-claro) !important;
+}
+
+body.modo-escuro .texto-secundario {
+    color: var(--cor-texto-secundario-escuro) !important;
+}
+
+.texto-sucesso {
+    color: var(--cor-sucesso) !important;
+}
+
+.texto-aviso {
+    color: var(--cor-aviso) !important;
+}
+
+/* Em modo claro, pode precisar de ajuste para contraste se o fundo também for claro */
+.texto-perigo {
+    color: var(--cor-perigo) !important;
+}
+
+.texto-info {
+    color: var(--cor-info) !important;
+}
+
+.texto-branco {
+    color: #fff !important;
+}
+
+.texto-preto {
+    color: #000 !important;
+}
+
+.texto-contraste-claro {
+    color: var(--cor-texto-contraste-claro) !important;
+}
+
+body.modo-escuro .texto-contraste-escuro {
+    color: var(--cor-texto-contraste-escuro) !important;
+}
+
+/* Alinhamento de Texto */
+.texto-centralizado {
+    text-align: center !important;
+}
+
+.texto-direita {
+    text-align: right !important;
+}
+
+.texto-esquerda {
+    text-align: left !important;
+}
+
+.texto-justificado {
+    text-align: justify !important;
+}
+
+/* Transformação de Texto */
+.texto-uppercase {
+    text-transform: uppercase !important;
+}
+
+.texto-lowercase {
+    text-transform: lowercase !important;
+}
+
+.texto-capitalize {
+    text-transform: capitalize !important;
+}
+
+.texto-normal {
+    text-transform: none !important;
+}
+
+/* Para resetar */
+
+/* Quebra de Texto */
+.texto-sem-wrap {
+    white-space: nowrap !important;
+}
+
+.texto-quebra-palavra {
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    /* break-word é mais agressivo */
+}
+
+.texto-truncado {
+    /* Para uma única linha com reticências */
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+/* Display (já bem cobertas, mantendo) */
+.d-none {
+    display: none !important;
+}
+
+.d-inline {
+    display: inline !important;
+}
+
+.d-inline-block {
+    display: inline-block !important;
+}
+
+.d-block {
+    display: block !important;
+}
+
+.d-grid {
+    display: grid !important;
+}
+
+.d-flex {
+    display: flex !important;
+}
+
+.d-inline-flex {
+    display: inline-flex !important;
+}
+
+/* Flexbox (já bem cobertas, mantendo) */
+.flex-linha {
+    flex-direction: row !important;
+}
+
+.flex-coluna {
+    flex-direction: column !important;
+}
+
+.flex-justificar-inicio {
+    justify-content: flex-start !important;
+}
+
+.flex-justificar-fim {
+    justify-content: flex-end !important;
+}
+
+.flex-justificar-centro {
+    justify-content: center !important;
+}
+
+.flex-justificar-entre {
+    justify-content: space-between !important;
+}
+
+.flex-justificar-arredor {
+    justify-content: space-around !important;
+}
+
+.flex-alinhar-inicio {
+    align-items: flex-start !important;
+}
+
+.flex-alinhar-fim {
+    align-items: flex-end !important;
+}
+
+.flex-alinhar-centro {
+    align-items: center !important;
+}
+
+.flex-alinhar-stretch {
+    align-items: stretch !important;
+}
+
+.flex-alinhar-baseline {
+    align-items: baseline !important;
+}
+
+.flex-wrap {
+    flex-wrap: wrap !important;
+}
+
+.flex-nowrap {
+    flex-wrap: nowrap !important;
+}
+
+.flex-grow-0 {
+    flex-grow: 0 !important;
+}
+
+.flex-grow-1 {
+    flex-grow: 1 !important;
+}
+
+.flex-shrink-0 {
+    flex-shrink: 0 !important;
+}
+
+.flex-shrink-1 {
+    flex-shrink: 1 !important;
+}
+
+/* Bordas (simplificado, pois o reset já define border-style e border-color transparent) */
+.borda {
+    border-width: 1px !important;
+    border-color: var(--cor-borda-claro) !important;
+}
+
+body.modo-escuro .borda {
+    border-color: var(--cor-borda-escuro) !important;
+}
+
+.borda-topo {
+    border-top-width: 1px !important;
+    border-color: var(--cor-borda-claro) !important;
+}
+
+.borda-direita {
+    border-right-width: 1px !important;
+    border-color: var(--cor-borda-claro) !important;
+}
+
+.borda-baixo {
+    border-bottom-width: 1px !important;
+    border-color: var(--cor-borda-claro) !important;
+}
+
+.borda-esquerda {
+    border-left-width: 1px !important;
+    border-color: var(--cor-borda-claro) !important;
+}
+
+/* ... (versões modo escuro para bordas direcionais se necessário) ... */
+.borda-0 {
+    border-width: 0 !important;
+}
+
+.borda-primaria {
+    border-width: 1px !important;
+    border-color: var(--cor-primaria-nexus) !important;
+}
+
+.borda-sucesso {
+    border-width: 1px !important;
+    border-color: var(--cor-sucesso) !important;
+}
+
+/* ... (outras cores de status para bordas) ... */
+
+/* Raio da Borda (já bem cobertas, mantendo) */
+.raio-0 {
+    border-radius: var(--raio-borda-nenhum) !important;
+}
+
+.raio-sm {
+    border-radius: var(--raio-borda-sm) !important;
+}
+
+.raio-md {
+    border-radius: var(--raio-borda-md) !important;
+}
+
+.raio-lg {
+    border-radius: var(--raio-borda-lg) !important;
+}
+
+.raio-xl {
+    border-radius: var(--raio-borda-xl) !important;
+}
+
+.raio-circulo {
+    border-radius: var(--raio-borda-circulo) !important;
+}
+
+.raio-pilula {
+    border-radius: var(--raio-borda-pilula) !important;
+}
+
+/* Sombras (já bem cobertas, mantendo) */
+.sombra-nenhuma {
+    box-shadow: none !important;
+}
+
+.sombra-sutil {
+    box-shadow: var(--sombra-sutil-claro) !important;
+}
+
+.sombra-card {
+    box-shadow: var(--sombra-card-claro) !important;
+}
+
+.sombra-elevada {
+    box-shadow: var(--sombra-elevada-claro) !important;
+}
+
+body.modo-escuro .sombra-sutil {
+    box-shadow: var(--sombra-sutil-escuro) !important;
+}
+
+body.modo-escuro .sombra-card {
+    box-shadow: var(--sombra-card-escuro) !important;
+}
+
+body.modo-escuro .sombra-elevada {
+    box-shadow: var(--sombra-elevada-escuro) !important;
+}
+
+/* --------------------------------------------------------------------------
+   6. LOADING OVERLAY NEXUS
+      Overlay exibido durante o carregamento inicial da aplicação.
+   -------------------------------------------------------------------------- */
+#loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(var(--cor-fundo-app-escuro-rgb, (16, 20, 31)), 0.97);
+    /* Fundo escuro translúcido */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: var(--z-loading);
+    opacity: 1;
+    /* Começa visível */
+    visibility: visible;
+    transition: opacity var(--transicao-lenta) ease-out, visibility var(--transicao-lenta) ease-out;
+    pointer-events: none;
+    /* Não interfere com cliques quando oculto */
+}
+
+#loading-overlay.escondido {
+    /* Classe adicionada por JS quando o carregamento termina */
+    opacity: 0;
+    visibility: hidden;
+}
+
+#loading-overlay .spinner {
+    text-align: center;
+    color: var(--cor-primaria-nexus);
+}
+
+#loading-overlay .spinner i {
+    font-size: 4rem;
+    /* Ícone grande */
+    display: block;
+    margin-bottom: var(--esp-lg);
+    filter: drop-shadow(0 0 12px var(--cor-primaria-brilho-nexus));
+    /* A animação fa-spin já é do FontAwesome, mas podemos customizar se necessário */
+}
+
+#loading-overlay .spinner span {
+    font-family: var(--fonte-destaque);
+    font-size: 1.2rem;
+    font-weight: var(--peso-semibold);
+    letter-spacing: 0.5px;
+    display: block;
+    color: var(--cor-texto-principal-escuro);
+    /* Texto claro sobre fundo escuro */
+}
+
+/* --------------------------------------------------------------------------
+   7. LAYOUT PRINCIPAL DA APLICAÇÃO (#app-wrapper)
+      Container raiz que envolve todo o conteúdo visível da aplicação.
+   -------------------------------------------------------------------------- */
+#app-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* Ocupa toda a altura da viewport */
+    background-color: var(--cor-fundo-app-claro);
+    /* Cor de fundo base */
+}
+
+body.modo-escuro #app-wrapper {
+    background-color: var(--cor-fundo-app-escuro);
+}
+
+/* --------------------------------------------------------------------------
+   8. CABEÇALHO PRINCIPAL (#cabecalho-app)
+      Barra superior fixa com logo, título, data/hora e controles do usuário.
+   -------------------------------------------------------------------------- */
+#cabecalho-app {
+    background-color: var(--cor-fundo-elemento-claro);
+    padding: var(--esp-sm) var(--esp-xl);
+    /* Padding responsivo (ver media queries) */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--sombra-card-claro);
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: var(--z-cabecalho);
+    border-bottom: 3px solid var(--cor-primaria-nexus);
+    height: 70px;
+    flex-shrink: 0;
+    /* Não encolher se o app-wrapper for flex */
+    transition: background-color var(--transicao-padrao), border-color var(--transicao-padrao);
+}
+
+body.modo-escuro #cabecalho-app {
+    background-color: var(--cor-fundo-elemento-escuro);
+    /* border-bottom-color permanece var(--cor-primaria-nexus) para destaque */
+    box-shadow: var(--sombra-card-escuro);
+}
+
+#cabecalho-app .logo-container {
+    display: flex;
+    align-items: center;
+    gap: var(--esp-sm);
+}
+
+#cabecalho-app .logo-animado {
+    /* Ícone do logo */
+    font-size: 2.5rem;
+    color: var(--cor-primaria-nexus);
+    animation: girarLentoNexus 12s linear infinite;
+    filter: drop-shadow(0 0 8px var(--cor-primaria-brilho-nexus));
+    line-height: 1;
+    /* Melhora alinhamento vertical */
+}
+
+@keyframes girarLentoNexus {
+
+    /* Definido anteriormente, mantido */
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#cabecalho-app .titulo-cabecalho {
+    font-family: var(--fonte-destaque);
+    /* Orbitron */
+    font-size: 1.75rem;
+    font-weight: var(--peso-extrabold);
+    color: var(--cor-texto-principal-claro);
+    margin: 0;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+body.modo-escuro #cabecalho-app .titulo-cabecalho {
+    color: var(--cor-texto-principal-escuro);
+}
+
+#cabecalho-app .titulo-cabecalho .destaque-logo {
+    /* Span "NEXUS" */
+    font-weight: inherit;
+    /* Mantém o peso do pai */
+    color: var(--cor-destaque-logo-nexus);
+}
+
+#cabecalho-app .controles-cabecalho {
+    display: flex;
+    align-items: center;
+    gap: var(--esp-lg);
+}
+
+#cabecalho-app .info-data-hora {
+    font-family: var(--fonte-destaque);
+    /* Orbitron para consistência */
+    font-size: 0.85rem;
+    font-weight: var(--peso-medio);
+    color: var(--cor-texto-secundario-claro);
+    letter-spacing: 0.25px;
+    white-space: nowrap;
+}
+
+body.modo-escuro #cabecalho-app .info-data-hora {
+    color: var(--cor-texto-secundario-escuro);
+}
+
+#cabecalho-app .botao-icone {
+    background-color: transparent;
+    border: none;
+    color: var(--cor-texto-secundario-claro);
+    font-size: 1.4rem;
+    padding: var(--esp-xs);
+    /* Reduzido para melhor encaixe com width/height */
+    border-radius: var(--raio-borda-circulo);
+    cursor: pointer;
+    position: relative;
+    /* Para o contador de notificação */
+    transition: color var(--transicao-padrao), background-color var(--transicao-padrao), transform var(--transicao-rapida);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+body.modo-escuro #cabecalho-app .botao-icone {
+    color: var(--cor-texto-secundario-escuro);
+}
+
+#cabecalho-app .botao-icone:hover,
+#cabecalho-app .botao-icone:focus-visible {
+    /* Adicionado :focus-visible */
+    color: var(--cor-primaria-nexus);
+    background-color: var(--cor-primaria-transparente-nexus);
+    transform: scale(1.1);
+}
+
+#cabecalho-app .botao-icone:focus-visible {
+    /* Estilo de foco específico */
+    outline: 2px solid var(--cor-primaria-transparente-nexus);
+    outline-offset: 1px;
+}
+
+#cabecalho-app .botao-icone:active {
+    transform: scale(1.05);
+}
+
+#cabecalho-app .contador-notificacao {
+    position: absolute;
+    top: 2px;
+    /* Ajuste para alinhar melhor com ícones de 40px */
+    right: 2px;
+    /* transform: translate(30%, -30%); Removido para simplificar, ajustar top/right */
+    background-color: var(--cor-perigo);
+    color: var(--cor-texto-contraste-claro);
+    font-family: var(--fonte-principal);
+    /* Poppins para números */
+    font-size: 0.65rem;
+    font-weight: var(--peso-bold);
+    line-height: 1;
+    padding: 3px 6px;
+    min-width: 18px;
+    text-align: center;
+    border-radius: 10px;
+    border: 1.5px solid var(--cor-fundo-elemento-claro);
+    box-shadow: 0 0 0 1.5px var(--cor-perigo);
+    /* Anel externo mais sutil */
+    animation: pulsarNotificacaoNexus 1.8s infinite ease-in-out;
+    z-index: calc(var(--z-cabecalho) + 1);
+    /* Acima do ícone */
+}
+
+body.modo-escuro #cabecalho-app .contador-notificacao {
+    border-color: var(--cor-fundo-elemento-escuro);
+}
+
+@keyframes pulsarNotificacaoNexus {
+
+    /* Definido anteriormente, mantido */
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+}
+
+/* Dropdown do Usuário - Assumindo que .dropdown-usuario-container envolve o botão e o menu */
+#cabecalho-app .dropdown-usuario-container {
+    position: relative;
+}
+
+#cabecalho-app .dropdown-usuario-botao {
+    /* Este é o <button> que foi adicionado no HTML */
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: var(--esp-sm);
+    /* Padding para o botão em si */
+    border-radius: var(--raio-borda-lg);
+    transition: background-color var(--transicao-rapida);
+    min-height: 44px;
+    /* Para consistência de altura clicável */
+    background-color: transparent;
+    /* Botão não tem fundo próprio inicialmente */
+    border: none;
+}
+
+#cabecalho-app .dropdown-usuario-botao:hover,
+#cabecalho-app .dropdown-usuario-botao[aria-expanded="true"] {
+    /* Estilo quando hover ou aberto */
+    background-color: var(--cor-fundo-hover-claro);
+}
+
+body.modo-escuro #cabecalho-app .dropdown-usuario-botao:hover,
+body.modo-escuro #cabecalho-app .dropdown-usuario-botao[aria-expanded="true"] {
+    background-color: var(--cor-fundo-hover-escuro);
+}
+
+#cabecalho-app .dropdown-usuario-botao:focus-visible {
+    outline: 2px solid var(--cor-primaria-transparente-nexus);
+    outline-offset: 1px;
+}
+
+
+#cabecalho-app #avatar-admin {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--raio-borda-circulo);
+    margin-right: var(--esp-md);
+    border: 2px solid var(--cor-primaria-nexus);
+    box-shadow: 0 0 10px rgba(var(--cor-primaria-rgb-nexus), 0.3), var(--sombra-sutil-claro);
+    object-fit: cover;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#cabecalho-app .dropdown-usuario-botao:hover #avatar-admin {
+    transform: scale(1.08) rotate(4deg);
+    box-shadow: 0 0 15px rgba(var(--cor-primaria-rgb-nexus), 0.5), var(--sombra-card-claro);
+}
+
+#cabecalho-app .nome-usuario-admin {
+    font-weight: var(--peso-semibold);
+    font-size: 0.95rem;
+    color: var(--cor-texto-principal-claro);
+    margin-right: var(--esp-sm);
+    white-space: nowrap;
+}
+
+body.modo-escuro #cabecalho-app .nome-usuario-admin {
+    color: var(--cor-texto-principal-escuro);
+}
+
+#cabecalho-app .dropdown-usuario-botao i.fa-chevron-down {
+    /* Dentro do botão */
+    font-size: 0.8rem;
+    color: var(--cor-texto-secundario-claro);
+    transition: transform var(--transicao-rapida);
+    margin-left: auto;
+}
+
+body.modo-escuro #cabecalho-app .dropdown-usuario-botao i.fa-chevron-down {
+    color: var(--cor-texto-secundario-escuro);
+}
+
+#cabecalho-app .dropdown-usuario-botao[aria-expanded="true"] i.fa-chevron-down {
+    transform: rotate(180deg);
+}
+
+#cabecalho-app .dropdown-menu-usuario {
+    /* O menu em si */
+    position: absolute;
+    top: calc(100% + 8px);
+    /* Espaço abaixo do botão */
+    right: 0;
+    width: 230px;
+    background-color: var(--cor-fundo-elemento-claro);
+    border: 1px solid var(--cor-borda-claro);
+    border-radius: var(--raio-borda-md);
+    box-shadow: var(--sombra-elevada-claro);
+    z-index: var(--z-dropdown);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px) scale(0.98);
+    transform-origin: top right;
+    transition: opacity var(--transicao-padrao), visibility var(--transicao-padrao) 0s var(--transicao-padrao), transform var(--transicao-padrao);
+    /* Atraso na remoção da visibilidade */
+    overflow: hidden;
+}
+
+body.modo-escuro #cabecalho-app .dropdown-menu-usuario {
+    background-color: var(--cor-fundo-elemento-escuro);
+    border-color: var(--cor-borda-escuro);
+    box-shadow: var(--sombra-elevada-escuro);
+}
+
+#cabecalho-app .dropdown-usuario-botao[aria-expanded="true"]+.dropdown-menu-usuario {
+    /* Se o botão estiver expandido, mostra o menu */
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    transition-delay: 0s;
+    /* Remove atraso ao mostrar */
+}
+
+#cabecalho-app .dropdown-menu-usuario a[role="menuitem"] {
+    /* Mais específico para os links do menu */
+    display: flex;
+    align-items: center;
+    padding: var(--esp-md) var(--esp-lg);
+    font-size: 0.9rem;
+    font-weight: var(--peso-medio);
+    color: var(--cor-texto-principal-claro);
+    transition: background-color var(--transicao-rapida), color var(--transicao-rapida), padding-left var(--transicao-rapida), transform var(--transicao-rapida);
+    text-decoration: none;
+    /* Garantir que não haja sublinhado aqui */
+}
+
+body.modo-escuro #cabecalho-app .dropdown-menu-usuario a[role="menuitem"] {
+    color: var(--cor-texto-principal-escuro);
+}
+
+#cabecalho-app .dropdown-menu-usuario a[role="menuitem"]:hover,
+#cabecalho-app .dropdown-menu-usuario a[role="menuitem"]:focus-visible {
+    background-color: var(--cor-primaria-nexus);
+    color: var(--cor-texto-contraste-claro);
+    padding-left: calc(var(--esp-lg) + 5px);
+    transform: translateX(-2px);
+    /* Leve efeito de "pop" */
+    outline: none;
+}
+
+#cabecalho-app .dropdown-menu-usuario a[role="menuitem"] i {
+    width: 20px;
+    text-align: center;
+    margin-right: var(--esp-md);
+    font-size: 1em;
+    /* Relativo ao texto do link */
+    color: var(--cor-primaria-nexus);
+    /* Cor inicial do ícone */
+    transition: color var(--transicao-rapida), transform var(--transicao-rapida);
+}
+
+#cabecalho-app .dropdown-menu-usuario a[role="menuitem"]:hover i,
+#cabecalho-app .dropdown-menu-usuario a[role="menuitem"]:focus-visible i {
+    color: var(--cor-texto-contraste-claro);
+    /* Ícone acompanha cor do texto no hover/focus */
+    transform: scale(1.15);
+}
+
+#cabecalho-app .dropdown-menu-usuario a[role="menuitem"]:not(:last-child) {
+    border-bottom: 1px solid var(--cor-borda-claro);
+}
+
+body.modo-escuro #cabecalho-app .dropdown-menu-usuario a[role="menuitem"]:not(:last-child) {
+    border-bottom-color: var(--cor-borda-escuro);
+}
+
+/* --------------------------------------------------------------------------
+   9. BOTÃO FLUTUANTE E APP LAUNCHER (CENTRALIZADO)
+      Botão para abrir/fechar o menu principal de aplicativos (launcher)
+      e o próprio painel do launcher.
+   -------------------------------------------------------------------------- */
+
+/* Botão Flutuante do App Launcher */
+#botao-toggle-launcher {
+    position: fixed;
+    bottom: var(--esp-xl);
+    right: var(--esp-xl);
+    width: 60px;
+    height: 60px;
+    background-color: var(--cor-primaria-nexus);
+    color: var(--cor-texto-contraste-claro);
+    border: none;
+    border-radius: var(--raio-borda-circulo);
+    box-shadow: var(--sombra-elevada-claro), 0 0 0 0 rgba(var(--cor-primaria-rgb-nexus), 0.7);
+    cursor: pointer;
+    z-index: var(--z-flutuante);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color var(--transicao-padrao),
+        transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55),
+        box-shadow var(--transicao-padrao);
+    animation: pulsarBotaoLauncher 2.5s infinite ease-in-out 1s;
+}
+
+body.modo-escuro #botao-toggle-launcher {
+    box-shadow: var(--sombra-elevada-escuro), 0 0 0 0 rgba(var(--cor-primaria-rgb-nexus), 0.7);
+}
+
+@keyframes pulsarBotaoLauncher {
+
+    /* Definido anteriormente, mantido */
+    0% {
+        box-shadow: var(--sombra-elevada-claro), 0 0 0 0 rgba(var(--cor-primaria-rgb-nexus), 0.5);
+    }
+
+    70% {
+        box-shadow: var(--sombra-elevada-claro), 0 0 0 12px rgba(var(--cor-primaria-rgb-nexus), 0);
+    }
+
+    100% {
+        box-shadow: var(--sombra-elevada-claro), 0 0 0 0 rgba(var(--cor-primaria-rgb-nexus), 0);
+    }
+}
+
+body.modo-escuro @keyframes pulsarBotaoLauncher {
+
+    /* Variação para modo escuro */
+    0% {
+        box-shadow: var(--sombra-elevada-escuro), 0 0 0 0 rgba(var(--cor-primaria-rgb-nexus), 0.5);
+    }
+
+    70% {
+        box-shadow: var(--sombra-elevada-escuro), 0 0 0 12px rgba(var(--cor-primaria-rgb-nexus), 0);
+    }
+
+    100% {
+        box-shadow: var(--sombra-elevada-escuro), 0 0 0 0 rgba(var(--cor-primaria-rgb-nexus), 0);
+    }
+}
+
+#botao-toggle-launcher:hover,
+#botao-toggle-launcher:focus-visible {
+    background-color: var(--cor-primaria-hover-nexus);
+    transform: scale(1.1) rotate(-8deg);
+    animation-play-state: paused;
+    /* Pausa pulso para focar no brilho do hover */
+    box-shadow: var(--sombra-elevada-claro), 0 0 20px var(--cor-primaria-brilho-nexus);
+    outline: none;
+    /* Foco visível pelo brilho e transform */
+}
+
+body.modo-escuro #botao-toggle-launcher:hover,
+body.modo-escuro #botao-toggle-launcher:focus-visible {
+    box-shadow: var(--sombra-elevada-escuro), 0 0 25px var(--cor-primaria-brilho-nexus);
+}
+
+#botao-toggle-launcher:active {
+    transform: scale(1.05) rotate(-4deg);
+    background-color: var(--cor-primaria-active-nexus);
+}
+
+/* Ícone interno do botão do Launcher (grid de 4 quadrados / X) */
+.icone-launcher {
+    width: 26px;
+    height: 26px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px;
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.icone-launcher span {
+    width: 100%;
+    height: 100%;
+    background-color: var(--cor-texto-contraste-claro);
+    border-radius: 2.5px;
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+        opacity 0.3s ease,
+        background-color 0.3s ease,
+        grid-column 0s,
+        /* Transição instantânea para grid-column */
+        height 0.35s ease;
+}
+
+/* Estado "Aberto" do ícone do launcher (transforma em 'X') */
+#botao-toggle-launcher[aria-expanded="true"] .icone-launcher {
+    /* Usando aria-expanded */
+    transform: rotate(45deg);
+    gap: 0;
+}
+
+#botao-toggle-launcher[aria-expanded="true"] .icone-launcher span {
+    border-radius: 1px;
+}
+
+#botao-toggle-launcher[aria-expanded="true"] .icone-launcher span:nth-child(1) {
+    grid-column: 1 / span 2;
+    transform: translateY(calc(50% - 1px));
+    /* Ajuste para espessura da linha */
+    height: 2px;
+}
+
+#botao-toggle-launcher[aria-expanded="true"] .icone-launcher span:nth-child(2),
+#botao-toggle-launcher[aria-expanded="true"] .icone-launcher span:nth-child(3) {
+    opacity: 0;
+    transform: scale(0);
+    height: 0;
+    /* Garante que não ocupe espaço */
+}
+
+#botao-toggle-launcher[aria-expanded="true"] .icone-launcher span:nth-child(4) {
+    grid-column: 1 / span 2;
+    transform: translateY(calc(-50% + 1px)) rotate(90deg);
+    height: 2px;
+}
+
+
+/* App Launcher (Painel Centralizado) */
+#app-launcher-menu {
+    /* Removido body para reduzir especificidade desnecessária */
+    position: fixed !important;
+    /* !important mantido pela sua intenção original de sobrescrever */
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) scale(0.9) !important;
+    width: 90vw !important;
+    max-width: 680px !important;
+    height: auto !important;
+    max-height: 80vh !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    background-color: rgba(var(--cor-fundo-elemento-escuro-rgb, 26, 31, 44), 0.96) !important;
+    backdrop-filter: blur(16px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+    border-radius: var(--raio-borda-lg) !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 0 1.5px rgba(var(--cor-primaria-rgb-nexus), 0.4) !important;
+    z-index: var(--z-launcher) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 0.35s ease-out,
+        visibility 0s 0.35s ease-out !important;
+    /* Atraso na remoção da visibilidade */
+    border: none !important;
+    overflow: hidden !important;
+}
+
+/* Variações para modo claro no Launcher */
+body:not(.modo-escuro) #app-launcher-menu {
+    background-color: rgba(var(--cor-fundo-elemento-claro-rgb, 255, 255, 255), 0.96) !important;
+    box-shadow: 0 20px 60px rgba(44, 62, 80, 0.25), 0 0 0 1.5px rgba(var(--cor-primaria-rgb-nexus), 0.25) !important;
+}
+
+body:not(.modo-escuro) #app-launcher-menu .launcher-header .launcher-title-text,
+/* Usando a classe do h3 */
+body:not(.modo-escuro) #app-launcher-menu .app-item span {
+    color: var(--cor-texto-principal-claro) !important;
+}
+
+body:not(.modo-escuro) #app-launcher-menu #launcher-botao-fechar,
+body:not(.modo-escuro) #app-launcher-menu .launcher-footer {
+    color: var(--cor-texto-secundario-claro) !important;
+}
+
+/* Estado Aberto do Launcher */
+#app-launcher-menu.aberto {
+    /* Classe .aberto é melhor que :target para controle JS */
+    transform: translate(-50%, -50%) scale(1) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition-delay: 0s !important;
+    /* Remove atraso ao mostrar */
+}
+
+/* Cabeçalho do Launcher */
+#app-launcher-menu .launcher-header {
+    padding: var(--esp-lg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(var(--cor-primaria-rgb-nexus), 0.25);
+    flex-shrink: 0;
+}
+
+#app-launcher-menu .launcher-header .launcher-title-text {
+    /* ID do h3 agora é launcher-title */
+    font-family: var(--fonte-destaque);
+    /* Orbitron */
+    font-size: 1.5rem;
+    font-weight: var(--peso-bold);
+    color: var(--cor-texto-contraste-claro);
+    /* Assumindo texto claro sobre fundo escuro/blur */
+    margin: 0;
+    line-height: 1.2;
+}
+
+/* Modo claro já tratado acima */
+#app-launcher-menu .launcher-header .destaque-logo {
+    color: var(--cor-destaque-logo-nexus) !important;
+    font-weight: inherit;
+}
+
+#app-launcher-menu #launcher-botao-fechar {
+    background-color: transparent;
+    border: none;
+    font-size: 1.6rem;
+    color: var(--cor-texto-secundario-escuro);
+    /* Ajustar para modo claro se necessário */
+    padding: var(--esp-sm);
+    border-radius: var(--raio-borda-circulo);
+    cursor: pointer;
+    transition: color var(--transicao-padrao), transform var(--transicao-padrao), background-color var(--transicao-padrao);
+}
+
+#app-launcher-menu #launcher-botao-fechar:hover,
+#app-launcher-menu #launcher-botao-fechar:focus-visible {
+    color: var(--cor-primaria-nexus);
+    background-color: rgba(var(--cor-primaria-rgb-nexus), 0.1);
+    transform: rotate(90deg) scale(1.1);
+    outline: none;
+}
+
+/* Modo claro já tratado acima */
+
+/* Grid de Aplicativos no Launcher */
+#app-launcher-menu .launcher-grid {
+    flex-grow: 1;
+    overflow-y: auto;
+    /* Adiciona custom-scrollbar aqui se ainda não estiver aplicado globalmente aos scrollbars do launcher */
+    /* class="custom-scrollbar" no HTML é melhor */
+    padding: var(--esp-xl);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: var(--esp-lg);
+}
+
+#app-launcher-menu .app-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* Centraliza conteúdo verticalmente */
+    padding: var(--esp-md);
+    background-color: transparent;
+    border-radius: var(--raio-borda-md);
+    text-align: center;
+    color: var(--cor-texto-principal-escuro);
+    /* Cor base para o texto do item */
+    transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    position: relative;
+    overflow: hidden;
+    /* Para o glow */
+    border: 2px solid transparent;
+    min-height: 120px;
+    text-decoration: none;
+    /* Para os links <a> */
+}
+
+/* Modo claro já tratado acima */
+#app-launcher-menu .app-item:hover,
+#app-launcher-menu .app-item:focus-visible {
+    /* :focus-visible para acessibilidade */
+    transform: translateY(-5px) scale(1.05);
+    background-color: rgba(var(--cor-primaria-rgb-nexus), 0.15);
+    border-color: rgba(var(--cor-primaria-rgb-nexus), 0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    outline: none;
+    color: var(--cor-primaria-nexus);
+    /* Destaque na cor do texto ao focar/hover */
+}
+
+#app-launcher-menu .app-item:active {
+    transform: translateY(-2px) scale(1.02);
+    background-color: rgba(var(--cor-primaria-rgb-nexus), 0.2);
+}
+
+#app-launcher-menu .app-item .app-icone {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--raio-borda-circulo);
+    background-color: var(--cor-app, var(--cor-primaria-nexus));
+    /* cor-app é a variável CSS inline no HTML */
+    color: var(--cor-texto-contraste-claro);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    margin-bottom: var(--esp-sm);
+    /* Removido, já que o justify-content do app-item faz o espaçamento */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15), inset 0 -2px 3px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+}
+
+#app-launcher-menu .app-item:hover .app-icone,
+#app-launcher-menu .app-item:focus-visible .app-icone {
+    transform: scale(1.12) rotate(-6deg);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), inset 0 -2px 4px rgba(0, 0, 0, 0.25);
+    filter: brightness(1.15);
+}
+
+#app-launcher-menu .app-item span {
+    /* Nome do app */
+    font-family: var(--fonte-principal);
+    /* Poppins */
+    font-size: 0.8rem;
+    font-weight: var(--peso-medio);
+    display: block;
+    line-height: 1.3;
+    margin-top: var(--esp-sm);
+    /* Adicionado espaço acima do nome */
+    color: inherit;
+    /* Herda do .app-item, que muda no hover/focus */
+}
+
+/* Efeito Glow no item ativo ou hover */
+#app-launcher-menu .app-item-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(var(--cor-primaria-rgb-nexus), 0.3) 0%, rgba(var(--cor-primaria-rgb-nexus), 0) 65%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: width 0.5s ease, height 0.5s ease, opacity 0.5s ease;
+    pointer-events: none;
+    z-index: 0;
+}
+
+#app-launcher-menu .app-item:hover .app-item-glow,
+#app-launcher-menu .app-item:focus-visible .app-item-glow,
+/* Adicionado focus-visible */
+#app-launcher-menu .app-item.ativo .app-item-glow {
+    width: 280%;
+    height: 280%;
+    opacity: 0.7;
+}
+
+#app-launcher-menu .app-item.ativo {
+    background-color: rgba(var(--cor-primaria-rgb-nexus), 0.25) !important;
+    border-color: var(--cor-primaria-nexus) !important;
+    color: var(--cor-primaria-nexus) !important;
+    /* Texto do item ativo também primário */
+    transform: translateY(0) scale(1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#app-launcher-menu .app-item.ativo .app-icone {
+    background-color: var(--cor-primaria-nexus);
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+/* #app-launcher-menu .app-item.ativo span já é coberto pela cor do .app-item.ativo */
+
+/* Rodapé do Launcher */
+#app-launcher-menu .launcher-footer {
+    padding: var(--esp-sm) var(--esp-lg);
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: var(--peso-normal);
+    color: var(--cor-texto-secundario-escuro);
+    /* Ajustar para modo claro se necessário */
+    border-top: 1px solid rgba(var(--cor-primaria-rgb-nexus), 0.15);
+    flex-shrink: 0;
+    line-height: 1.4;
+}
+
+#app-launcher-menu .launcher-footer p {
+    margin-bottom: 0;
+}
+
+/* Modo claro já tratado acima */
+
+/* Overlay de Fundo para o Launcher (body.launcher-overlay-ativo::after) */
+body.launcher-overlay-ativo::after {
+    /* Nome da classe JS */
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 14, 25, 0.45);
+    /* Overlay sutil */
+    z-index: var(--z-launcher-overlay) !important;
+    opacity: 1;
+    /* Alterado para ser controlado pela classe no body */
+    visibility: visible;
+    /* Alterado para ser controlado pela classe no body */
+    transition: opacity 0.4s ease-out, visibility 0s 0s ease-out;
+    /* Visibilidade muda instantaneamente com opacidade */
+    pointer-events: auto;
+}
+
+body:not(.launcher-overlay-ativo)::after {
+    /* Estado inicial do overlay */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease-out, visibility 0s 0.4s ease-out;
+    /* Atraso na remoção da visibilidade */
+    pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   10. CONTEÚDO PRINCIPAL E ESTRUTURA DE SEÇÕES
+      Layout para a área principal onde as diferentes seções (módulos)
+      da aplicação são exibidas.
+   -------------------------------------------------------------------------- */
+#conteudo-principal-app {
+    flex-grow: 1;
+    padding: var(--esp-xl);
+    overflow-y: auto;
+    /* Scroll apenas no conteúdo principal */
+    position: relative;
+    z-index: var(--z-conteudo-base);
+    height: calc(100vh - 70px);
+    /* Altura do viewport menos altura do cabeçalho */
+    background-color: var(--cor-fundo-app-claro);
+    transition: background-color var(--transicao-padrao);
+}
+
+body.modo-escuro #conteudo-principal-app {
+    background-color: var(--cor-fundo-app-escuro);
+}
+
+.secao-app {
+    display: none;
+    /* JS controla qual seção está ativa */
+    /*padding: var(--esp-lg);*/
+    padding: 10px;
+    padding-bottom: 0;
+    background-color: var(--cor-fundo-elemento-claro);
+    border-radius: var(--raio-borda-lg);
+    box-shadow: var(--sombra-card-claro);
+    animation: fadeInSecaoNexus 0.55s ease-out forwards;
+    border-left: 4px solid var(--cor-primaria-nexus);
+    position: relative;
+    z-index: var(--z-elemento-secao);
+    min-height: 300px;
+    /* Para evitar "achatamento" visual */
+    display: flex;
+    flex-direction: column;
+    transition: background-color var(--transicao-padrao), border-color var(--transicao-padrao), box-shadow var(--transicao-padrao);
+}
+
+@keyframes fadeInSecaoNexus {
+
+    /* Definido anteriormente, mantido */
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.secao-app.ativa {
+    /* Classe para a seção visível */
+    display: flex;
+}
+
+body.modo-escuro .secao-app {
+    background-color: var(--cor-fundo-elemento-escuro);
+    box-shadow: var(--sombra-card-escuro);
+    border-left-color: var(--cor-primaria-nexus);
+    /* Manter destaque */
+}
+
+.titulo-secao {
+    font-family: var(--fonte-destaque);
+    /* Orbitron */
+    font-size: clamp(1.5rem, 1.2vw + 1.2rem, 1.8rem);
+    /* Responsivo */
+    font-weight: var(--peso-extrabold);
+    color: var(--cor-primaria-nexus);
+    margin-bottom: 0;
+    padding-bottom: var(--esp-md);
+    border-bottom: 2px solid var(--cor-primaria-transparente-nexus);
+    display: flex;
+    align-items: center;
+    text-shadow: var(--sombra-texto-glow-primaria);
+    flex-shrink: 0;
+}
+
+.titulo-secao i {
+    margin-right: var(--esp-md);
+    font-size: 0.9em;
+    /* Relativo ao tamanho do título */
+    line-height: 1;
+    animation: bounceIconeTitulo 1.8s infinite ease-in-out 0.5s;
+}
+
+@keyframes bounceIconeTitulo {
+
+    /* Definido anteriormente, mantido */
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-8px) rotate(-5deg);
+    }
+
+    60% {
+        transform: translateY(-4px) rotate(3deg);
+    }
+}
+
+.container-conteudo-secao {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    /* Para flex-grow funcionar com overflow */
+}
+
+.descricao-secao-nexus {
+    font-size: var(--tamanho-fonte-medio);
+    color: var(--cor-texto-secundario-claro);
+    margin-bottom: var(--esp-xl);
+    line-height: 1.7;
+    max-width: 800px;
+    flex-shrink: 0;
+}
+
+body.modo-escuro .descricao-secao-nexus {
+    color: var(--cor-texto-secundario-escuro);
+}
+
+.acoes-topo-secao,
+.acoes-rodape-secao {
+    display: flex;
+    align-items: center;
+    /* Alinha verticalmente filtros e botões */
+    gap: var(--esp-lg);
+    flex-wrap: wrap;
+    /* Quebra linha em telas menores */
+    flex-shrink: 0;
+}
+
+.acoes-topo-secao {
+    justify-content: space-between;
+    /* Botão à esquerda, filtros à direita */
+
+    border-bottom: 1px solid var(--cor-borda-claro);
+}
+
+body.modo-escuro .acoes-topo-secao {
+    border-bottom-color: var(--cor-borda-escuro);
+}
+
+.acoes-rodape-secao {
+    justify-content: flex-end;
+    margin-top: auto;
+    /* Empurra para o final da seção */
+    padding-top: var(--esp-lg);
+    border-top: 1px solid var(--cor-borda-claro);
+}
+
+body.modo-escuro .acoes-rodape-secao {
+    border-top-color: var(--cor-borda-escuro);
+}
+
+/* ==========================================================================
+   NEXUS OS - ESTILO ULTRA-COMPLETO E DETALHADO v2.2 "Órbita" - PARTE 4
+   Componentes: Botões, Formulários, Filtros
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   11. BOTÕES NEXUS
+      Estilização detalhada para todos os tipos de botões da interface.
+   -------------------------------------------------------------------------- */
+.botao-estilizado {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: calc(var(--esp-md) - 3px) calc(var(--esp-xl) - 5px);
+    font-family: var(--fonte-destaque);
+    /* Orbitron/Poppins */
+    font-size: 0.95rem;
+    font-weight: var(--peso-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    line-height: 1.5;
+    border-radius: var(--raio-borda-md);
+    border-width: 2px;
+    border-style: solid;
+    /* Já definido no reset, mas reforça */
+    cursor: pointer;
+    transition: transform var(--transicao-rapida),
+        background-color var(--transicao-padrao),
+        border-color var(--transicao-padrao),
+        color var(--transicao-padrao),
+        box-shadow var(--transicao-padrao);
+    position: relative;
+    overflow: hidden;
+    /* Para ripple e outros efeitos contidos */
+    box-shadow: var(--sombra-sutil-claro);
+    user-select: none;
+    white-space: nowrap;
+    text-decoration: none !important;
+    /* Para <a> estilizados como botão */
+}
+
+/* Efeito de Ripple (JS adiciona .ripple-effect e o span.ripple) */
+.botao-estilizado.ripple-effect .ripple {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.4);
+    transform: scale(0);
+    animation: rippleAnimationNexus 0.6s linear;
+    pointer-events: none;
+}
+
+body.modo-escuro .botao-estilizado.ripple-effect .ripple {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+@keyframes rippleAnimationNexus {
+
+    /* Definido anteriormente, mantido */
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Estado de Foco Visível (Teclado) */
+.botao-estilizado:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3.5px var(--cor-fundo-elemento-claro),
+        0 0 0 5.5px var(--cor-primaria-nexus),
+        var(--sombra-card-claro);
+    /* z-index: 1; Se necessário para sobrepor elementos adjacentes */
+}
+
+body.modo-escuro .botao-estilizado:focus-visible {
+    box-shadow: 0 0 0 3.5px var(--cor-fundo-elemento-escuro),
+        0 0 0 5.5px var(--cor-primaria-nexus),
+        var(--sombra-card-escuro);
+}
+
+/* Botão Primário */
+.botao-estilizado.primario {
+    background-color: var(--cor-primaria-nexus);
+    border-color: var(--cor-primaria-nexus);
+    color: var(--cor-texto-contraste-claro);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+    /* Sombra sutil no texto */
+}
+
+.botao-estilizado.primario:hover:not(:disabled) {
+    background-color: var(--cor-primaria-hover-nexus);
+    border-color: var(--cor-primaria-hover-nexus);
+    transform: translateY(-2.5px);
+    box-shadow: var(--sombra-card-claro), 0 0 15px var(--cor-primaria-brilho-nexus);
+}
+
+.botao-estilizado.primario:active:not(:disabled) {
+    background-color: var(--cor-primaria-active-nexus);
+    border-color: var(--cor-primaria-active-nexus);
+    transform: translateY(0px) scale(0.985);
+    box-shadow: var(--sombra-sutil-claro), inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Botão Secundário (Outlined) */
+.botao-estilizado.secundario {
+    background-color: var(--cor-fundo-elemento-claro);
+    border-color: var(--cor-primaria-nexus);
+    color: var(--cor-primaria-nexus);
+}
+
+body.modo-escuro .botao-estilizado.secundario {
+    background-color: var(--cor-fundo-elemento-escuro);
+    /* border-color e color permanecem os mesmos para destaque */
+}
+
+.botao-estilizado.secundario:hover:not(:disabled) {
+    background-color: var(--cor-primaria-transparente-nexus);
+    border-color: var(--cor-primaria-hover-nexus);
+    color: var(--cor-primaria-hover-nexus);
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-card-claro);
+}
+
+.botao-estilizado.secundario:active:not(:disabled) {
+    background-color: rgba(var(--cor-primaria-rgb-nexus), 0.15);
+    transform: translateY(0px) scale(0.99);
+    box-shadow: var(--sombra-sutil-claro);
+}
+
+/* Botões de Status */
+.botao-estilizado.info {
+    background-color: var(--cor-info);
+    border-color: var(--cor-info);
+    color: var(--cor-texto-contraste-claro);
+}
+
+.botao-estilizado.sucesso {
+    background-color: var(--cor-sucesso);
+    border-color: var(--cor-sucesso);
+    color: var(--cor-texto-contraste-claro);
+}
+
+.botao-estilizado.perigo {
+    background-color: var(--cor-perigo);
+    border-color: var(--cor-perigo);
+    color: var(--cor-texto-contraste-claro);
+}
+
+.botao-estilizado.aviso {
+    background-color: var(--cor-aviso);
+    border-color: var(--cor-aviso);
+    color: var(--cor-texto-aviso-claro);
+}
+
+/* Texto escuro para contraste */
+
+.botao-estilizado.info:hover:not(:disabled) {
+    background-color: var(--cor-info-hover);
+    border-color: var(--cor-info-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(var(--cor-info-rgb), 0.35);
+}
+
+.botao-estilizado.sucesso:hover:not(:disabled) {
+    background-color: var(--cor-sucesso-hover);
+    border-color: var(--cor-sucesso-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(var(--cor-sucesso-rgb), 0.35);
+}
+
+.botao-estilizado.perigo:hover:not(:disabled) {
+    background-color: var(--cor-perigo-hover);
+    border-color: var(--cor-perigo-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(var(--cor-perigo-rgb), 0.35);
+}
+
+.botao-estilizado.aviso:hover:not(:disabled) {
+    background-color: var(--cor-aviso-hover);
+    border-color: var(--cor-aviso-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(var(--cor-aviso-rgb), 0.35);
+}
+
+/* Active states para botões de status */
+.botao-estilizado.info:active:not(:disabled) {
+    background-color: var(--cor-info-active);
+}
+
+.botao-estilizado.sucesso:active:not(:disabled) {
+    background-color: var(--cor-sucesso-active);
+}
+
+.botao-estilizado.perigo:active:not(:disabled) {
+    background-color: var(--cor-perigo-active);
+}
+
+.botao-estilizado.aviso:active:not(:disabled) {
+    background-color: var(--cor-aviso-active);
+}
+
+
+/* Botão Transparente */
+.botao-estilizado.transparente {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--cor-texto-secundario-claro);
+    /* Cor mais sutil */
+    box-shadow: none;
+}
+
+body.modo-escuro .botao-estilizado.transparente {
+    color: var(--cor-texto-secundario-escuro);
+}
+
+.botao-estilizado.transparente:hover:not(:disabled) {
+    background-color: var(--cor-fundo-hover-claro);
+    color: var(--cor-primaria-nexus);
+    transform: none;
+    box-shadow: none;
+}
+
+body.modo-escuro .botao-estilizado.transparente:hover:not(:disabled) {
+    background-color: var(--cor-fundo-hover-escuro);
+}
+
+/* Botão com Ícone */
+.botao-estilizado.com-icone i {
+    margin-right: var(--esp-sm);
+    font-size: 1.05em;
+    line-height: 1;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.botao-estilizado.com-icone:hover:not(:disabled) i {
+    /* Animação apenas se não desabilitado */
+    transform: scale(1.2) rotate(-7deg);
+}
+
+.botao-estilizado.com-icone-direita i {
+    margin-right: 0;
+    margin-left: var(--esp-sm);
+}
+
+/* Tamanhos de Botão */
+.botao-estilizado.pequeno {
+    padding: calc(var(--esp-sm) - 1px) calc(var(--esp-md) - 2px);
+    font-size: 0.8rem;
+    letter-spacing: 0.4px;
+}
+
+.botao-estilizado.grande {
+    padding: calc(var(--esp-lg) - 4px) calc(var(--esp-xl) + 4px);
+    font-size: 1.1rem;
+    letter-spacing: 0.7px;
+    border-radius: var(--raio-borda-lg);
+}
+
+.botao-estilizado.grande.com-icone i {
+    font-size: 1.2em;
+}
+
+/* Botão Full Width */
+.botao-estilizado.full-width {
+    display: flex;
+    /* Se já é inline-flex, block ou flex funcionam para width 100% */
+    width: 100%;
+}
+
+/* Botão Desabilitado */
+.botao-estilizado:disabled,
+.botao-estilizado.desabilitado {
+    opacity: 0.55 !important;
+    cursor: not-allowed !important;
+    background-color: var(--cor-fundo-desabilitado-claro) !important;
+    border-color: var(--cor-borda-desabilitado-claro) !important;
+    color: var(--cor-texto-desabilitado-claro) !important;
+    box-shadow: none !important;
+    transform: none !important;
+    text-shadow: none !important;
+}
+
+body.modo-escuro .botao-estilizado:disabled,
+body.modo-escuro .botao-estilizado.desabilitado {
+    background-color: var(--cor-fundo-desabilitado-escuro) !important;
+    border-color: var(--cor-borda-desabilitado-escuro) !important;
+    color: var(--cor-texto-desabilitado-escuro) !important;
+}
+
+.botao-estilizado:disabled i,
+/* Incluindo ícone */
+.botao-estilizado.desabilitado i {
+    transform: none !important;
+}
+
+
+/* Botão Pequeno Nexus (para ações em tabelas/cards) */
+.botao-pequeno-nexus {
+    background-color: transparent;
+    border: none;
+    padding: var(--esp-sm);
+    border-radius: var(--raio-borda-circulo);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform var(--transicao-rapida), color var(--transicao-padrao), background-color var(--transicao-padrao), box-shadow var(--transicao-padrao);
+    color: var(--cor-texto-secundario-claro);
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+body.modo-escuro .botao-pequeno-nexus {
+    color: var(--cor-texto-secundario-escuro);
+}
+
+.botao-pequeno-nexus:hover:not(:disabled) {
+    transform: scale(1.12) rotate(6deg);
+}
+
+.botao-pequeno-nexus:active:not(:disabled) {
+    transform: scale(1.05) rotate(3deg);
+}
+
+.botao-pequeno-nexus:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--cor-fundo-elemento-claro), 0 0 0 4px var(--cor-primaria-nexus);
+}
+
+body.modo-escuro .botao-pequeno-nexus:focus-visible {
+    box-shadow: 0 0 0 2px var(--cor-fundo-elemento-escuro), 0 0 0 4px var(--cor-primaria-nexus);
+}
+
+.botao-pequeno-nexus.info:hover:not(:disabled) {
+    color: var(--cor-info);
+    background-color: var(--cor-info-transparente);
+}
+
+.botao-pequeno-nexus.editar:hover:not(:disabled) {
+    color: var(--cor-primaria-nexus);
+    background-color: var(--cor-primaria-transparente-nexus);
+}
+
+.botao-pequeno-nexus.perigo:hover:not(:disabled) {
+    color: var(--cor-perigo);
+    background-color: var(--cor-perigo-transparente);
+}
+
+.botao-pequeno-nexus.sucesso:hover:not(:disabled) {
+    color: var(--cor-sucesso);
+    background-color: var(--cor-sucesso-transparente);
+}
+
+.botao-pequeno-nexus.secundario:hover:not(:disabled) {
+    color: var(--cor-texto-principal-claro);
+    background-color: var(--cor-fundo-ativo-claro);
+}
+
+body.modo-escuro .botao-pequeno-nexus.secundario:hover:not(:disabled) {
+    color: var(--cor-texto-principal-escuro);
+    background-color: var(--cor-fundo-ativo-escuro);
+}
+
+.botao-pequeno-nexus.transparente:hover:not(:disabled) {
+    color: var(--cor-primaria-nexus);
+    background-color: transparent;
+}
+
+.botao-pequeno-nexus:disabled {
+    opacity: 0.4 !important;
+    cursor: not-allowed !important;
+    color: var(--cor-texto-desabilitado-claro) !important;
+    background-color: transparent !important;
+    transform: none !important;
+}
+
+body.modo-escuro .botao-pequeno-nexus:disabled {
+    color: var(--cor-texto-desabilitado-escuro) !important;
+}
+
+/* --------------------------------------------------------------------------
+   12. FORMULÁRIOS MODERNOS NEXUS
+      Estilização para inputs, textareas, selects, checkboxes, radios e file inputs.
+   -------------------------------------------------------------------------- */
+.form-moderno-nexus {
+    width: 100%;
+}
+
+.form-moderno-nexus .campo-form-nexus {
+    margin-bottom: var(--esp-lg);
+    position: relative;
+}
+
+/* Estilo base comum para campos de texto, select e textarea */
+.form-moderno-nexus input[type="text"],
+.form-moderno-nexus input[type="email"],
+.form-moderno-nexus input[type="password"],
+.form-moderno-nexus input[type="tel"],
+.form-moderno-nexus input[type="date"],
+.form-moderno-nexus input[type="month"],
+.form-moderno-nexus input[type="week"],
+.form-moderno-nexus input[type="number"],
+.form-moderno-nexus input[type="search"],
+.form-moderno-nexus input[type="url"],
+.form-moderno-nexus input[type="color"],
+/* Estilo específico para color abaixo */
+.form-moderno-nexus textarea,
+.form-moderno-nexus select,
+.input-filtro-nexus,
+/* Classes genéricas para filtros */
+.select-filtro-nexus,
+.custom-select-nexus {
+    /* Classe para todos os selects customizados */
+    width: 100%;
+    padding: 0.5rem 1.25rem;
+    /* Espaço para ícone, se presente */
+    font-family: var(--fonte-principal);
+    /* Poppins */
+    font-size: 0.95rem;
+    font-weight: var(--peso-normal);
+    color: var(--cor-texto-principal-claro);
+    background-color: var(--cor-fundo-elemento-claro);
+    border: 2px solid var(--cor-borda-input-claro);
+    border-radius: var(--raio-borda-md);
+    transition: border-color var(--transicao-padrao), box-shadow var(--transicao-padrao), background-color var(--transicao-padrao);
+    box-shadow: var(--sombra-interna-claro);
+    line-height: 1.5;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+/* Ajuste para input[type="color"] que não deve ter padding-left para ícone */
+.form-moderno-nexus input[type="color"] {
+    padding-left: calc(var(--esp-md) - 2px);
+    /* Padding normal */
+    height: 48px;
+    /* Altura consistente com outros inputs */
+    min-width: 60px;
+    /* Largura mínima para o seletor de cor */
+}
+
+/* Campos sem ícone à esquerda */
+.form-moderno-nexus .sem-icone-esquerda,
+.input-filtro-nexus.sem-icone-esquerda,
+.select-filtro-nexus.sem-icone-esquerda {
+    padding-left: calc(var(--esp-lg) - 4px);
+}
+
+body.modo-escuro .form-moderno-nexus input:not([type="color"]),
+/* Exclui input color que tem seu próprio controle */
+body.modo-escuro .form-moderno-nexus textarea,
+body.modo-escuro .form-moderno-nexus select,
+body.modo-escuro .input-filtro-nexus,
+body.modo-escuro .select-filtro-nexus,
+body.modo-escuro .custom-select-nexus {
+    color: var(--cor-texto-principal-escuro);
+    background-color: var(--cor-fundo-elemento-escuro);
+    border-color: var(--cor-borda-input-escuro);
+    box-shadow: var(--sombra-interna-escuro);
+}
+
+/* Estilos de Foco para Inputs */
+.form-moderno-nexus input:not([type="color"]):focus,
+/* Exclui input color */
+.form-moderno-nexus textarea:focus,
+.form-moderno-nexus select:focus,
+.input-filtro-nexus:focus,
+.select-filtro-nexus:focus,
+.custom-select-nexus:focus {
+    outline: none;
+    border-color: var(--cor-borda-input-focus-claro) !important;
+    background-color: var(--cor-fundo-elemento-claro);
+    /* Manter fundo claro no foco (modo claro) */
+    box-shadow: 0 0 0 3.5px rgba(var(--cor-primaria-rgb-nexus), 0.2), var(--sombra-interna-claro);
+}
+
+body.modo-escuro .form-moderno-nexus input:not([type="color"]):focus,
+body.modo-escuro .form-moderno-nexus textarea:focus,
+body.modo-escuro .form-moderno-nexus select:focus,
+body.modo-escuro .input-filtro-nexus:focus,
+body.modo-escuro .select-filtro-nexus:focus,
+body.modo-escuro .custom-select-nexus:focus {
+    border-color: var(--cor-borda-input-focus-escuro) !important;
+    background-color: var(--cor-fundo-elemento-escuro);
+    box-shadow: 0 0 0 3.5px rgba(var(--cor-primaria-rgb-nexus), 0.25), var(--sombra-interna-escuro);
+}
+
+.form-moderno-nexus input[type="color"]:focus-visible {
+    /* Foco específico para input color */
+    outline: 2px solid var(--cor-primaria-nexus);
+    outline-offset: 1px;
+}
+
+
+/* Textarea específico */
+.form-moderno-nexus textarea {
+    min-height: 100px;
+    resize: vertical;
+    padding-top: var(--esp-md);
+    /* Alinhar texto com ícone se presente */
+}
+
+/* Ícones dentro dos inputs */
+.form-moderno-nexus .icone-input-form {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: var(--cor-texto-secundario-claro);
+    transition: color var(--transicao-padrao), transform var(--transicao-padrao);
+    pointer-events: none;
+    z-index: 3;
+    /* Acima do input */
+}
+
+body.modo-escuro .form-moderno-nexus .icone-input-form {
+    color: var(--cor-texto-secundario-escuro);
+}
+
+.form-moderno-nexus .campo-form-nexus:focus-within .icone-input-form {
+    /* Quando o campo pai tem foco */
+    color: var(--cor-primaria-nexus);
+    transform: translateY(-50%) scale(1.05);
+}
+
+/* Placeholders */
+.form-moderno-nexus ::placeholder {
+    /* Sintaxe moderna */
+    color: var(--cor-texto-secundario-claro);
+    opacity: 0.7;
+    font-style: italic;
+}
+
+body.modo-escuro .form-moderno-nexus ::placeholder {
+    color: var(--cor-texto-secundario-escuro);
+}
+
+/* Estilo para Selects (seta customizada) */
+.form-moderno-nexus select,
+.select-filtro-nexus,
+.select-paginacao-nexus,
+/* Incluído aqui explicitamente */
+.custom-select-nexus {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%236c757d' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right calc(var(--esp-lg) - 4px) center;
+    background-size: 1em;
+    padding-right: calc(var(--esp-lg) + var(--esp-md)) !important;
+}
+
+.form-moderno-nexus select:focus,
+.select-filtro-nexus:focus,
+.select-paginacao-nexus:focus,
+.custom-select-nexus:focus {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23FF7700' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+}
+
+body.modo-escuro .form-moderno-nexus select,
+body.modo-escuro .select-filtro-nexus,
+body.modo-escuro .select-paginacao-nexus,
+body.modo-escuro .custom-select-nexus {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%239fa8b4' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+}
+
+body.modo-escuro .form-moderno-nexus select:focus,
+body.modo-escuro .select-filtro-nexus:focus,
+body.modo-escuro .select-paginacao-nexus:focus,
+body.modo-escuro .custom-select-nexus:focus {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23FF8C00' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+}
+
+.form-moderno-nexus select::-ms-expand {
+    display: none;
+}
+
+/* IE */
+
+
+/* Checkbox e Radio Customizados */
+.checkbox-group-nexus {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--esp-md) var(--esp-lg);
+    align-items: center;
+}
+
+.checkbox-custom-nexus,
+/* Label que envolve o input e o span.checkmark */
+.radio-custom-nexus {
+    /* Label que envolve o input e o span.radiomark */
+    display: inline-flex;
+    /* Para alinhar o texto do label com o checkmark/radiomark customizado */
+    align-items: center;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: var(--peso-medio);
+    color: var(--cor-texto-principal-claro);
+    user-select: none;
+    position: relative;
+    /* Para posicionar o checkmark/radiomark absoluto */
+    padding-left: 30px;
+    /* Espaço para o controle customizado */
+    min-height: 22px;
+    transition: color var(--transicao-padrao);
+}
+
+body.modo-escuro .checkbox-custom-nexus,
+body.modo-escuro .radio-custom-nexus {
+    color: var(--cor-texto-principal-escuro);
+}
+
+/* Input real escondido, mas acessível */
+.checkbox-custom-nexus input[type="checkbox"],
+.radio-custom-nexus input[type="radio"] {
+    /* Usa a classe .sr-only definida anteriormente */
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Aparência customizada (o 'quadrado' ou 'círculo') */
+.checkbox-custom-nexus .checkmark,
+.radio-custom-nexus .radiomark {
+    position: absolute;
+    top: 50%;
+    /* Centraliza verticalmente */
+    left: 0;
+    transform: translateY(-50%);
+    height: 20px;
+    width: 20px;
+    background-color: var(--cor-fundo-elemento-claro);
+    border: 2px solid var(--cor-borda-input-claro);
+    transition: background-color var(--transicao-padrao), border-color var(--transicao-padrao);
+}
+
+body.modo-escuro .checkbox-custom-nexus .checkmark,
+body.modo-escuro .radio-custom-nexus .radiomark {
+    background-color: var(--cor-fundo-elemento-escuro);
+    border-color: var(--cor-borda-input-escuro);
+}
+
+/* Estilos específicos para Checkbox */
+.checkbox-custom-nexus .checkmark {
+    border-radius: var(--raio-borda-sm);
+}
+
+.checkbox-custom-nexus:hover input[type="checkbox"]~.checkmark {
+    /* Hover no label afeta o checkmark */
+    border-color: var(--cor-primaria-nexus);
+    background-color: var(--cor-fundo-hover-claro);
+}
+
+body.modo-escuro .checkbox-custom-nexus:hover input[type="checkbox"]~.checkmark {
+    background-color: var(--cor-fundo-hover-escuro);
+}
+
+.checkbox-custom-nexus input[type="checkbox"]:checked~.checkmark {
+    background-color: var(--cor-primaria-nexus);
+    border-color: var(--cor-primaria-nexus);
+    animation: checkmarkPulse 0.3s ease-out;
+}
+
+@keyframes checkmarkPulse {
+
+    /* Definido anteriormente, mantido */
+    0% {
+        transform: translateY(-50%) scale(1);
+    }
+
+    50% {
+        transform: translateY(-50%) scale(1.2);
+    }
+
+    100% {
+        transform: translateY(-50%) scale(1);
+    }
+}
+
+/* Símbolo de check ( ✓ ) dentro do .checkmark */
+.checkbox-custom-nexus .checkmark::after {
+    content: "";
+    position: absolute;
+    display: none;
+    /* Mostrado quando :checked */
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid var(--cor-texto-contraste-claro);
+    /* Branco */
+    border-width: 0 2.5px 2.5px 0;
+    transform: rotate(45deg);
+}
+
+.checkbox-custom-nexus input[type="checkbox"]:checked~.checkmark::after {
+    display: block;
+}
+
+/* Estilos específicos para Radio */
+.radio-custom-nexus .radiomark {
+    border-radius: var(--raio-borda-circulo);
+}
+
+.radio-custom-nexus:hover input[type="radio"]~.radiomark {
+    border-color: var(--cor-primaria-nexus);
+    background-color: var(--cor-fundo-hover-claro);
+}
+
+body.modo-escuro .radio-custom-nexus:hover input[type="radio"]~.radiomark {
+    background-color: var(--cor-fundo-hover-escuro);
+}
+
+.radio-custom-nexus input[type="radio"]:checked~.radiomark {
+    /* background-color não muda, apenas a borda e o ::after */
+    border-color: var(--cor-primaria-nexus);
+}
+
+/* Ponto interno do radio */
+.radio-custom-nexus .radiomark::after {
+    content: "";
+    position: absolute;
+    display: none;
+    /* Mostrado quando :checked */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--cor-primaria-nexus);
+}
+
+.radio-custom-nexus input[type="radio"]:checked~.radiomark::after {
+    display: block;
+}
+
+/* Ícone opcional ao lado do label do checkbox/radio */
+.checkbox-custom-nexus i,
+.radio-custom-nexus i {
+    margin-left: var(--esp-sm);
+    /* Ícone à direita do texto */
+    color: var(--cor-primaria-nexus);
+    font-size: 1em;
+    /* Relativo ao texto do label */
+    line-height: 1;
+}
+
+/* Input File Customizado (usando a classe .sr-only para o input real) */
+/* O label pode ser estilizado como um botão ou uma área de drop */
+.input-file-label {
+    /* Se usar um label como trigger */
+    /* Aplicar estilos de .botao-estilizado ou .input-file-nexus (área de drop) */
+    cursor: pointer;
+}
+
+/* Estilo para a área de drop (se você usar um div/label estilizado assim) */
+.input-file-drop-area {
+    display: block;
+    width: 100%;
+    border: 2px dashed var(--cor-borda-input-claro);
+    padding: var(--esp-xl);
+    text-align: center;
+    border-radius: var(--raio-borda-md);
+    background-color: var(--cor-fundo-hover-claro);
+    color: var(--cor-texto-secundario-claro);
+    font-size: 0.95rem;
+    font-weight: var(--peso-medio);
+    cursor: pointer;
+    transition: var(--transicao-padrao);
+}
+
+.input-file-drop-area:hover,
+.input-file-drop-area.dragover {
+    /* Classe .dragover via JS */
+    border-color: var(--cor-primaria-nexus);
+    background-color: var(--cor-primaria-transparente-nexus);
+    color: var(--cor-primaria-nexus);
+    box-shadow: 0 0 10px var(--cor-primaria-transparente-nexus);
+}
+
+body.modo-escuro .input-file-drop-area {
+    border-color: var(--cor-borda-input-escuro);
+    background-color: var(--cor-fundo-hover-escuro);
+    color: var(--cor-texto-secundario-escuro);
+}
+
+body.modo-escuro .input-file-drop-area:hover,
+body.modo-escuro .input-file-drop-area.dragover {
+    border-color: var(--cor-primaria-nexus);
+    background-color: var(--cor-primaria-transparente-nexus);
+}
+
+/* O input[type="file"] em si deve ter a classe .sr-only no HTML */
+
+
+/* Campos de Formulário Desabilitados e Readonly */
+.form-moderno-nexus input:disabled:not([type="color"]),
+.form-moderno-nexus textarea:disabled,
+.form-moderno-nexus select:disabled,
+.input-filtro-nexus:disabled,
+.select-filtro-nexus:disabled,
+.custom-select-nexus:disabled {
+    background-color: var(--cor-fundo-desabilitado-claro) !important;
+    color: var(--cor-texto-desabilitado-claro) !important;
+    border-color: var(--cor-borda-desabilitado-claro) !important;
+    cursor: not-allowed;
+    box-shadow: none !important;
+    opacity: 0.7;
+}
+
+body.modo-escuro .form-moderno-nexus input:disabled:not([type="color"]),
+/* ... repetir para todos */
+body.modo-escuro .custom-select-nexus:disabled {
+    background-color: var(--cor-fundo-desabilitado-escuro) !important;
+    color: var(--cor-texto-desabilitado-escuro) !important;
+    border-color: var(--cor-borda-desabilitado-escuro) !important;
+}
+
+/* Ícone de campo desabilitado */
+.form-moderno-nexus .campo-form-nexus input:disabled~.icone-input-form,
+.form-moderno-nexus .campo-form-nexus textarea:disabled~.icone-input-form,
+.form-moderno-nexus .campo-form-nexus select:disabled~.icone-input-form {
+    color: var(--cor-texto-desabilitado-claro) !important;
+    opacity: 0.7;
+}
+
+body.modo-escuro .form-moderno-nexus .campo-form-nexus input:disabled~.icone-input-form,
+/* ... etc */
+    {
+    color: var(--cor-texto-desabilitado-escuro) !important;
+}
+
+.form-moderno-nexus input[readonly]:not([type="color"]),
+.form-moderno-nexus textarea[readonly] {
+    background-color: var(--cor-fundo-hover-claro);
+    /* Diferente de desabilitado */
+    color: var(--cor-texto-secundario-claro);
+    cursor: default;
+    border-color: var(--cor-borda-claro);
+    box-shadow: var(--sombra-interna-claro);
+}
+
+body.modo-escuro .form-moderno-nexus input[readonly]:not([type="color"]),
+body.modo-escuro .form-moderno-nexus textarea[readonly] {
+    background-color: var(--cor-fundo-hover-escuro);
+    color: var(--cor-texto-secundario-escuro);
+    border-color: var(--cor-borda-escuro);
+}
+
+/* --------------------------------------------------------------------------
+   ELEMENTOS DE FILTRO (usando .input-filtro-nexus, .select-filtro-nexus)
+   -------------------------------------------------------------------------- */
+.painel-filtros-geral,
+.filtros-lista-avancados,
+.painel-filtros-frequencia,
+.painel-filtros-financeiro,
+.filtros-pedagogico,
+/* .filtros-entrada-saida e .filtros-tabela-entrada-saida já existiam, mantidos */
+#entrada-saida .filtros-tabela-entrada-saida {
+    /* Mantendo a especificidade se necessário */
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    /* Alinha na base, bom para botões e inputs juntos */
+    gap: var(--esp-md);
+    margin-bottom: var(--esp-lg);
+    /* Padronizado */
+    padding: var(--esp-md);
+    background-color: var(--cor-fundo-hover-claro);
+    /* Um pouco diferente do fundo da seção */
+    border-radius: var(--raio-borda-md);
+    border: 1px solid var(--cor-borda-claro);
+}
+
+body.modo-escuro .painel-filtros-geral,
+/* ... repetir para todos os painéis ... */
+body.modo-escuro #entrada-saida .filtros-tabela-entrada-saida {
+    background-color: var(--cor-fundo-hover-escuro);
+    border-color: var(--cor-borda-escuro);
+}
+
+
+/* Campos e botões dentro do painel de filtros */
+.painel-filtros-geral>.campo-form-nexus,
+/* Se os inputs estiverem dentro de .campo-form-nexus */
+.painel-filtros-geral>.input-filtro-nexus,
+.painel-filtros-geral>.select-filtro-nexus,
+.painel-filtros-geral>.custom-select-nexus,
+/* Adicionado */
+.painel-filtros-geral>.botao-estilizado {
+    margin-bottom: 0;
+    /* Remover margem padrão de campo-form-nexus aqui */
+    flex-grow: 1;
+    min-width: 180px;
+    /* Evita que fiquem muito estreitos */
+}
+
+.painel-filtros-geral>.botao-estilizado {
+    flex-grow: 0;
+    /* Botões não crescem tanto */
+    flex-shrink: 0;
+    align-self: center;
+    /* Alinhar verticalmente com inputs, pode precisar de ajuste de padding */
+    /* O padding do botão já deve ser suficiente para altura, mas pode ajustar se necessário: */
+    /* padding-top: calc(var(--esp-sm) + 1px); */
+    /* padding-bottom: calc(var(--esp-sm) + 1px); */
+}
+
+/* Para um input de busca específico com ícone de lupa, se necessário */
+.input-filtro-busca {
+    /* Já herda de .input-filtro-nexus */
+    /* padding-left pode ser ajustado se o ícone for diferente */
+}
+
+/* .input-filtro-busca + .icone-input-form { ... } (se o ícone for irmão e não dentro do :before de um label) */
+/* ==========================================================================
+   NEXUS OS - ESTILO ULTRA-COMPLETO E DETALHADO v2.2 "Órbita" - PARTE 5
+   Componentes: Tabelas, Cards, Listas de Dados
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   13. TABELAS MODERNAS NEXUS
+      Estilização detalhada para tabelas de dados, responsivas e interativas.
+   -------------------------------------------------------------------------- */
+.tabela-container-nexus {
+    overflow-x: auto;
+    /* Scroll horizontal para tabelas largas */
+    width: 100%;
+    background-color: var(--cor-fundo-elemento-claro);
+    border-radius: var(--raio-borda-lg);
+    box-shadow: var(--sombra-card-claro);
+    border: 1px solid var(--cor-borda-claro);
+    margin-top: var(--esp-lg);
+    padding: var(--esp-sm);
+    /* Padding para não colar bordas da tabela interna */
+    position: relative;
+    z-index: var(--z-elemento-secao);
+    /* Contexto de empilhamento */
+    transition: background-color var(--transicao-padrao), border-color var(--transicao-padrao), box-shadow var(--transicao-padrao);
+}
+
+body.modo-escuro .tabela-container-nexus {
+    background-color: var(--cor-fundo-elemento-escuro);
+    border-color: var(--cor-borda-escuro);
+    box-shadow: var(--sombra-card-escuro);
+}
+
+.tabela-moderna-nexus {
+    width: 100%;
+    min-width: 600px;
+    /* Previne quebra excessiva de conteúdo */
+    border-collapse: separate;
+    /* Permite border-spacing e border-radius nas linhas */
+    border-spacing: 0 var(--esp-xs);
+    /* Espaçamento vertical entre linhas do tbody */
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Cabeçalho da Tabela */
+.tabela-moderna-nexus thead th {
+    background-color: var(--cor-fundo-hover-claro);
+    color: var(--cor-texto-principal-claro);
+    font-family: var(--fonte-destaque);
+    /* Orbitron/Poppins */
+    font-weight: var(--peso-semibold);
+    text-align: left;
+    padding: var(--esp-md) var(--esp-lg);
+    border-bottom: 2px solid var(--cor-primaria-nexus);
+    position: sticky;
+    /* Cabeçalho fixo ao rolar dentro do .tabela-container-nexus */
+    top: -1px;
+    /* Ajuste para cobrir a borda do container, se houver padding no container */
+    z-index: calc(var(--z-elemento-secao) + 5);
+    white-space: nowrap;
+    transition: background-color var(--transicao-padrao), color var(--transicao-padrao), border-color var(--transicao-padrao);
+}
+
+.tabela-moderna-nexus thead th:first-child {
+    border-top-left-radius: calc(var(--raio-borda-lg) - var(--esp-sm) - 1px);
+    /* Ajuste para padding e borda do container */
+}
+
+.tabela-moderna-nexus thead th:last-child {
+    border-top-right-radius: calc(var(--raio-borda-lg) - var(--esp-sm) - 1px);
+}
+
+body.modo-escuro .tabela-moderna-nexus thead th {
+    background-color: var(--cor-fundo-hover-escuro);
+    color: var(--cor-texto-principal-escuro);
+    /* border-bottom-color continua primária */
+}
+
+/* Corpo da Tabela */
+.tabela-moderna-nexus tbody tr {
+    background-color: var(--cor-fundo-elemento-claro);
+    border-radius: var(--raio-borda-md);
+    box-shadow: var(--sombra-sutil-claro);
+    transition: transform var(--transicao-padrao), box-shadow var(--transicao-padrao),
+        background-color var(--transicao-padrao), outline-color var(--transicao-padrao);
+    outline: 1px solid transparent;
+    outline-offset: -1px;
+    /* Para a outline ficar "dentro" da borda da linha */
+}
+
+body.modo-escuro .tabela-moderna-nexus tbody tr {
+    background-color: var(--cor-fundo-elemento-escuro);
+    box-shadow: var(--sombra-sutil-escuro);
+}
+
+.tabela-moderna-nexus tbody tr:hover {
+    background-color: var(--cor-fundo-hover-claro);
+    transform: scale(1.000);
+    box-shadow: var(--sombra-elevada-claro);
+    outline-color: var(--cor-primaria-transparente-nexus);
+    z-index: calc(var(--z-elemento-secao) + 1);
+    position: relative;
+}
+
+body.modo-escuro .tabela-moderna-nexus tbody tr:hover {
+    background-color: var(--cor-fundo-hover-escuro);
+    box-shadow: var(--sombra-elevada-escuro);
+    outline-color: var(--cor-primaria-transparente-nexus);
+}
+
+/* Linhas Pares/Ímpares (Zebra Stripes) */
+.tabela-moderna-nexus.tabela-listrada tbody tr:nth-child(even) {
+    background-color: var(--cor-fundo-hover-claro);
+}
+
+body.modo-escuro .tabela-moderna-nexus.tabela-listrada tbody tr:nth-child(even) {
+    background-color: var(--cor-fundo-hover-escuro);
+}
+
+/* Hover sobre linha listrada (mantém um pouco da cor da listra) */
+.tabela-moderna-nexus.tabela-listrada tbody tr:hover {
+    background-color: color-mix(in srgb, var(--cor-fundo-hover-claro) 80%, var(--cor-primaria-nexus) 20%);
+}
+
+body.modo-escuro .tabela-moderna-nexus.tabela-listrada tbody tr:hover {
+    background-color: color-mix(in srgb, var(--cor-fundo-hover-escuro) 80%, var(--cor-primaria-nexus) 20%);
+}
+
+
+/* Células da Tabela (td) */
+.tabela-moderna-nexus tbody td {
+    padding: var(--esp-md) var(--esp-lg);
+    color: var(--cor-texto-principal-claro);
+    vertical-align: middle;
+    border-bottom: 1px solid var(--cor-borda-claro);
+    /* Linha fina entre as linhas */
+    transition: color var(--transicao-padrao), border-color var(--transicao-padrao);
+}
+
+.tabela-moderna-nexus tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Arredondar células de canto */
+.tabela-moderna-nexus tbody tr td:first-child {
+    border-top-left-radius: var(--raio-borda-md);
+    border-bottom-left-radius: var(--raio-borda-md);
+}
+
+.tabela-moderna-nexus tbody tr td:last-child {
+    border-top-right-radius: var(--raio-borda-md);
+    border-bottom-right-radius: var(--raio-borda-md);
+}
+
+body.modo-escuro .tabela-moderna-nexus tbody td {
+    color: var(--cor-texto-principal-escuro);
+    border-bottom-color: var(--cor-borda-escuro);
+}
+
+/* Estilos Específicos para Conteúdo de Células */
+.tabela-moderna-nexus .avatar-tabela-frequencia,
+/* Classe do HTML */
+.tabela-moderna-nexus .avatar-aluno-tabela {
+    /* Classe genérica sugerida */
+    width: 40px;
+    height: 40px;
+    border-radius: var(--raio-borda-circulo);
+    object-fit: cover;
+    border: 2px solid var(--cor-primaria-transparente-nexus);
+    box-shadow: var(--sombra-sutil-claro);
+    margin-right: var(--esp-sm);
+    vertical-align: middle;
+    /* Para alinhar com texto ao lado */
+}
+
+body.modo-escuro .tabela-moderna-nexus .avatar-aluno-tabela {
+    /* Aplica a ambos */
+    border-color: var(--cor-primaria-transparente-nexus);
+    /* Manter cor da borda */
+    box-shadow: var(--sombra-sutil-escuro);
+}
+
+.tabela-moderna-nexus .numero {
+    text-align: right;
+    font-family: var(--fonte-principal);
+    font-weight: var(--peso-medio);
+}
+
+.tabela-moderna-nexus .data {
+    text-align: center;
+    white-space: nowrap;
+    font-family: var(--fonte-principal);
+    font-weight: var(--peso-medio);
+}
+
+.tabela-moderna-nexus .texto-destacado-tabela {
+    font-weight: var(--peso-semibold);
+    color: var(--cor-primaria-nexus);
+}
+
+/* Ações na Tabela */
+.tabela-moderna-nexus .acoes-item-dado,
+/* Classes de diferentes seções */
+.tabela-moderna-nexus .frequencia-acoes-rapidas,
+.tabela-moderna-nexus .financeiro-acoes,
+.tabela-moderna-nexus .funcionario-acoes,
+.tabela-moderna-nexus .inventario-acoes,
+.tabela-moderna-nexus .acoes-es {
+    display: flex;
+    gap: var(--esp-xs);
+    justify-content: flex-end;
+    align-items: center;
+    min-width: 100px;
+    /* Garante espaço para botões */
+    white-space: nowrap;
+    /* Evita quebra de botões */
+}
+
+/* Estilos de Status em Células (Tags) */
+.tag-status {
+    display: inline-block;
+    padding: var(--esp-xs) var(--esp-md);
+    border-radius: var(--raio-borda-pilula);
+    font-size: 0.75rem;
+    font-weight: var(--peso-semibold);
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid;
+    /* A cor será definida abaixo */
+    min-width: 90px;
+    text-align: center;
+}
+
+.tag-status.status-pago,
+.tag-status.status-presente,
+.tag-status.status-ok,
+.tag-status.status-ativo,
+.status-entrada-saida.entrada {
+    /* Seletor do HTML para Entrada */
+    background-color: var(--cor-sucesso-transparente);
+    color: var(--cor-sucesso);
+    border-color: var(--cor-sucesso);
+}
+
+.tag-status.status-pendente,
+.tag-status.status-justificado,
+.tag-status.status-baixo,
+.status-entrada-saida.pendente {
+    /* Seletor do HTML para Pendente */
+    background-color: var(--cor-aviso-transparente);
+    color: var(--cor-texto-aviso-claro);
+    border-color: var(--cor-aviso);
+}
+
+body.modo-escuro .tag-status.status-pendente,
+body.modo-escuro .status-entrada-saida.pendente {
+    color: var(--cor-aviso);
+    /* Texto do aviso no modo escuro usa a cor principal do aviso */
+}
+
+.tag-status.status-vencido,
+.tag-status.status-ausente,
+.tag-status.status-critico,
+.tag-status.status-inativo,
+.status-entrada-saida.ausente {
+    /* Seletor do HTML para Ausente */
+    background-color: var(--cor-perigo-transparente);
+    color: var(--cor-perigo);
+    border-color: var(--cor-perigo);
+}
+
+.tag-status.status-nao-registrado,
+.tag-status.status-nao-aplicavel,
+.tag-status.status-desconhecido {
+    background-color: var(--cor-fundo-ativo-claro);
+    color: var(--cor-texto-secundario-claro);
+    border-color: var(--cor-borda-claro);
+}
+
+body.modo-escuro .tag-status.status-nao-registrado
+
+/* ... etc */
+    {
+    background-color: var(--cor-fundo-ativo-escuro);
+    color: var(--cor-texto-secundario-escuro);
+    border-color: var(--cor-borda-escuro);
+}
+
+/* Específico para Saída (Entrada/Saída) que usa cor Info */
+.status-entrada-saida.saida {
+    /* Seletor do HTML para Saída */
+    background-color: var(--cor-info-transparente);
+    color: var(--cor-info);
+    border-color: var(--cor-info);
+}
+
+
+/* Selects dentro de tabelas (ex: Frequência) */
+.tabela-moderna-nexus .select-status-frequencia {
+    padding: calc(var(--esp-sm) - 1px) calc(var(--esp-md) - 2px);
+    min-width: 170px;
+    font-weight: var(--peso-semibold);
+    /* Texto selecionado em negrito */
+    font-size: 0.85rem;
+    /* Herda .custom-select-nexus e estilos de select de formulário */
+}
+
+/* Cores das options (suporte limitado) */
+.select-status-frequencia option.status-presente {
+    color: var(--cor-sucesso);
+}
+
+.select-status-frequencia option.status-ausente {
+    color: var(--cor-perigo);
+}
+
+.select-status-frequencia option.status-justificado {
+    color: var(--cor-aviso);
+}
+
+/* O fundo das options é difícil de controlar consistentemente */
+
+/* Tabela sem dados */
+.tabela-moderna-nexus tbody tr td.sem-dados {
+    text-align: center;
+    padding: var(--esp-xxl) var(--esp-lg);
+    font-style: italic;
+    color: var(--cor-texto-secundario-claro);
+    background-color: var(--cor-fundo-hover-claro) !important;
+    /* Forçar sobre outros fundos de tr */
+    border-radius: var(--raio-borda-md);
+    border-bottom: none !important;
+    /* Remover borda */
+    box-shadow: none !important;
+    /* Remover sombra */
+}
+
+.tabela-moderna-nexus tbody tr:hover td.sem-dados {
+    /* Evitar hover na linha sem dados */
+    transform: none;
+    box-shadow: none;
+    outline-color: transparent;
+}
+
+body.modo-escuro .tabela-moderna-nexus tbody tr td.sem-dados {
+    color: var(--cor-texto-secundario-escuro);
+    background-color: var(--cor-fundo-hover-escuro) !important;
+}
+
+
+/* --------------------------------------------------------------------------
+   14. CARDS NEXUS (Dashboard, Turmas, Planos de Aula, etc.)
+      Estilização para cards genéricos e os específicos do Dashboard.
+   -------------------------------------------------------------------------- */
+.card-dashboard,
+/* Cards do dashboard */
+.card-item-nexus {
+    /* Cards genéricos (usado em Turmas, por exemplo) */
+    background-color: var(--cor-fundo-elemento-claro);
+    border-radius: var(--raio-borda-lg);
+    box-shadow: var(--sombra-card-claro);
+    padding: var(--esp-lg);
+    transition: transform var(--transicao-padrao), box-shadow var(--transicao-padrao), border-left-color var(--transicao-padrao);
+    position: relative;
+    overflow: hidden;
+    border-left: 4px solid var(--cor-primaria-nexus);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    /* Para cards em grid terem a mesma altura */
+    transition: background-color var(--transicao-padrao), border-color var(--transicao-padrao), box-shadow var(--transicao-padrao);
+}
+
+body.modo-escuro .card-dashboard,
+body.modo-escuro .card-item-nexus {
+    background-color: var(--cor-fundo-elemento-escuro);
+    box-shadow: var(--sombra-card-escuro);
+    /* border-left-color continua primária */
+}
+
+.card-dashboard:hover,
+.card-item-nexus:hover {
+    transform: translateY(-6px) scale(1.015);
+    box-shadow: var(--sombra-elevada-claro), 0 0 18px rgba(var(--cor-primaria-rgb-nexus), 0.12);
+    border-left-color: var(--cor-primaria-hover-nexus);
+}
+
+body.modo-escuro .card-dashboard:hover,
+body.modo-escuro .card-item-nexus:hover {
+    box-shadow: var(--sombra-elevada-escuro), 0 0 18px rgba(var(--cor-primaria-rgb-nexus), 0.18);
+    border-left-color: var(--cor-primaria-hover-nexus);
+}
+
+[data-tilt] {
+    will-change: transform;
+    /* Otimização para animação com JS (vanilla-tilt) */
+}
+
+/* Cabeçalho do Card (Dashboard) */
+.card-dashboard .card-cabecalho {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--esp-lg);
+    flex-shrink: 0;
+}
+
+.card-dashboard .card-icone-wrapper,
+.card-icone-wrapper {
+    width: 50px;
+    height: 50px;
+    border-radius: var(--raio-borda-circulo);
+    background-color: var(--cor-card-icone, var(--cor-primaria-nexus));
+    /* --cor-card-icone é setada inline no HTML */
+    color: var(--cor-texto-contraste-claro);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    margin-right: var(--esp-md);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12), inset 0 -2px 3px rgba(0, 0, 0, 0.18);
+    transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.card-dashboard:hover .card-icone-wrapper {
+    transform: scale(1.1) rotate(-8deg);
+    filter: brightness(1.1);
+}
+
+.card-dashboard .card-cabecalho h3 {
+    font-size: 1.3rem;
+    font-weight: var(--peso-semibold);
+    color: var(--cor-texto-principal-claro);
+    margin-bottom: 0;
+    line-height: 1.3;
+}
+
+body.modo-escuro .card-dashboard .card-cabecalho h3 {
+    color: var(--cor-texto-principal-escuro);
+}
+
+/* Conteúdo do Card (Dashboard) */
+.card-dashboard .card-conteudo {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-dashboard .card-conteudo .numero-destaque,
+.numero-destaque {
+    font-family: var(--fonte-destaque);
+    /* Orbitron */
+    font-size: clamp(2.5rem, 2vw + 2rem, 3.25rem);
+    /* Responsivo */
+    font-weight: var(--peso-black);
+    color: var(--cor-primaria-nexus);
+    display: block;
+    margin-bottom: var(--esp-xs);
+    line-height: 1.1;
+    text-shadow: 1px 1px 0px var(--cor-fundo-elemento-claro),
+        2px 2px 0px rgba(var(--cor-primaria-rgb-nexus), 0.15);
+}
+
+body.modo-escuro .card-dashboard .card-conteudo .numero-destaque {
+    text-shadow: 1px 1px 0px var(--cor-fundo-elemento-escuro),
+        2px 2px 0px rgba(var(--cor-primaria-rgb-nexus), 0.2);
+}
+
+.card-dashboard .card-conteudo .texto-suporte {
+    font-size: 0.9rem;
+    color: var(--cor-texto-secundario-claro);
+    margin-bottom: var(--esp-md);
+    line-height: 1.5;
+    flex-grow: 1;
+    /* Permite que o texto ocupe espaço e empurre o link para baixo */
+}
+
+body.modo-escuro .card-dashboard .card-conteudo .texto-suporte {
+    color: var(--cor-texto-secundario-escuro);
+}
+
+.card-dashboard .link-acao {
+    /* Link "Gerenciar Alunos" etc. */
+    font-size: 0.85rem;
+    font-weight: var(--peso-semibold);
+    color: var(--cor-primaria-nexus);
+    text-transform: uppercase;
+    display: inline-flex;
+    /* Para alinhar com ícone */
+    align-items: center;
+    margin-top: auto;
+    /* Empurra para o final do card-conteudo */
+    align-self: flex-start;
+    /* Alinha à esquerda */
+    padding: var(--esp-xs) 0;
+    /* Área de clique sutil */
+    text-decoration: none;
+    /* Remover sublinhado padrão de <a> */
+}
+
+.card-dashboard .link-acao:hover,
+.card-dashboard .link-acao:focus-visible {
+    color: var(--cor-primaria-hover-nexus);
+    text-shadow: 0 0 6px var(--cor-primaria-brilho-nexus);
+    outline: none;
+}
+
+.card-dashboard .link-acao i {
+    margin-left: var(--esp-sm);
+    transition: transform 0.3s cubic-bezier(0.215, 0.610, 0.355, 1);
+}
+
+.card-dashboard .link-acao:hover i,
+.card-dashboard .link-acao:focus-visible i {
+    transform: translateX(4px) scale(1.1);
+}
+
+/* Fundo Abstrato Decorativo para Cards */
+.card-fundo-abstrato {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        /* Mantido como no original */
+        radial-gradient(circle at 90% 10%, rgba(var(--cor-primaria-rgb-nexus), 0.06) 0%, transparent 35%),
+        radial-gradient(ellipse at 10% 90%, rgba(var(--cor-primaria-rgb-nexus), 0.04) 0%, transparent 45%);
+    opacity: 0.6;
+    transition: opacity var(--transicao-padrao), transform var(--transicao-lenta);
+    pointer-events: none;
+    z-index: -1;
+    /* Atrás do conteúdo */
+    border-radius: inherit;
+}
+
+.card-dashboard:hover .card-fundo-abstrato {
+    opacity: 0.9;
+    transform: scale(1.2) rotate(-5deg);
+}
+
+/* Variações de Card (Alerta) */
+.card-dashboard.card-alerta {
+    border-left-color: var(--cor-perigo);
+}
+
+.card-dashboard.card-alerta .card-icone-wrapper {
+    background-color: var(--cor-perigo);
+}
+
+.card-dashboard.card-alerta .numero-destaque {
+    color: var(--cor-perigo);
+}
+
+.card-dashboard.card-alerta .link-acao {
+    color: var(--cor-perigo);
+}
+
+.card-dashboard.card-alerta .link-acao:hover,
+.card-dashboard.card-alerta .link-acao:focus-visible {
+    color: var(--cor-perigo-hover);
+    text-shadow: 0 0 6px rgba(var(--cor-perigo-rgb), 0.4);
+}
+
+.card-dashboard.card-alerta .card-fundo-abstrato.card-fundo-alerta {
+    background-image:
+        /* Mantido como no original */
+        radial-gradient(circle at 90% 10%, rgba(var(--cor-perigo-rgb), 0.06) 0%, transparent 35%),
+        radial-gradient(ellipse at 10% 90%, rgba(var(--cor-perigo-rgb), 0.04) 0%, transparent 45%);
+}
+
+/* Cards de Grid (Dashboard) */
+.grid-dashboard {
+    display: grid;
+    gap: var(--esp-lg);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.card-dashboard.card-duplo {
+    grid-column: span 2;
+}
+
+@media (max-width: 992px) {
+    .card-dashboard.card-duplo {
+        grid-column: span 1;
+    }
+}
+
+/* Card com Gráfico Simulado */
+.card-grafico-simulado {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    height: 180px;
+    padding: var(--esp-md) 0;
+    margin-top: var(--esp-sm);
+    position: relative;
+}
+
+.barra-grafico {
+    flex-grow: 1;
+    max-width: 40px;
+    margin: 0 var(--esp-xs);
+    background-color: var(--cor-barra, var(--cor-primaria-nexus));
+    /* --cor-barra setada inline */
+    border-radius: var(--raio-borda-sm) var(--raio-borda-sm) 0 0;
+    position: relative;
+    transition: height 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+        background-color 0.5s ease,
+        transform 0.3s ease,
+        filter 0.3s ease;
+    /* Adicionado filter */
+    box-shadow: 1px -1px 3px rgba(0, 0, 0, 0.08);
+    transform-origin: bottom;
+}
+
+.barra-grafico:hover {
+    filter: brightness(1.1);
+    transform: scaleY(1.03);
+}
+
+.barra-grafico span {
+    /* Label da barra */
+    position: absolute;
+    bottom: calc((var(--esp-md) + 5px) * -1);
+    /* Ajuste para posicionar abaixo */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.75rem;
+    font-weight: var(--peso-medio);
+    color: var(--cor-texto-secundario-claro);
+    white-space: nowrap;
+}
+
+body.modo-escuro .barra-grafico span {
+    color: var(--cor-texto-secundario-escuro);
+}
+
+/* Card com Lista de Atividades (Dashboard) */
+.card-lista-atividades .lista-atividades-recentes {
+    /* ul */
+    max-height: 260px;
+    /* padding-right para scrollbar já é tratado por .custom-scrollbar */
+    margin: 0 calc(var(--esp-lg) * -1);
+    /* Compensa padding do card-conteudo */
+    padding-left: var(--esp-lg);
+    padding-right: var(--esp-lg);
+    /* Restaura padding lateral */
+    list-style: none;
+    /* Remove marcadores de lista */
+}
+
+.lista-atividades-recentes .item-atividade {
+    /* li */
+    display: flex;
+    align-items: flex-start;
+    gap: var(--esp-md);
+    padding: var(--esp-md) 0;
+    border-bottom: 1px solid var(--cor-borda-claro);
+    transition: background-color var(--transicao-padrao), padding-left var(--transicao-padrao), margin-left var(--transicao-padrao);
+}
+
+.lista-atividades-recentes .item-atividade:last-child {
+    border-bottom: none;
+}
+
+.lista-atividades-recentes .item-atividade:hover {
+    background-color: var(--cor-fundo-hover-claro);
+    padding-left: var(--esp-xs);
+    /* Leve indentação */
+    margin-left: calc(var(--esp-xs) * -1);
+    /* Compensa indentação */
+}
+
+body.modo-escuro .lista-atividades-recentes .item-atividade {
+    border-bottom-color: var(--cor-borda-escuro);
+}
+
+body.modo-escuro .lista-atividades-recentes .item-atividade:hover {
+    background-color: var(--cor-fundo-hover-escuro);
+}
+
+.lista-atividades-recentes .icone-atividade-lista {
+    /* i */
+    font-size: 1.5rem;
+    width: 28px;
+    text-align: center;
+    margin-top: 2px;
+    flex-shrink: 0;
+    color: var(--cor-primaria-nexus);
+    /* Cor fallback, a cor inline tem precedência */
+}
+
+.lista-atividades-recentes .info-atividade {
+    flex-grow: 1;
+}
+
+.lista-atividades-recentes .descricao-atividade {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: var(--peso-normal);
+    margin-bottom: var(--esp-xs);
+    line-height: 1.4;
+    color: var(--cor-texto-principal-claro);
+    /* Cor base da descrição */
+}
+
+body.modo-escuro .lista-atividades-recentes .descricao-atividade {
+    color: var(--cor-texto-principal-escuro);
+}
+
+.lista-atividades-recentes .descricao-atividade strong {
+    font-weight: var(--peso-semibold);
+    color: inherit;
+    /* Herda cor da descrição, para manter consistência com modo escuro/claro */
+}
+
+.lista-atividades-recentes .tempo-atividade {
+    font-size: 0.75rem;
+    color: var(--cor-texto-secundario-claro);
+    display: flex;
+    align-items: center;
+}
+
+.lista-atividades-recentes .tempo-atividade i.fa-clock {
+    margin-right: var(--esp-xs);
+    font-size: 0.85em;
+}
+
+body.modo-escuro .lista-atividades-recentes .tempo-atividade {
+    color: var(--cor-texto-secundario-escuro);
+}
+
+/* --------------------------------------------------------------------------
+   ELEMENTOS DE LISTA GENÉRICOS
+      (Matrículas, Histórico de Comunicados, Eventos)
+   -------------------------------------------------------------------------- */
+.lista-dados-nexus {
+    /* ul ou div container */
+    display: flex;
+    flex-direction: column;
+    gap: var(--esp-md);
+    list-style: none;
+    /* Se for <ul> */
+}
+
+.item-dado-nexus,
+/* Base para item de matrícula (li) */
+.item-historico-nexus,
+/* Base para item de comunicado (li) */
+.item-evento-nexus {
+    /* Base para item de evento (li) */
+    background-color: var(--cor-fundo-elemento-claro);
+    border-radius: var(--raio-borda-md);
+    padding: var(--esp-md);
+    display: flex;
+    align-items: center;
+    gap: var(--esp-md);
+    box-shadow: var(--sombra-sutil-claro);
+    border-left: 3px solid var(--cor-primaria-transparente-nexus);
+    transition: transform var(--transicao-padrao), box-shadow var(--transicao-padrao), border-left-color var(--transicao-padrao), background-color var(--transicao-padrao);
+    position: relative;
+}
+
+body.modo-escuro .item-dado-nexus,
+body.modo-escuro .item-historico-nexus,
+body.modo-escuro .item-evento-nexus {
+    background-color: var(--cor-fundo-elemento-escuro);
+    box-shadow: var(--sombra-sutil-escuro);
+    border-left-color: var(--cor-primaria-transparente-nexus);
+}
+
+.item-dado-nexus:hover,
+.item-historico-nexus:hover,
+.item-evento-nexus:hover {
+    transform: translateX(4px) scale(1.005);
+    box-shadow: var(--sombra-card-claro);
+    border-left-color: var(--cor-primaria-nexus);
+    z-index: calc(var(--z-elemento-secao) + 2);
+    background-color: var(--cor-fundo-hover-claro);
+    /* Fundo no hover */
+}
+
+body.modo-escuro .item-dado-nexus:hover,
+body.modo-escuro .item-historico-nexus:hover,
+body.modo-escuro .item-evento-nexus:hover {
+    background-color: var(--cor-fundo-hover-escuro);
+}
+
+
+/* Item de Aluno (Matrículas) */
+.item-dado-nexus .item-avatar-placeholder {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--raio-borda-circulo);
+    background-color: var(--cor-app, var(--cor-primaria-nexus));
+    /* --cor-app é var CSS inline */
+    color: var(--cor-texto-contraste-claro);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+    font-weight: var(--peso-bold);
+    flex-shrink: 0;
+    text-transform: uppercase;
+}
+
+.item-dado-nexus .info-principal-item {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--esp-xxs);
+    min-width: 0;
+    /* Para text-overflow funcionar em flex items */
+}
+
+.item-dado-nexus .info-principal-item .aluno-nome {
+    font-size: 1.05rem;
+    font-weight: var(--peso-semibold);
+    color: var(--cor-texto-principal-claro);
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* Evitar quebra de nome longo */
+}
+
+body.modo-escuro .item-dado-nexus .info-principal-item .aluno-nome {
+    color: var(--cor-texto-principal-escuro);
+}
+
+.item-dado-nexus .info-principal-item .aluno-turma {
+    font-size: 0.85rem;
+    color: var(--cor-texto-secundario-claro);
+}
+
+body.modo-escuro .item-dado-nexus .info-principal-item .aluno-turma {
+    color: var(--cor-texto-secundario-escuro);
+}
+
+.item-dado-nexus .aluno-responsavel {
+    font-size: 0.85rem;
+    color: var(--cor-texto-secundario-claro);
+    font-style: italic;
+    margin-left: var(--esp-md);
+    flex-shrink: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px;
+    /* Aumentado um pouco */
+}
+
+body.modo-escuro .item-dado-nexus .aluno-responsavel {
+    color: var(--cor-texto-secundario-escuro);
+}
+
+.item-dado-nexus .acoes-item-dado {
+    margin-left: auto;
+    /* Empurra para a direita */
+    display: flex;
+    gap: var(--esp-xs);
+    flex-shrink: 0;
+}
+
+/* Item de Histórico de Comunicado */
+.item-historico-nexus {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.item-historico-nexus .historico-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: var(--esp-sm);
+}
+
+.item-historico-nexus .historico-titulo {
+    font-size: 1.1rem;
+    font-weight: var(--peso-semibold);
+    color: var(--cor-primaria-nexus);
+    line-height: 1.3;
+}
+
+.item-historico-nexus .historico-data {
+    font-size: 0.8rem;
+    color: var(--cor-texto-secundario-claro);
+    white-space: nowrap;
+}
+
+body.modo-escuro .item-historico-nexus .historico-data {
+    color: var(--cor-texto-secundario-escuro);
+}
+
+.item-historico-nexus .historico-mensagem-preview {
+    font-size: 0.9rem;
+    color: var(--cor-texto-secundario-claro);
+    margin-bottom: var(--esp-sm);
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+body.modo-escuro .item-historico-nexus .historico-mensagem-preview {
+    color: var(--cor-texto-secundario-escuro);
+}
+
+.item-historico-nexus .historico-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    /* Para quebra de linha se necessário */
+    gap: var(--esp-sm);
+    /* Espaço entre destinatário e canais */
+    width: 100%;
+    font-size: 0.8rem;
+    color: var(--cor-texto-secundario-claro);
+    margin-top: var(--esp-sm);
+}
+
+body.modo-escuro .item-historico-nexus .historico-footer {
+    color: var(--cor-texto-secundario-escuro);
+}
+
+.item-historico-nexus .historico-canais i {
+    margin-right: var(--esp-xxs);
+}
+
+.item-historico-nexus .acoes-item-dado {
+    margin-left: 0;
+    margin-top: var(--esp-md);
+    width: 100%;
+    justify-content: flex-end;
+}
+
+/* Item de Evento (Calendário) */
+.item-evento-nexus .evento-data-display {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--raio-borda-md);
+    background-color: var(--cor-app, var(--cor-primaria-nexus));
+    /* --cor-app é var CSS inline */
+    color: var(--cor-texto-contraste-claro);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-shrink: 0;
+    box-shadow: var(--sombra-sutil-claro);
+    font-family: var(--fonte-destaque);
+    /* Orbitron */
+}
+
+.item-evento-nexus .evento-dia {
+    font-size: 1.7rem;
+    font-weight: var(--peso-bold);
+    line-height: 1;
+}
+
+.item-evento-nexus .evento-mes {
+    font-size: 0.75rem;
+    font-weight: var(--peso-semibold);
+    text-transform: uppercase;
+    line-height: 1;
+    margin-top: 2px;
+}
+
+.item-evento-nexus .evento-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--esp-xxs);
+    min-width: 0;
+    /* Para text-overflow funcionar */
+}
+
+.item-evento-nexus .evento-titulo {
+    font-size: 1.05rem;
+    font-weight: var(--peso-semibold);
+    color: var(--cor-primaria-nexus);
+    margin-bottom: 0;
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.item-evento-nexus .evento-descricao-curta {
+    font-size: 0.85rem;
+    color: var(--cor-texto-secundario-claro);
+    margin-bottom: 0;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+body.modo-escuro .item-evento-nexus .evento-descricao-curta {
+    color: var(--cor-texto-secundario-escuro);
+}
+
+.item-evento-nexus .evento-horario {
+    font-size: 0.8rem;
+    color: var(--cor-texto-secundario-claro);
+    display: flex;
+    align-items: center;
+    margin-top: var(--esp-xs);
+}
+
+.item-evento-nexus .evento-horario i.fa-clock {
+    margin-right: var(--esp-xs);
+    font-size: 0.9em;
+}
+
+body.modo-escuro .item-evento-nexus .evento-horario {
+    color: var(--cor-texto-secundario-escuro);
+}
+
+.item-evento-nexus .acoes-item-dado {
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+/* ==========================================================================
+   NEXUS OS - ESTILO ULTRA-COMPLETO E DETALHADO v2.2 "Órbita" - PARTE 6
+   Modais, Tabs, Paginação, Componentes Específicos, Cards de Turmas, Responsividade
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   15. MODAIS NEXUS
+      Estilização para janelas modais, incluindo overlay e animações.
+   -------------------------------------------------------------------------- */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    /* Equivalente a top, right, bottom, left = 0 */
+    width: 100%;
+    height: 100%;
+    background-color: rgba(18, 24, 40, 0.88);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: var(--z-modal-overlay);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transicao-padrao), visibility 0s var(--transicao-padrao);
+    /* Oculta visibility após opacidade */
+    padding: var(--esp-md);
+    overflow-y: auto;
+    /* Scroll do overlay se modal for muito alto */
+}
+
+/* .modal-overlay.escondido já definido no HTML, JS controla */
+.modal-overlay:not([hidden]) {
+    /* Quando não está hidden (visível) */
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
+    /* Remove atraso ao mostrar */
+}
+
+.modal-container {
+    background-color: var(--cor-fundo-elemento-claro);
+    border-radius: var(--raio-borda-lg);
+    box-shadow: var(--sombra-elevada-claro);
+    width: 100%;
+    max-width: 650px;
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - (var(--esp-md) * 2));
+    /* Altura máxima */
+    transform: scale(0.92) translateY(15px);
+    opacity: 0;
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease-out;
+    position: relative;
+    z-index: var(--z-modal);
+    margin: auto;
+    /* Centraliza se o overlay for scrollable */
+    border: 1px solid var(--cor-borda-claro);
+    /* Borda sutil */
+}
+
+.modal-overlay:not([hidden]) .modal-container {
+    /* Animação de entrada quando modal está visível */
+    transform: scale(1) translateY(0);
+    opacity: 1;
+}
+
+body.modo-escuro .modal-container {
+    background-color: var(--cor-fundo-elemento-escuro);
+    box-shadow: var(--sombra-elevada-escuro);
+    border-color: var(--cor-borda-escuro);
+}
+
+/* Tamanhos de Modal */
+.modal-container.modal-pequeno {
+    max-width: 480px;
+}
+
+.modal-container.modal-medio {
+    max-width: 650px;
+}
+
+/* Padrão */
+.modal-container.modal-grande {
+    max-width: 850px;
+}
+
+.modal-container.modal-xlgrande {
+    max-width: 1100px;
+}
+
+.modal-container.modal-fullscreen {
+    max-width: calc(100vw - (var(--esp-md) * 2));
+    width: calc(100vw - (var(--esp-md) * 2));
+    /* Ocupa largura */
+    height: calc(100vh - (var(--esp-md) * 2));
+    max-height: calc(100vh - (var(--esp-md) * 2));
+    border-radius: var(--raio-borda-md);
+}
+
+.modal-glow-border {
+    position: absolute;
+    inset: -2px;
+    /* Cobre a borda do .modal-container */
+    border-radius: calc(var(--raio-borda-lg) + 2px);
+    /* Ajuste para acompanhar o raio do modal */
+    border: 2px solid var(--cor-primaria-transparente-nexus);
+    box-shadow: var(--sombra-glow-primaria);
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.6;
+    transition: opacity var(--transicao-padrao);
+}
+
+.modal-container:hover .modal-glow-border {
+    /* Sutil, pode ser removido se data-tilt já der efeito */
+    opacity: 0.9;
+}
+
+.modal-cabecalho {
+    padding: var(--esp-lg) var(--esp-xl);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--cor-borda-claro);
+    flex-shrink: 0;
+}
+
+body.modo-escuro .modal-cabecalho {
+    border-bottom-color: var(--cor-borda-escuro);
+}
+
+.modal-cabecalho h3 {
+    /* ID do título do modal no HTML */
+    font-family: var(--fonte-destaque);
+    /* Orbitron */
+    font-size: 1.6rem;
+    font-weight: 600;
+    /* color: var(--cor-primaria-nexus); */
+    color: white;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    line-height: 1.3;
+    text-shadow: var(--sombra-texto-glow-primaria);
+}
+
+.modal-cabecalho h3 i {
+    margin-right: var(--esp-md);
+    font-size: 0.9em;
+}
+
+.modal-botao-fechar {
+    background-color: transparent;
+    border: none;
+    font-size: 1.7rem;
+    color: var(--cor-texto-secundario-claro);
+    cursor: pointer;
+    padding: var(--esp-sm);
+    line-height: 1;
+    border-radius: var(--raio-borda-circulo);
+    transition: color var(--transicao-padrao), transform var(--transicao-padrao), background-color var(--transicao-padrao);
+}
+
+body.modo-escuro .modal-botao-fechar {
+    color: var(--cor-texto-secundario-escuro);
+}
+
+.modal-botao-fechar:hover,
+.modal-botao-fechar:focus-visible {
+    color: var(--cor-perigo);
+    background-color: var(--cor-perigo-transparente);
+    transform: rotate(90deg) scale(1.15);
+    outline: none;
+}
+
+.modal-corpo {
+    padding: var(--esp-xl);
+    flex-grow: 1;
+    overflow-y: auto;
+    min-height: 100px;
+    /* Aplicar .custom-scrollbar aqui se o conteúdo interno puder ter scroll */
+}
+
+.modal-corpo p:first-child {
+    margin-top: 0;
+}
+
+.modal-corpo p:last-child {
+    margin-bottom: 0;
+}
+
+.modal-rodape {
+    padding: var(--esp-lg) var(--esp-xl);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-top: 1px solid var(--cor-borda-claro);
+    background-color: var(--cor-fundo-hover-claro);
+    /* Fundo sutil */
+    border-bottom-left-radius: var(--raio-borda-lg);
+    border-bottom-right-radius: var(--raio-borda-lg);
+    gap: var(--esp-md);
+    flex-shrink: 0;
+}
+
+body.modo-escuro .modal-rodape {
+    border-top-color: var(--cor-borda-escuro);
+    background-color: var(--cor-fundo-hover-escuro);
+}
+
+.modal-rodape .botao-estilizado {
+    min-width: 120px;
+}
+
+/* --------------------------------------------------------------------------
+   16. TABS NEXUS
+      Sistema de navegação por abas para organizar conteúdo em seções.
+   -------------------------------------------------------------------------- */
+.tabs-nexus[role="tablist"] {
+    /* Adicionado role ao seletor para clareza */
+    display: flex;
+    margin-bottom: var(--esp-lg);
+    border-bottom: 1px solid var(--cor-borda-claro);
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 1px;
+    /* Evita corte da borda ativa */
+    position: relative;
+    z-index: calc(var(--z-elemento-secao) + 1);
+}
+
+body.modo-escuro .tabs-nexus[role="tablist"] {
+    border-bottom-color: var(--cor-borda-escuro);
+}
+
+/* Scrollbar sutil para as tabs */
+.tabs-nexus[role="tablist"]::-webkit-scrollbar {
+    height: 6px;
+}
+
+.tabs-nexus[role="tablist"]::-webkit-scrollbar-thumb {
+    background-color: rgba(var(--cor-primaria-rgb-nexus), 0.4);
+    border-radius: 3px;
+}
+
+.tabs-nexus[role="tablist"]::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.tabs-nexus[role="tablist"] {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(var(--cor-primaria-rgb-nexus), 0.4) transparent;
+}
+
+
+button.tab-link-nexus[role="tab"] {
+    /* Especificidade para botões de aba */
+    padding: var(--esp-md) var(--esp-lg);
+    font-family: var(--fonte-destaque);
+    /* Orbitron/Poppins */
+    font-size: 0.95rem;
+    font-weight: var(--peso-semibold);
+    color: var(--cor-texto-secundario-claro);
+    background-color: transparent;
+    border: none;
+    /* Bordas controladas por border-bottom */
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    margin-bottom: -2px;
+    /* Alinha borda com a do container */
+    transition: color var(--transicao-padrao), border-color var(--transicao-padrao), background-color var(--transicao-padrao);
+    white-space: nowrap;
+    text-align: center;
+    position: relative;
+}
+
+body.modo-escuro button.tab-link-nexus[role="tab"] {
+    color: var(--cor-texto-secundario-escuro);
+}
+
+button.tab-link-nexus[role="tab"]:hover {
+    color: var(--cor-primaria-hover-nexus);
+    background-color: var(--cor-primaria-transparente-nexus);
+    border-bottom-color: var(--cor-primaria-transparente-nexus);
+}
+
+button.tab-link-nexus[role="tab"]:focus-visible {
+    outline: none;
+    background-color: var(--cor-primaria-transparente-nexus);
+    box-shadow: inset 0 0 0 2px var(--cor-primaria-nexus);
+    border-bottom-color: var(--cor-primaria-nexus);
+    /* Manter borda de foco */
+    color: var(--cor-primaria-nexus);
+}
+
+button.tab-link-nexus[role="tab"][aria-selected="true"] {
+    /* Tab ativa */
+    color: var(--cor-primaria-nexus);
+    border-bottom-color: var(--cor-primaria-nexus);
+    font-weight: var(--peso-bold);
+    text-shadow: 0 0 4px var(--cor-primaria-brilho-nexus);
+    background-color: transparent;
+    /* Sem fundo por padrão */
+}
+
+button.tab-link-nexus[role="tab"][aria-selected="true"]:hover {
+    background-color: rgba(var(--cor-primaria-rgb-nexus), 0.05);
+}
+
+.tab-conteudo-nexus[role="tabpanel"] {
+    /* Especificidade para painel de conteúdo */
+    /* display: none; / [hidden] no HTML já faz isso */
+    padding: var(--esp-lg) 0;
+    animation: fadeInTabContentNexus 0.45s ease-out;
+    /* Renomeado para clareza */
+    position: relative;
+    z-index: var(--z-elemento-secao);
+}
+
+@keyframes fadeInTabContentNexus {
+
+    /* Renomeado */
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tab-conteudo-nexus[role="tabpanel"]:not([hidden]) {
+    /* Quando visível (sem hidden) */
+    display: block;
+    /* Ou flex, dependendo do conteúdo interno */
+}
+
+
+/* --------------------------------------------------------------------------
+   18. PAGINAÇÃO NEXUS (Corrigido número para 17, se for o caso)
+      Componente de paginação para listas e tabelas.
+   -------------------------------------------------------------------------- */
+.paginacao-nexus {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--esp-sm);
+    margin-top: var(--esp-xl);
+    padding-top: var(--esp-lg);
+    border-top: 1px solid var(--cor-borda-claro);
+    font-family: var(--fonte-destaque);
+    /* Orbitron/Poppins */
+    flex-wrap: wrap;
+    position: relative;
+    z-index: var(--z-elemento-flutuante-secao);
+    width: 100%;
+}
+
+body.modo-escuro .paginacao-nexus {
+    border-top-color: var(--cor-borda-escuro);
+}
+
+.paginacao-nexus .select-paginacao-nexus {
+    /* Já estilizado por .custom-select-nexus */
+    padding: calc(var(--esp-sm) - 1px) calc(var(--esp-md) - 2px);
+    padding-right: calc(var(--esp-md) + var(--esp-sm)) !important;
+    /* Garante espaço para seta */
+    font-size: 0.85rem;
+    font-weight: var(--peso-medio);
+    min-width: 110px;
+    flex-shrink: 0;
+}
+
+.paginacao-nexus .btn-paginacao-nav {
+    background-color: var(--cor-fundo-hover-claro);
+    border: 1px solid var(--cor-borda-claro);
+    color: var(--cor-texto-secundario-claro);
+    padding: calc(var(--esp-sm) - 1px);
+    width: 36px;
+    height: 36px;
+    border-radius: var(--raio-borda-circulo);
+    cursor: pointer;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transicao-padrao);
+    flex-shrink: 0;
+}
+
+body.modo-escuro .paginacao-nexus .btn-paginacao-nav {
+    background-color: var(--cor-fundo-hover-escuro);
+    border-color: var(--cor-borda-escuro);
+    color: var(--cor-texto-secundario-escuro);
+}
+
+.paginacao-nexus .btn-paginacao-nav:hover:not(:disabled) {
+    background-color: var(--cor-primaria-nexus);
+    border-color: var(--cor-primaria-nexus);
+    color: var(--cor-texto-contraste-claro);
+    transform: scale(1.08);
+    box-shadow: var(--sombra-card-claro);
+}
+
+.paginacao-nexus .btn-paginacao-nav:active:not(:disabled) {
+    transform: scale(1.02);
+    background-color: var(--cor-primaria-active-nexus);
+}
+
+.paginacao-nexus .btn-paginacao-nav:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--cor-fundo-elemento-claro), 0 0 0 4px var(--cor-primaria-nexus);
+}
+
+body.modo-escuro .paginacao-nexus .btn-paginacao-nav:focus-visible {
+    box-shadow: 0 0 0 2px var(--cor-fundo-elemento-escuro), 0 0 0 4px var(--cor-primaria-nexus);
+}
+
+.paginacao-nexus .btn-paginacao-nav:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: var(--cor-fundo-ativo-claro);
+    /* Mais sutil que desabilitado de form */
+    border-color: var(--cor-borda-claro);
+    color: var(--cor-texto-desabilitado-claro);
+    transform: none;
+    box-shadow: none;
+}
+
+body.modo-escuro .paginacao-nexus .btn-paginacao-nav:disabled {
+    background-color: var(--cor-fundo-ativo-escuro);
+    border-color: var(--cor-borda-escuro);
+    color: var(--cor-texto-desabilitado-escuro);
+}
+
+.paginacao-nexus .info-paginacao-nexus {
+    font-size: 0.85rem;
+    font-weight: var(--peso-medio);
+    color: var(--cor-texto-secundario-claro);
+    margin: 0 var(--esp-xs);
+    flex-shrink: 0;
+}
+
+body.modo-escuro .paginacao-nexus .info-paginacao-nexus {
+    color: var(--cor-texto-secundario-escuro);
+}
+
+/* --------------------------------------------------------------------------
+   COMPONENTES ESPECÍFICOS DE SEÇÃO
+   (Relatórios, Calendário, Configurações, Perfil, Turmas)
+   -------------------------------------------------------------------------- */
+
+/* Seção Relatórios - Itens de Seleção */
+.grid-selecao-relatorios {
+    display: grid;
+    gap: var(--esp-lg);
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+button.item-selecao-relatorio {
+    /* Assegurar que é um botão */
+    background-color: var(--cor-fundo-elemento-claro);
+    border-radius: var(--raio-borda-lg);
+    padding: var(--esp-lg);
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transicao-padrao);
+    border: 1px solid var(--cor-borda-claro);
+    box-shadow: var(--sombra-sutil-claro);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 180px;
+    color: inherit;
+    /* Herda cor para texto interno */
+}
+
+body.modo-escuro button.item-selecao-relatorio {
+    background-color: var(--cor-fundo-elemento-escuro);
+    border-color: var(--cor-borda-escuro);
+    box-shadow: var(--sombra-sutil-escuro);
+}
+
+button.item-selecao-relatorio:hover,
+button.item-selecao-relatorio:focus-visible {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: var(--sombra-elevada-claro);
+    border-color: var(--cor-primaria-nexus);
+    background-color: var(--cor-fundo-hover-claro);
+    outline: none;
+}
+
+body.modo-escuro button.item-selecao-relatorio:hover,
+body.modo-escuro button.item-selecao-relatorio:focus-visible {
+    box-shadow: var(--sombra-elevada-escuro);
+    background-color: var(--cor-fundo-hover-escuro);
+}
+
+button.item-selecao-relatorio i {
+    font-size: 2.8rem;
+    color: var(--cor-primaria-nexus);
+    margin-bottom: var(--esp-md);
+    display: block;
+    /* Ícone como bloco para margin funcionar */
+    text-shadow: 0 0 8px var(--cor-primaria-brilho-nexus);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+button.item-selecao-relatorio:hover i,
+button.item-selecao-relatorio:focus-visible i {
+    transform: scale(1.2) rotate(10deg);
+}
+
+button.item-selecao-relatorio h4 {
+    font-size: 1.2rem;
+    font-weight: var(--peso-semibold);
+    color: var(--cor-texto-principal-claro);
+    margin-bottom: var(--esp-sm);
+    line-height: 1.3;
+}
+
+body.modo-escuro button.item-selecao-relatorio h4 {
+    color: var(--cor-texto-principal-escuro);
+}
+
+button.item-selecao-relatorio p {
+    font-size: 0.85rem;
+    color: var(--cor-texto-secundario-claro);
+    margin-bottom: 0;
+    line-height: 1.5;
+    flex-grow: 1;
+}
+
+body.modo-escuro button.item-selecao-relatorio p {
+    color: var(--cor-texto-secundario-escuro);
+}
+
+#container-visualizacao-relatorio {
+    margin-top: var(--esp-xl);
+    padding: var(--esp-xl);
+    border: 1px solid var(--cor-borda-claro);
+    border-radius: var(--raio-borda-lg);
+    min-height: 350px;
+    background-color: var(--cor-fundo-hover-claro);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body.modo-escuro #container-visualizacao-relatorio {
+    border-color: var(--cor-borda-escuro);
+    background-color: var(--cor-fundo-hover-escuro);
+}
+
+/* Seção Calendário/Eventos */
+.grid-calendario-eventos {
+    display: grid;
+    gap: var(--esp-xl);
+    grid-template-columns: minmax(0, 2.5fr) minmax(0, 1.5fr);
+    align-items: flex-start;
+}
+
+@media (max-width: 992px) {
+    .grid-calendario-eventos {
+        grid-template-columns: 1fr;
+    }
+}
+
+#calendario-plugin-container {
+    min-height: 550px;
+    background-color: var(--cor-fundo-elemento-claro);
+    border-radius: var(--raio-borda-lg);
+    padding: var(--esp-lg);
+    box-shadow: var(--sombra-card-claro);
+    border: 1px solid var(--cor-borda-claro);
+    /* Estilos do plugin de calendário (ex: FullCalendar) precisam ser ajustados aqui ou separadamente */
+}
+
+body.modo-escuro #calendario-plugin-container {
+    background-color: var(--cor-fundo-elemento-escuro);
+    box-shadow: var(--sombra-card-escuro);
+    border-color: var(--cor-borda-escuro);
+}
+
+.coluna-lista-eventos-nexus h4 {
+    font-size: 1.3rem;
+    color: var(--cor-primaria-nexus);
+    border-bottom: 2px solid var(--cor-primaria-transparente-nexus);
+    padding-bottom: var(--esp-sm);
+    margin-bottom: var(--esp-md);
+    display: flex;
+    align-items: center;
+}
+
+.coluna-lista-eventos-nexus h4 i {
+    margin-right: var(--esp-sm);
+    font-size: 1em;
+}
+
+.coluna-lista-eventos-nexus #btn-novo-evento-calendario {
+    margin-bottom: var(--esp-lg);
+    width: 100%;
+}
+
+#lista-proximos-eventos.lista-dados-nexus {
+    /* ul */
+    max-height: 450px;
+    overflow-y: auto;
+    /* Aplicar custom-scrollbar no HTML */
+}
+
+/* Seção Configurações e Perfil */
+#configuracoes .form-moderno-nexus,
+/* Dentro da aba */
+#perfil .form-moderno-nexus {
+    /* Diretamente na seção */
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: var(--esp-xl);
+    background-color: var(--cor-fundo-hover-claro);
+    /* Distingue o form do fundo da seção */
+    border-radius: var(--raio-borda-lg);
+    border: 1px solid var(--cor-borda-claro);
+}
+
+body.modo-escuro #configuracoes .form-moderno-nexus,
+body.modo-escuro #perfil .form-moderno-nexus {
+    background-color: var(--cor-fundo-hover-escuro);
+    border-color: var(--cor-borda-escuro);
+}
+
+/* Títulos dentro das abas de Configurações */
+#configuracoes .tab-conteudo-nexus h4 {
+    text-align: center;
+    margin-bottom: var(--esp-xl);
+}
+
+.perfil-avatar-container {
+    text-align: center;
+    margin-bottom: var(--esp-xl);
+}
+
+#avatar-perfil-grande {
+    width: 150px;
+    height: 150px;
+    border-radius: var(--raio-borda-circulo);
+    margin: 0 auto var(--esp-md) auto;
+    border: 4px solid var(--cor-primaria-nexus);
+    box-shadow: var(--sombra-elevada-claro), 0 0 20px var(--cor-primaria-brilho-nexus);
+    object-fit: cover;
+}
+
+body.modo-escuro #avatar-perfil-grande {
+    box-shadow: var(--sombra-elevada-escuro), 0 0 20px var(--cor-primaria-brilho-nexus);
+}
+
+/* #btn-trocar-avatar-perfil é um label estilizado como botão, ou um botão que aciona o input file.
+   Se for um label, usar: label#btn-trocar-avatar-perfil */
+#btn-trocar-avatar-perfil {
+    /* Assumindo que é um botão ou label estilizado como .botao-estilizado */
+    display: inline-block;
+    /* Não ocupa largura total */
+    width: auto;
+    /* Tamanho baseado no conteúdo */
+    margin-top: var(--esp-sm);
+}
+
+#configuracoes #preview-logo-creche {
+    /* img */
+    max-width: 200px;
+    max-height: 100px;
+    margin: var(--esp-md) auto;
+    border: 2px dashed var(--cor-borda-input-claro);
+    padding: var(--esp-sm);
+    display: block;
+    /* Para margin auto funcionar */
+}
+
+body.modo-escuro #configuracoes #preview-logo-creche {
+    border-color: var(--cor-borda-input-escuro);
+}
+
+/* --------------------------------------------------------------------------
+   CARDS DE TURMAS (Estilos específicos para seção #turmas)
+   -------------------------------------------------------------------------- */
+#turmas #container-cards-turmas.grid-cards-nexus {
+    /* Adicionado .grid-cards-nexus */
+    display: grid;
+    gap: var(--esp-lg);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+#turmas .card-item-nexus {
+    /* Herdando de .card-item-nexus, mas com overrides */
+    padding: 0 !important;
+    /* Padding controlado internamente */
+    border-left-width: 0 !important;
+    /* Removido, cabeçalho colorido define a borda visual */
+    overflow: hidden !important;
+}
+
+#turmas .card-item-nexus .card-item-cabecalho {
+    background-color: var(--cor-app, var(--cor-primaria-nexus)) !important;
+    /* --cor-app do HTML */
+    color: var(--cor-texto-contraste-claro) !important;
+    padding: var(--esp-md) var(--esp-lg) !important;
+    display: flex;
+    align-items: center;
+    gap: var(--esp-sm);
+    border-top-left-radius: var(--raio-borda-lg);
+    border-top-right-radius: var(--raio-borda-lg);
+    flex-shrink: 0;
+}
+
+#turmas .card-item-nexus .card-item-cabecalho .icone-card-item {
+    font-size: 1.5rem !important;
+    line-height: 1;
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.15));
+}
+
+#turmas .card-item-nexus .card-item-cabecalho .turma-nome-card {
+    font-family: var(--fonte-destaque);
+    /* Orbitron */
+    font-size: 1.25rem !important;
+    font-weight: var(--peso-bold);
+    color: inherit !important;
+    margin: 0 !important;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* Para nomes longos */
+}
+
+#turmas .card-item-nexus .card-item-conteudo {
+    padding: var(--esp-lg) !important;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--esp-sm);
+}
+
+#turmas .card-item-nexus .card-item-conteudo p {
+    font-size: 0.9rem;
+    margin-bottom: var(--esp-xs) !important;
+    color: var(--cor-texto-secundario-claro);
+    line-height: 1.4;
+}
+
+#turmas .card-item-nexus .card-item-conteudo p strong {
+    font-weight: var(--peso-semibold);
+    color: var(--cor-texto-principal-claro);
+}
+
+body.modo-escuro #turmas .card-item-nexus .card-item-conteudo p {
+    color: var(--cor-texto-secundario-escuro);
+}
+
+body.modo-escuro #turmas .card-item-nexus .card-item-conteudo p strong {
+    color: var(--cor-texto-principal-escuro);
+}
+
+#turmas .card-item-nexus .progresso-turma-container {
+    height: 8px;
+    background-color: var(--cor-fundo-ativo-claro);
+    border-radius: var(--raio-borda-pilula);
+    /* Mais arredondado */
+    overflow: hidden;
+    margin-top: auto;
+    /* Empurra para o final do card-item-conteudo */
+    margin-bottom: var(--esp-xs);
+    /* Pequena margem antes do rodapé */
+}
+
+body.modo-escuro #turmas .card-item-nexus .progresso-turma-container {
+    background-color: var(--cor-fundo-ativo-escuro);
+}
+
+#turmas .card-item-nexus .progresso-turma-barra {
+    height: 100%;
+    background-color: var(--cor-primaria-nexus);
+    border-radius: var(--raio-borda-pilula);
+    transition: width 0.8s ease-out;
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+#turmas .card-item-nexus .card-item-rodape {
+    padding: var(--esp-md) var(--esp-lg) !important;
+    border-top: 1px solid var(--cor-borda-claro);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: var(--esp-sm);
+    flex-shrink: 0;
+}
+
+body.modo-escuro #turmas .card-item-nexus .card-item-rodape {
+    border-top-color: var(--cor-borda-escuro);
+}
+
+#turmas .card-item-nexus .card-item-rodape .botao-pequeno-nexus i {
+    margin-right: var(--esp-xs);
+    /* Espaço se houver texto no botão */
+}
+
+
+/* --------------------------------------------------------------------------
+   19. TOAST NOTIFICATIONS (POSICIONAMENTO E ESTILO BASE) (Corrigido número)
+   -------------------------------------------------------------------------- */
+#toast-container {
+    position: fixed;
+    top: calc(var(--esp-xl) + 70px);
+    /* Abaixo do cabeçalho + espaço */
+    right: var(--esp-xl);
+    z-index: var(--z-toast);
+    display: flex;
+    flex-direction: column;
+    gap: var(--esp-md);
+    max-width: 380px;
+    /* Largura dos toasts */
+    width: calc(100% - (var(--esp-xl) * 2));
+    /* Responsivo em telas menores */
+}
+
+.toast-notificacao {
+    background-color: var(--cor-fundo-elemento-escuro);
+    /* Fundo escuro para destaque */
+    color: var(--cor-texto-principal-escuro);
+    /* Texto claro */
+    padding: var(--esp-md) var(--esp-lg);
+    border-radius: var(--raio-borda-md);
+    box-shadow: var(--sombra-elevada-escuro);
+    display: flex;
+    align-items: center;
+    gap: var(--esp-md);
+    border-left: 5px solid;
+    /* Borda colorida indicando tipo */
+    opacity: 0;
+    transform: translateX(100%);
+    animation: slideInToastNexus 0.5s forwards cubic-bezier(0.215, 0.61, 0.355, 1),
+        fadeOutToastNexus 0.5s forwards cubic-bezier(0.215, 0.61, 0.355, 1) 4.5s;
+    /* 4.5s de delay para fadeOut */
+    min-height: 50px;
+    /* Altura mínima */
+}
+
+@keyframes slideInToastNexus {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOutToastNexus {
+    to {
+        opacity: 0;
+        transform: translateX(20px) scale(0.95);
+        height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-bottom: 0;
+        border-width: 0;
+    }
+}
+
+/* Variações de Cor do Toast */
+.toast-notificacao.sucesso {
+    border-left-color: var(--cor-sucesso);
+}
+
+.toast-notificacao.erro {
+    border-left-color: var(--cor-perigo);
+}
+
+.toast-notificacao.aviso {
+    border-left-color: var(--cor-aviso);
+}
+
+.toast-notificacao.info {
+    border-left-color: var(--cor-info);
+}
+
+.toast-notificacao i.fas {
+    /* Ícone dentro do toast */
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.toast-notificacao.sucesso i.fas {
+    color: var(--cor-sucesso);
+}
+
+.toast-notificacao.erro i.fas {
+    color: var(--cor-perigo);
+}
+
+.toast-notificacao.aviso i.fas {
+    color: var(--cor-aviso);
+}
+
+.toast-notificacao.info i.fas {
+    color: var(--cor-info);
+}
+
+.toast-notificacao span {
+    /* Mensagem do toast */
+    flex-grow: 1;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.toast-botao-fechar {
+    background: transparent;
+    border: none;
+    color: var(--cor-texto-secundario-escuro);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: var(--esp-xs);
+    line-height: 1;
+    margin-left: auto;
+    /* Empurra para a direita */
+    opacity: 0.7;
+    transition: opacity var(--transicao-rapida), color var(--transicao-rapida);
+}
+
+.toast-botao-fechar:hover {
+    opacity: 1;
+    color: var(--cor-texto-principal-escuro);
+}
+
+
+/* --------------------------------------------------------------------------
+   20. RESPONSIVIDADE FINAL (Corrigido número)
+      Ajustes finos para diferentes tamanhos de tela.
+   -------------------------------------------------------------------------- */
+/* Telas Médias (Tablets) */
+@media (max-width: 1024px) {
+    .grid-dashboard {
+        grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    }
+
+    .card-dashboard.card-duplo {
+        grid-column: span 1;
+    }
+
+    /* Cards duplos ocupam 1 coluna */
+
+    #cabecalho-app .info-data-hora {
+        display: none;
+    }
+
+    /* Oculta data/hora */
+    #conteudo-principal-app {
+        padding: var(--esp-lg);
+    }
+}
+
+/* Telas Pequenas (Tablets em modo retrato, Celulares grandes) */
+@media (max-width: 768px) {
+    html {
+        font-size: 15px;
+    }
+
+    /* Reduz tamanho base da fonte */
+
+    #cabecalho-app {
+        padding: var(--esp-sm) var(--esp-md);
+        height: 64px;
+    }
+
+    #conteudo-principal-app {
+        height: calc(100vh - 64px);
+        padding: var(--esp-md);
+    }
+
+    .titulo-secao {
+        font-size: clamp(1.3rem, 1vw + 1.1rem, 1.6rem);
+        margin-bottom: var(--esp-lg);
+    }
+
+    .secao-app {
+        padding: var(--esp-md);
+        margin-bottom: var(--esp-lg);
+    }
+
+    /* Launcher em telas menores */
+    #app-launcher-menu {
+        max-width: calc(100vw - var(--esp-xl));
+        max-height: 85vh;
+    }
+
+    #app-launcher-menu .launcher-grid {
+        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+        gap: var(--esp-md);
+        padding: var(--esp-md);
+    }
+
+    #app-launcher-menu .app-item .app-icone {
+        width: 50px;
+        height: 50px;
+        font-size: 1.8rem;
+    }
+
+    #app-launcher-menu .app-item span {
+        font-size: 0.7rem;
+    }
+
+    /* Grids de duas colunas passam para uma */
+    .grid-matriculas,
+    .grid-comunicacao {
+        grid-template-columns: 1fr;
+    }
+
+    /* Modais em telas menores */
+    .modal-container {
+        max-width: calc(100vw - var(--esp-lg));
+        margin: var(--esp-sm);
+        max-height: 90vh;
+        border-radius: var(--raio-borda-md);
+        /* Raio menor em telas pequenas */
+    }
+
+    .modal-cabecalho {
+        padding: var(--esp-md) var(--esp-lg);
+    }
+
+    .modal-cabecalho h3 {
+        font-size: 1.4rem;
+    }
+
+    .modal-corpo {
+        padding: var(--esp-lg);
+    }
+
+    .modal-rodape {
+        padding: var(--esp-md) var(--esp-lg);
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--esp-sm);
+    }
+
+    .modal-rodape .botao-estilizado {
+        width: 100%;
+    }
+
+    /* Botões do rodapé ocupam largura total */
+
+    /* Abas (Tabs) */
+    .tabs-nexus[role="tablist"] {
+        margin-bottom: var(--esp-md);
+    }
+
+    button.tab-link-nexus[role="tab"] {
+        padding: var(--esp-sm) var(--esp-md);
+        font-size: 0.9rem;
+    }
+
+    /* Ações e Filtros */
+    .acoes-topo-secao,
+    .acoes-rodape-secao {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--esp-md);
+    }
+
+    .painel-filtros-geral,
+    .filtros-lista-avancados,
+    /* Incluindo os específicos */
+    .painel-filtros-frequencia,
+    .painel-filtros-financeiro,
+    .filtros-pedagogico,
+    #entrada-saida .filtros-tabela-entrada-saida {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .painel-filtros-geral>*,
+    /* Todos os filhos diretos */
+    .filtros-lista-avancados>* {
+        min-width: 0 !important;
+        /* Resetar min-width */
+        width: 100% !important;
+        /* Ocupar largura total */
+    }
+
+    /* Botões principais nas seções ocupam largura total */
+    .acoes-topo-secao>.botao-estilizado.primario,
+    .acoes-rodape-secao>.botao-estilizado.primario {
+        width: 100%;
+    }
+
+    /* Paginação em coluna */
+    .paginacao-nexus {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--esp-sm);
+        justify-content: center;
+    }
+
+    .paginacao-nexus .select-paginacao-nexus,
+    .paginacao-nexus .info-paginacao-nexus {
+        width: 100%;
+        text-align: center;
+    }
+
+    .paginacao-nexus .btn-paginacao-nav {
+        width: 100%;
+    }
+}
+
+/* Telas Muito Pequenas (Celulares) */
+@media (max-width: 480px) {
+    html {
+        font-size: 14px;
+    }
+
+    /* Base de fonte ainda menor */
+    #conteudo-principal-app {
+        padding: var(--esp-xs);
+    }
+
+    /* Padding mínimo */
+    .titulo-secao {
+        font-size: clamp(1.2rem, 1vw + 1rem, 1.4rem);
+    }
+
+    .secao-app {
+        padding: var(--esp-sm);
+    }
+
+    #botao-toggle-launcher {
+        width: 54px;
+        height: 54px;
+        bottom: var(--esp-md);
+        right: var(--esp-md);
+    }
+
+    .icone-launcher {
+        width: 22px;
+        height: 22px;
+    }
+
+    #toast-container {
+        right: var(--esp-sm);
+        top: calc(var(--esp-sm) + 60px);
+        /* Ajuste para não sobrepor cabeçalho */
+        max-width: calc(100vw - (var(--esp-sm) * 2));
+        width: calc(100vw - (var(--esp-sm) * 2));
+        /* Ocupa largura da tela menos margens */
+    }
+
+    .card-dashboard,
+    .card-item-nexus {
+        padding: var(--esp-md);
+    }
+
+    .card-dashboard .card-cabecalho h3 {
+        font-size: 1.1rem;
+    }
+
+    .card-dashboard .card-conteudo .numero-destaque {
+        font-size: clamp(2rem, 1.5vw + 1.8rem, 2.5rem);
+    }
+
+    .form-moderno-nexus input:not([type="color"]),
+    .form-moderno-nexus select,
+    .form-moderno-nexus textarea,
+    .input-filtro-nexus,
+    .select-filtro-nexus,
+    .custom-select-nexus {
+        font-size: 0.9rem;
+        padding-left: 40px;
+        /* Ajuste para ícones menores */
+        /* Demais paddings devem se ajustar com base no tamanho da fonte */
+    }
+
+    .form-moderno-nexus .icone-input-form {
+        left: 12px;
+        font-size: 1.1rem;
+    }
+}
+
+/* ==========================================================================
+   NEXUS OS - ESTILO ULTRA-COMPLETO E DETALHADO v2.2 "Órbita" - PARTE EXTRA
+   Notificações Toast
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   19. NOTIFICAÇÕES TOAST (CORRIGIDO/ADICIONADO)
+       Alertas flutuantes para feedback de operações.
+   -------------------------------------------------------------------------- */
+#toast-container {
+    position: fixed;
+    top: calc(var(--esp-xl) + 70px);
+    /* Abaixo do cabeçalho + espaço (70px = altura do header) */
+    right: var(--esp-xl);
+    z-index: var(--z-toast);
+    /* var(--z-toast) = 9500, bem alto */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    /* Alinha toasts à direita se o container for mais largo */
+    gap: var(--esp-md);
+    width: auto;
+    /* Container se ajusta aos toasts */
+    max-width: 400px;
+    /* Largura máxima para os toasts */
+    pointer-events: none;
+    /* Container não intercepta cliques, apenas os toasts */
+}
+
+.toast-notificacao {
+    background-color: var(--cor-fundo-elemento-escuro);
+    /* Fundo escuro para toasts por padrão */
+    color: var(--cor-texto-principal-escuro);
+    padding: var(--esp-md) var(--esp-lg);
+    border-radius: var(--raio-borda-md);
+    box-shadow: var(--sombra-elevada-escuro);
+    /* Sombra pronunciada */
+    display: flex;
+    align-items: flex-start;
+    /* Alinha ícone e conteúdo no topo */
+    gap: var(--esp-md);
+    border-left: 5px solid;
+    /* Borda colorida indicando tipo, cor definida abaixo */
+    width: 100%;
+    /* Ocupa a largura do #toast-container ou max-width */
+    min-width: 320px;
+    /* Largura mínima para boa legibilidade */
+    pointer-events: auto;
+    /* Toasts individuais interceptam cliques */
+    opacity: 0;
+    transform: translateX(110%);
+    /* Começa fora da tela à direita */
+    transition: opacity 0.4s ease-out, transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+        height 0.3s ease-out 0.1s,
+        /* Transição de altura com delay */
+        padding-top 0.3s ease-out 0.1s,
+        padding-bottom 0.3s ease-out 0.1s,
+        margin-bottom 0.3s ease-out 0.1s;
+    /* Animação de entrada será controlada por JS adicionando uma classe 'show' ou 'visible' */
+}
+
+/* Estados de visibilidade do Toast (JS controla) */
+.toast-notificacao.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.toast-notificacao.hide {
+    /* Para animação de saída antes de remover do DOM */
+    opacity: 0;
+    transform: translateX(110%) scale(0.95);
+    height: 0 !important;
+    /* !important para sobrepor e colapsar */
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+    border-width: 0 !important;
+    /* Esconde a borda também */
+    overflow: hidden;
+    /* Garante que o conteúdo não vaze durante o colapso */
+}
+
+/* Variações de Cor do Toast (borda e ícone) */
+.toast-notificacao.sucesso {
+    border-left-color: var(--cor-sucesso);
+}
+
+.toast-notificacao.erro {
+    border-left-color: var(--cor-perigo);
+}
+
+.toast-notificacao.aviso {
+    border-left-color: var(--cor-aviso);
+}
+
+.toast-notificacao.info {
+    border-left-color: var(--cor-info);
+}
+
+/* Modo claro para Toasts (se você quiser que eles sigam o tema) */
+body:not(.modo-escuro) .toast-notificacao {
+    background-color: var(--cor-fundo-elemento-claro);
+    color: var(--cor-texto-principal-claro);
+    box-shadow: var(--sombra-elevada-claro);
+}
+
+body:not(.modo-escuro) .toast-notificacao .toast-botao-fechar {
+    color: var(--cor-texto-secundario-claro);
+}
+
+body:not(.modo-escuro) .toast-notificacao .toast-botao-fechar:hover {
+    color: var(--cor-texto-principal-claro);
+}
+
+
+.toast-notificacao .toast-icone {
+    /* Elemento <i> com o ícone */
+    font-size: 1.6rem;
+    /* Tamanho do ícone */
+    line-height: 1.3;
+    /* Alinhamento com a primeira linha de texto */
+    flex-shrink: 0;
+    /* Cores dos ícones */
+    color: currentColor;
+    /* Cor padrão (geralmente branca no toast escuro) */
+}
+
+.toast-notificacao.sucesso .toast-icone {
+    color: var(--cor-sucesso);
+}
+
+.toast-notificacao.erro .toast-icone {
+    color: var(--cor-perigo);
+}
+
+.toast-notificacao.aviso .toast-icone {
+    color: var(--cor-aviso);
+}
+
+.toast-notificacao.info .toast-icone {
+    color: var(--cor-info);
+}
+
+.toast-notificacao .toast-conteudo {
+    flex-grow: 1;
+    padding-right: var(--esp-sm);
+    /* Espaço antes do botão de fechar */
+}
+
+.toast-notificacao .toast-titulo {
+    display: block;
+    font-weight: var(--peso-bold);
+    font-size: 1rem;
+    margin-bottom: var(--esp-xs);
+    color: inherit;
+    /* Herda do .toast-notificacao */
+}
+
+.toast-notificacao .toast-mensagem {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    margin-bottom: 0;
+    color: inherit;
+    /* Herda, mas pode ser mais claro/escuro que o título */
+    opacity: 0.9;
+}
+
+.toast-botao-fechar {
+    background: transparent;
+    border: none;
+    color: var(--cor-texto-secundario-escuro);
+    /* Cor do X no toast escuro */
+    font-size: 1.5rem;
+    /* Tamanho do '×' */
+    font-weight: var(--peso-bold);
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 var(--esp-xs);
+    /* Pequena área de clique */
+    margin-left: auto;
+    /* Empurra para a direita */
+    align-self: flex-start;
+    /* Alinha no topo se o conteúdo for multiline */
+    opacity: 0.7;
+    transition: opacity var(--transicao-rapida), color var(--transicao-rapida), transform var(--transicao-rapida);
+}
+
+.toast-botao-fechar:hover {
+    opacity: 1;
+    color: var(--cor-texto-principal-escuro);
+    /* Cor do X no hover (toast escuro) */
+    transform: scale(1.1);
+}
+
+
+/* Ajustes para responsividade do Toast Container */
+@media (max-width: 480px) {
+    #toast-container {
+        top: var(--esp-md);
+        /* Mais próximo do topo em telas pequenas */
+        right: var(--esp-md);
+        left: var(--esp-md);
+        /* Ocupa largura total com margens */
+        width: auto;
+        /* Deixa o left/right definirem a largura */
+        max-width: none;
+        align-items: stretch;
+        /* Toasts ocupam largura total do container */
+    }
+
+    .toast-notificacao {
+        min-width: 0;
+        /* Remove largura mínima */
+    }
+}
+
+/* ==========================================================================
+   NEXUS OS - CORREÇÕES PONTUAIS DE VISIBILIDADE (SOBRESCREVER)
+   Adicionar ao final do seu arquivo CSS principal.
+   ========================================================================== */
+
+/* --- CORREÇÕES PARA CARDS DE TURMAS --- */
+
+/* Garante que o conteúdo dentro do card de turma não seja cortado indevidamente */
+#turmas .card-item-nexus .card-item-conteudo {
+    overflow: visible !important;
+    /* Tenta evitar cortes de conteúdo */
+    min-height: auto !important;
+    /* Permite que o conteúdo defina a altura */
+    display: flex !important;
+    /* Garante que seja flex para o conteúdo interno */
+    flex-direction: column !important;
+    /* Se houver um max-height específico aqui que esteja cortando, remova ou aumente */
+}
+
+/* Garante que o texto (nome do educador, faixa etária, capacidade) seja visível */
+#turmas .card-item-nexus .card-item-conteudo p,
+#turmas .card-item-nexus .card-item-conteudo p span,
+#turmas .card-item-nexus .card-item-conteudo p strong {
+    color: var(--cor-texto-principal-claro) !important;
+    /* Força cor do texto principal */
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: inline !important;
+    /* Ou block, dependendo do que for o span/strong */
+    overflow: visible !important;
+    max-height: none !important;
+    /* Remove restrições de altura */
+    line-height: 1.5 !important;
+    /* Garante altura de linha suficiente */
+}
+
+body.modo-escuro #turmas .card-item-nexus .card-item-conteudo p,
+body.modo-escuro #turmas .card-item-nexus .card-item-conteudo p span,
+body.modo-escuro #turmas .card-item-nexus .card-item-conteudo p strong {
+    color: var(--cor-texto-principal-escuro) !important;
+}
+
+/* Para os spans específicos, se eles ainda estiverem ocultos: */
+#turmas .turma-educador-card,
+#turmas .turma-faixa-etaria-card,
+#turmas .turma-vagas-ocupadas-card,
+#turmas .turma-capacidade-card {
+    display: inline !important;
+    /* Ou o display original deles */
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+
+/* Garante que a barra de progresso e seus pais não cortem a si mesmos */
+#turmas .progresso-turma-container {
+    overflow: visible !important;
+    min-height: 8px !important;
+    /* Garante que tenha alguma altura */
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+#turmas .progresso-turma-barra {
+    min-height: 100% !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Garante que o rodapé do card de turma e seus botões sejam visíveis */
+#turmas .card-item-nexus .card-item-rodape {
+    overflow: visible !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: flex !important;
+    /* Garante layout flex */
+}
+
+#turmas .card-item-nexus .card-item-rodape .botao-pequeno-nexus {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: inline-flex !important;
+    /* Garante exibição correta do botão */
+}
+
+
+/* --- CORREÇÕES PARA LISTA DE ATIVIDADES RECENTES (DASHBOARD) --- */
+
+/* Garante que o container da lista não corte os itens */
+.card-lista-atividades .lista-atividades-recentes {
+    overflow-y: auto !important;
+    /* Permite scroll se necessário, mas não hidden */
+    overflow-x: hidden !important;
+    /* Evita scroll horizontal desnecessário */
+    max-height: 300px !important;
+    /* Aumentar se necessário, ou remover para altura dinâmica */
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Garante que os itens da lista e seu conteúdo sejam visíveis */
+.lista-atividades-recentes .item-atividade {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: flex !important;
+    /* Garante layout flex */
+    overflow: visible !important;
+    /* Evita corte interno */
+}
+
+.lista-atividades-recentes .info-atividade {
+    opacity: 1 !important;
+    visibility: visible !important;
+    overflow: visible !important;
+}
+
+/* Garante que a descrição da atividade e o tempo sejam visíveis */
+.lista-atividades-recentes .descricao-atividade,
+.lista-atividades-recentes .tempo-atividade {
+    color: var(--cor-texto-principal-claro) !important;
+    /* Força cor do texto */
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    /* Garante que ocupe espaço */
+    overflow: visible !important;
+    max-height: none !important;
+    line-height: 1.4 !important;
+}
+
+.lista-atividades-recentes .tempo-atividade {
+    color: var(--cor-texto-secundario-claro) !important;
+}
+
+body.modo-escuro .lista-atividades-recentes .descricao-atividade {
+    color: var(--cor-texto-principal-escuro) !important;
+}
+
+body.modo-escuro .lista-atividades-recentes .tempo-atividade {
+    color: var(--cor-texto-secundario-escuro) !important;
+}
+
+.lista-atividades-recentes .descricao-atividade strong {
+    color: inherit !important;
+    /* Herda do pai .descricao-atividade */
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Garante que o ícone na lista de atividades seja visível */
+.lista-atividades-recentes .icone-atividade-lista {
+    opacity: 1 !important;
+    visibility: visible !important;
+    /* A cor já é definida inline, então não precisa forçar aqui a menos que seja um problema */
+}
+
+
+.input,
+.select,
+.textarea {
+    padding: 0.5rem 1.25rem !important;
+}
+
+
+
+/* --- REGRA GERAL DE DEBUG (USAR COM CUIDADO E REMOVER DEPOIS) --- */
+/* Se ainda houver problemas, descomente isso temporariamente para ver se é z-index */
+/*
+* {
+    outline: 1px solid rgba(255, 0, 0, 0.1) !important;
+    z-index: auto !important; // Isso pode quebrar layouts, mas ajuda a ver se z-index é o culpado
+}
+*/
+
+
+
+
+
+/* Estilos Customizados modal confirmacao turma */
+.bg-light-primary {
+    background-color: #e3f2fd;
+}
+
+/* Estilo dos dados do aluno */
+.info-aluno-item {
+    border-left: 3px solid #4e73df;
+    padding-left: 10px;
+}
+
+.info-label {
+    font-weight: 600;
+    color: #6c757d;
+    display: block;
+}
+
+.info-value {
+    color: #212529;
+    font-size: 1.1rem;
+}
+
+/* Estilo dos detalhes da turma */
+.detalhe-item {
+    border-left: 3px solid #0d6efd;
+    padding-left: 10px;
+}
+
+.detalhe-titulo {
+    font-weight: 600;
+    color: #495057;
+}
+
+.detalhe-valor {
+    color: #212529;
+    display: block;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.btn-pulse {
+    animation: pulse 0.3s ease-in-out infinite reverse;
+}
+
+/* modal overlay */
+.modal-overlay-turma {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9940;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* CSS do Modal */
+.modal-turma-detailed {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    width: 500px;
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow-y: auto;
+    z-index: 0;
+    animation: modalFadeIn 0.3s ease-out;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.modal-header-turma {
+    padding: 20px;
+    background-color: var(--cor-app-turma, #3498db);
+    color: white;
+    border-radius: 12px 12px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header-turma h3 {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.modal-close-btn {
+    background: none;
+    border: 1px solid rgb(212, 203, 203);
+    border-radius: 50%;
+    color: rgb(247, 247, 247);
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.modal-close-btn:hover {
+    opacity: 1;
+    color: rgb(255, 255, 255);
+}
+
+.modal-body-turma {
+    padding: 20px;
+}
+
+.info-grid-turma {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.info-item-turma {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-label-turma {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 4px;
+    font-weight: 500;
+}
+
+.info-value-turma {
+    font-size: 0.95rem;
+    color: #333;
+    padding: 6px 0;
+}
+
+.progress-container-turma {
+    margin: 15px 0;
+}
+
+.progress-info-turma {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-size: 0.85rem;
+}
+
+.progress-bar-turma {
+    height: 8px;
+    background-color: #e9ecef;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill-turma {
+    height: 100%;
+    background-color: var(--cor-app-turma, #3498db);
+    transition: width 0.3s ease;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.status-active {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status-inactive {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.modal-footer-turma {
+    padding: 15px 20px;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.btn-modal-turma {
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-primary-turma {
+    background-color: var(--cor-app-turma, #3498db);
+    color: white;
+    border: none;
+}
+
+.btn-primary-turma:hover {
+    background-color: var(--cor-app-turma-hover, #2980b9);
+}
+
+.btn-outline-turma {
+    background-color: transparent;
+    border: 1px solid #ddd;
+    color: #555;
+}
+
+.btn-outline-turma:hover {
+    background-color: #f8f9fa;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -48%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.bg-modal-hearder{
+    background: #FF7700;
+}
