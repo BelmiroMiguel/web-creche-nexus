@@ -255,6 +255,88 @@ import {
     formDataAluno.append("observacao", inpObservacaoAlunoMatricula.value);
     formDataAluno.append("genero", sltGeneroCadastroAlunoMatricula.value);
 
+    if (
+      inpNomeResponsavel2AlunoMatricula &&
+      inpNomeResponsavel2AlunoMatricula.value
+    ) {
+      formDataAluno.append(
+        "nomeResponsavel2",
+        inpNomeResponsavel2AlunoMatricula.value
+      );
+    }
+    if (
+      inpTelefoneResponsavel2AlunoMatricula &&
+      inpTelefoneResponsavel2AlunoMatricula.value
+    ) {
+      formDataAluno.append(
+        "telefoneResponsavel2",
+        inpTelefoneResponsavel2AlunoMatricula.value
+      );
+    }
+    if (
+      sltGrauParentescoResponsavel2Matricula &&
+      sltGrauParentescoResponsavel2Matricula.value
+    ) {
+      formDataAluno.append(
+        "grauParentesco2",
+        sltGrauParentescoResponsavel2Matricula.value
+      );
+    }
+    if (
+      inpNomeResponsavel3AlunoMatricula &&
+      inpNomeResponsavel3AlunoMatricula.value
+    ) {
+      formDataAluno.append(
+        "nomeResponsavel3",
+        inpNomeResponsavel3AlunoMatricula.value
+      );
+    }
+    if (
+      inpTelefoneResponsavel3AlunoMatricula &&
+      inpTelefoneResponsavel3AlunoMatricula.value
+    ) {
+      formDataAluno.append(
+        "telefoneResponsavel3",
+        inpTelefoneResponsavel3AlunoMatricula.value
+      );
+    }
+    if (
+      sltGrauParentescoResponsavel3Matricula &&
+      sltGrauParentescoResponsavel3Matricula.value
+    ) {
+      formDataAluno.append(
+        "grauParentesco3",
+        sltGrauParentescoResponsavel3Matricula.value
+      );
+    }
+    if (
+      inpNomeResponsavel4AlunoMatricula &&
+      inpNomeResponsavel4AlunoMatricula.value
+    ) {
+      formDataAluno.append(
+        "nomeResponsavel4",
+        inpNomeResponsavel4AlunoMatricula.value
+      );
+    }
+    if (
+      inpTelefoneResponsavel4AlunoMatricula &&
+      inpTelefoneResponsavel4AlunoMatricula.value
+    ) {
+      formDataAluno.append(
+        "telefoneResponsavel4",
+        inpTelefoneResponsavel4AlunoMatricula.value
+      );
+    }
+    if (
+      sltGrauParentescoResponsavel4Matricula &&
+      sltGrauParentescoResponsavel4Matricula.value
+    ) {
+      formDataAluno.append(
+        "grauParentesco4",
+        sltGrauParentescoResponsavel4Matricula.value
+      );
+    }
+
     if (fotoFile) formDataAluno.append("imagem", fotoFile);
     if (alunoSelecionado)
       formDataAluno.append("idAluno", alunoSelecionado.idAluno);
@@ -403,6 +485,25 @@ import {
     inpTelefoneResponsavelAlunoMatricula.value =
       aluno.telefoneResponsavel || "";
     inpEnderecoAlunoMatricula.value = aluno.endereco || "";
+
+
+    
+
+
+    inpNomeResponsavel2AlunoMatricula.value = aluno.nomeResponsavel2 || "";
+    inpTelefoneResponsavel2AlunoMatricula.value =
+      aluno.telefoneResponsavel2 || "";
+    sltGrauParentescoResponsavel2Matricula.value = aluno.grauParentesco2 || "";
+
+    inpNomeResponsavel3AlunoMatricula.value = aluno.nomeResponsavel3 || "";
+    inpTelefoneResponsavel3AlunoMatricula.value =
+      aluno.telefoneResponsavel3 || "";
+    sltGrauParentescoResponsavel3Matricula.value = aluno.grauParentesco3 || "";
+
+    inpNomeResponsavel4AlunoMatricula.value = aluno.nomeResponsavel4 || "";
+    inpTelefoneResponsavel4AlunoMatricula.value =
+      aluno.telefoneResponsavel4 || "";
+    sltGrauParentescoResponsavel4Matricula.value = aluno.grauParentesco4 || "";
 
     if (
       typeof fotoPreviewAlunoMatricula !== "undefined" &&

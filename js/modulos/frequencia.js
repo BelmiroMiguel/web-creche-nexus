@@ -1,190 +1,403 @@
+import { AppService } from "../app_service.js";
+import {
+  capitalizeWords,
+  formatarData,
+  formatarDataInput,
+  fotoPreview,
+  renderPaginacao,
+  toUpperCase,
+} from "../utils.js";
+
 // js/modulos/frequencia.js
-(function() {
-    'use strict';
+(function () {
+  "use strict";
 
-    const secaoFrequencia = document.getElementById('frequencia');
-    if (!secaoFrequencia) { console.warn("Seção Frequência não encontrada."); return; }
+  const secaoFrequencia = document.getElementById("frequencia");
+  if (!secaoFrequencia) {
+    console.warn("Seção Frequência não encontrada.");
+    return;
+  }
 
-    const selectTurmaFrequencia = secaoFrequencia.querySelector('#select-turma-frequencia');
-    const inputDataFrequencia = secaoFrequencia.querySelector('#input-data-frequencia');
-    const tabelaFrequenciaCorpo = secaoFrequencia.querySelector('#tabela-frequencia-corpo');
-    const templateLinhaFrequencia = document.getElementById('template-linha-frequencia');
-    const btnRegistrarTodosPresentes = secaoFrequencia.querySelector('#btn-registrar-todos-presentes');
-    const btnSalvarFrequencias = secaoFrequencia.querySelector('#btn-salvar-frequencias');
+  let turmaSelecionada = null;
+  let turmasCarregadas = [];
+  let confirmacoesTurmaSelecionada = [];
 
+  let paginacaoFrequencia = {
+    page: 0,
+    totalPages: 0,
+    totalItems: 0,
+    items: 15,
+  };
 
-    // Usar alunos de window.alunosMatriculados se disponível
-    // Registros de frequência: { 'YYYY-MM-DD': { alunoId1: {status: 'presente', obs:''}, alunoId2: {status:'ausente'} } }
-    let registrosFrequencia = {
-        // Exemplo:
-        // '2024-04-01': { 
-        //     [window.alunosMatriculados?.[0]?.id || 1]: { status: 'presente', obs: 'Chegou animado!' },
-        //     [window.alunosMatriculados?.[1]?.id || 2]: { status: 'ausente', obs: 'Avisou que iria ao médico.' }
-        // }
-    };
+  $(sltFiltroTurmaFrequencia).on("change", () => renderizarConfirmacoes());
+  $(sltFiltroStatusFrequencia).on("input", () => renderizarConfirmacoes());
+  $(inpFiltroDataFrequencia).on("input", () => renderizarConfirmacoes());
+  $(inpFiltroNomeMatriculaFrequencia).on("input", () =>
+    renderizarConfirmacoes()
+  );
 
-    function getAvatarUrl(alunoNome = '') { // Simples, para fins de exemplo
-        return `https://i.pravatar.cc/40?u=${encodeURIComponent(alunoNome.split(' ')[0])}`;
-    }
+  function renderizarConfirmacoes(pagina = 1) {
+    tbodyFrequencia.innerHTML = "";
+    const turmaSelecionada = turmasCarregadas.find(
+      (turma) => turma.idTurma == sltFiltroTurmaFrequencia.value
+    );
+    const dataFiltro = inpFiltroDataFrequencia.value || new Date();
 
-    function carregarFrequencia() {
-        if (!inputDataFrequencia || !tabelaFrequenciaCorpo || !templateLinhaFrequencia || !window.alunosMatriculados) return;
+    labelTotalAlunosFrequencia.textContent =
+      turmaSelecionada.confirmacoes?.length ?? 0;
+    labelTotalMeninosFrequencia.textContent =
+      turmaSelecionada.confirmacoes?.filter((c) => c.aluno.genero === "m")
+        .length ?? 0;
+    labelTotalMeninasFrequencia.textContent =
+      turmaSelecionada.confirmacoes?.filter((c) => c.aluno.genero === "f")
+        .length ?? 0;
 
-        const dataSelecionada = inputDataFrequencia.value; // YYYY-MM-DD
-        const turmaSelecionadaId = selectTurmaFrequencia?.value || 'todas';
+    $(preload).fadeIn();
 
-        if (!dataSelecionada) {
-            tabelaFrequenciaCorpo.innerHTML = '<tr><td colspan="5" class="sem-dados">Selecione uma data para registrar/ver a frequência.</td></tr>';
-            return;
-        }
+    AppService.getData(
+      "confirmacoes",
+      {
+        idTurma: turmaSelecionada.idTurma,
+        statusFrequencia: sltFiltroStatusFrequencia.value,
+        dataFiltro: dataFiltro,
+        items: 15,
+        page: pagina,
+      },
+      {
+        onSuccess: (res) => {
+          const confirmacoesCarregadas = res.body;
+          paginacaoFrequencia = res.paginacao;
 
-        tabelaFrequenciaCorpo.innerHTML = '';
-        const alunosDaTurma = window.alunosMatriculados.filter(aluno =>
-            turmaSelecionadaId === 'todas' || aluno.turmaId === turmaSelecionadaId
-        );
+          renderPaginacao({
+            container: containerPaginacaoFrequencia,
+            totalPaginas: paginacaoFrequencia.totalPages,
+            paginaAtual: paginacaoFrequencia.page,
+            totalItens: paginacaoFrequencia.totalItems,
+            onPageClick: (pagina) => renderizarConfirmacoes(pagina),
+          });
 
-        if (alunosDaTurma.length === 0) {
-            tabelaFrequenciaCorpo.innerHTML = `<tr><td colspan="5" class="sem-dados">Nenhum aluno encontrado para ${turmaSelecionadaId === 'todas' ? 'o sistema' : 'esta turma'}.</td></tr>`;
-            return;
-        }
+          confirmacoesCarregadas.forEach((confirmacao) => {
+            const frequencia = confirmacao?.frequencias.find(
+              (freq) =>
+                formatarDataInput(freq.dataFrequencia) ==
+                formatarDataInput(dataFiltro)
+            );
+            const template = templateLinhaFrequencia.content.cloneNode(true);
 
-        const frequenciaDoDia = registrosFrequencia[dataSelecionada] || {};
+            template.querySelector("#labelNomeAlunoFrequencia").textContent =
+              capitalizeWords(confirmacao.aluno.nome);
 
-        alunosDaTurma.forEach((aluno, index) => {
-            const clone = templateLinhaFrequencia.content.cloneNode(true);
-            const tr = clone.querySelector('tr');
-            tr.style.animationDelay = `${index * 0.05}s`;
-            tr.dataset.alunoId = aluno.id;
+            const labelStatusAlunoFrequencia = template.querySelector(
+              "#labelStatusAlunoFrequencia"
+            );
+            labelStatusAlunoFrequencia.textContent = frequencia
+              ? "Presente"
+              : "Ausente";
+            labelStatusAlunoFrequencia.classList.add(
+              frequencia ? "bg-success" : "bg-danger"
+            );
 
-            const avatarImg = clone.querySelector('.avatar-tabela-frequencia');
-            if(avatarImg) avatarImg.src = getAvatarUrl(aluno.nome); // Simples placeholder
+            template.querySelector("#labelDataEntradaFrequencia").textContent =
+              formatarData(frequencia?.dataEntrada ?? dataFiltro);
 
-            clone.querySelector('.frequencia-aluno-nome').textContent = aluno.nome;
+            template.querySelector("#labelDataSaidaFrequencia").textContent =
+              formatarData(frequencia?.dataSaida ?? dataFiltro);
 
-            const registroAlunoHoje = frequenciaDoDia[aluno.id] || { status: 'nao_registrado', obs: '' };
+            const inputHorarioEntradaFrequencia = template.querySelector(
+              "#inputHorarioEntradaFrequencia"
+            );
+            inputHorarioEntradaFrequencia.value = frequencia?.horaEntrada;
 
-            const selectStatus = clone.querySelector('.select-status-frequencia');
-            selectStatus.value = registroAlunoHoje.status;
-            selectStatus.dataset.alunoId = aluno.id; // Para fácil acesso no save
-             // Aplicar classe de cor ao select
-            selectStatus.className = `select-status-frequencia custom-select-nexus status-${registroAlunoHoje.status}`;
+            const inputHorarioSaidaFrequencia = template.querySelector(
+              "#inputHorarioSaidaFrequencia"
+            );
+            inputHorarioSaidaFrequencia.value = frequencia?.horaSaida;
 
+            const inputObservacaoEntradaFrequencia = template.querySelector(
+              "#inputObservacaoEntradaFrequencia"
+            );
+            inputObservacaoEntradaFrequencia.value =
+              frequencia?.observacaoEntrada ?? "";
 
-            const inputObs = clone.querySelector('.input-obs-frequencia');
-            inputObs.value = registroAlunoHoje.obs;
-            inputObs.dataset.alunoId = aluno.id;
+            const inputObservacaoSaidaFrequencia = template.querySelector(
+              "#inputObservacaoSaidaFrequencia"
+            );
+            inputObservacaoSaidaFrequencia.value =
+              frequencia?.observacaoSaida ?? "";
 
-            // Botão de histórico (simulado)
-            const btnHist = clone.querySelector('.btn-historico-aluno');
-            if(btnHist) btnHist.dataset.alunoId = aluno.id;
+            const sltResponsavelEntradaFrequencia = template.querySelector(
+              "#sltResponsavelEntradaFrequencia"
+            );
+            const sltResponsavelSaidaFrequencia = template.querySelector(
+              "#sltResponsavelSaidaFrequencia"
+            );
 
-            tabelaFrequenciaCorpo.appendChild(clone);
-        });
-    }
+            // Cria um array de responsáveis a partir dos campos disponíveis em frequencia
+            const responsaveis = [];
+            for (let i = 1; i <= 4; i++) {
+              const nome =
+                confirmacao.aluno[`nomeResponsavel${i == 1 ? "" : i}`];
+              const telefone =
+                confirmacao.aluno[`telefoneResponsavel${i == 1 ? "" : i}`];
 
-    function salvarTodasFrequencias() {
-        const dataSelecionada = inputDataFrequencia.value;
-        if (!dataSelecionada) {
-            window.mostrarToast('aviso', 'Data não Selecionada', 'Por favor, selecione uma data.');
-            return;
-        }
-
-        if (!registrosFrequencia[dataSelecionada]) {
-            registrosFrequencia[dataSelecionada] = {};
-        }
-
-        let alteracoesFeitas = 0;
-        tabelaFrequenciaCorpo.querySelectorAll('tr').forEach(tr => {
-            const alunoId = parseInt(tr.dataset.alunoId);
-            if (!alunoId) return;
-
-            const status = tr.querySelector('.select-status-frequencia').value;
-            const obs = tr.querySelector('.input-obs-frequencia').value.trim();
-
-            // Salva apenas se houver registro ou observação
-            if (status !== 'nao_registrado' || obs !== '') {
-                registrosFrequencia[dataSelecionada][alunoId] = { status, obs };
-                alteracoesFeitas++;
-            } else if (registrosFrequencia[dataSelecionada][alunoId]) {
-                // Se estava registrado e agora é 'nao_registrado' sem obs, remove o registro
-                delete registrosFrequencia[dataSelecionada][alunoId];
-                alteracoesFeitas++;
+              const grauParentesco =
+                confirmacao.aluno[`grauParentesco${i == 1 ? "" : i}`];
+              if (nome) {
+                responsaveis.push({
+                  nome,
+                  telefone,
+                  grauParentesco,
+                });
+              }
             }
-        });
 
-        if(alteracoesFeitas > 0){
-            console.log('Frequências salvas (simulado):', dataSelecionada, registrosFrequencia[dataSelecionada]);
-            window.mostrarToast('sucesso', 'Frequências Salvas', `Registros de frequência para ${new Date(dataSelecionada+'T00:00:00').toLocaleDateString('pt-BR')} foram salvos.`);
-        } else {
-            window.mostrarToast('info', 'Nenhuma Alteração', 'Nenhuma frequência foi alterada para salvar.');
-        }
-         carregarFrequencia(); // Recarrega para refletir cores nos selects
-    }
+            // adiciona os nomes antigos dos responsavei se ja foram editados
+            if (
+              frequencia &&
+              !responsaveis.some(
+                (r) => r.nome == frequencia.nomeResponsavelEntrega
+              )
+            ) {
+              responsaveis.push({
+                nome: frequencia.nomeResponsavelEntrega,
+                telefone: "-",
+                grauParentesco: "-",
+              });
+            }
 
+            if (
+              frequencia &&
+              frequencia.nomeResponsavelBusca &&
+              frequencia.horaSaida &&
+              !responsaveis.some(
+                (r) => r.nome == frequencia.nomeResponsavelBusca
+              )
+            ) {
+              responsaveis.push({
+                nome: frequencia.nomeResponsavelBusca,
+                telefone: "-",
+                grauParentesco: "-",
+              });
+            }
 
-    function popularFiltrosFrequencia() {
-        if (selectTurmaFrequencia && window.turmasDisponiveisGlobais) {
-            selectTurmaFrequencia.innerHTML = '<option value="todas">Todas as Turmas</option>';
-            window.turmasDisponiveisGlobais.forEach(turma => {
-                selectTurmaFrequencia.add(new Option(turma.nome, turma.id));
+            sltResponsavelEntradaFrequencia.innerHTML = "";
+            sltResponsavelEntradaFrequencia.innerHTML =
+              '<option value="" selected>Selecionar...</option>';
+
+            sltResponsavelSaidaFrequencia.innerHTML = "";
+            sltResponsavelSaidaFrequencia.innerHTML =
+              '<option value="" selected>Selecionar...</option>';
+
+            responsaveis.forEach((resp) => {
+              const option = document.createElement("option");
+              const option2 = document.createElement("option");
+              option2.value = option.value = resp.nome;
+
+              option2.textContent = option.textContent = `${capitalizeWords(
+                resp.nome
+              )} (${capitalizeWords(resp.grauParentesco)})`;
+              if (resp.telefone) {
+                option.setAttribute("data-telefone", resp.telefone);
+                option2.setAttribute("data-telefone", resp.telefone);
+              }
+              if (resp.grauParentesco) {
+                option.setAttribute("data-grauparentesco", resp.grauParentesco);
+                option2.setAttribute(
+                  "data-grauparentesco",
+                  resp.grauParentesco
+                );
+              }
+              sltResponsavelEntradaFrequencia.appendChild(option);
+              sltResponsavelSaidaFrequencia.appendChild(option2);
             });
-        }
-        if (inputDataFrequencia) {
-            inputDataFrequencia.valueAsDate = new Date(); // Data de hoje
-        }
-    }
 
-    function inicializarModuloFrequencia() {
-        if (!secaoFrequencia.classList.contains('ativa')) return;
-        if (!window.alunosMatriculados || window.alunosMatriculados.length === 0) {
-             tabelaFrequenciaCorpo.innerHTML = '<tr><td colspan="5" class="sem-dados">Não há alunos matriculados no sistema para registrar frequência.</td></tr>';
-             console.warn("Módulo Frequência: Nenhum aluno matriculado encontrado.");
-             return;
-        }
-        console.log("Módulo Frequência inicializado com dados.");
+            sltResponsavelEntradaFrequencia.value =
+              frequencia?.nomeResponsavelEntrega ?? "";
+            sltResponsavelSaidaFrequencia.value =
+              frequencia?.nomeResponsavelBusca ?? "";
 
-        popularFiltrosFrequencia();
-        carregarFrequencia();
+            const btnRegistrarEntradaFrequencia = template.querySelector(
+              "#btnRegistrarEntradaFrequencia"
+            );
 
-        inputDataFrequencia?.addEventListener('change', carregarFrequencia);
-        selectTurmaFrequencia?.addEventListener('change', carregarFrequencia);
+            const btnRegistrarSaidaFrequencia = template.querySelector(
+              "#btnRegistrarSaidaFrequencia"
+            );
 
-        btnRegistrarTodosPresentes?.addEventListener('click', () => {
-            tabelaFrequenciaCorpo.querySelectorAll('.select-status-frequencia').forEach(select => {
-                if (select.value === 'nao_registrado') { // Só altera se não estiver já registrado
-                    select.value = 'presente';
-                     select.className = `select-status-frequencia custom-select-nexus status-presente`;
+            const onSuccessFrequencia = (res) => {
+              const frequencia = res.body;
+              const turma = turmasCarregadas.find(
+                (t) => t.idTurma == sltFiltroTurmaFrequencia.value
+              );
+              if (turma) {
+                const conf = turma.confirmacoes.find(
+                  (c) => c.idAlunoTurma == confirmacao.idAlunoTurma
+                );
+                if (conf) {
+                  // Remove frequência do mesmo dia, se existir
+                  conf.frequencias = conf.frequencias.filter(
+                    (f) =>
+                      formatarDataInput(f.dataFrequencia) !=
+                      formatarDataInput(frequencia.dataFrequencia)
+                  );
+                  // Adiciona a nova frequência
+                  conf.frequencias.push(frequencia);
                 }
+              }
+
+              renderizarConfirmacoes();
+              Swal.fire({
+                title: res.message,
+                icon: "success",
+                timer: 3000,
+              });
+            };
+
+            let loadEntrada = false;
+            $(btnRegistrarEntradaFrequencia).on("click", () => {
+              if (loadEntrada) return;
+              loadEntrada = true;
+
+              btnRegistrarEntradaFrequencia.innerHTML =
+                '<i class="fas fa-spinner fa-spin my-3 mx-1"></i>';
+
+              const campos = [
+                inputHorarioEntradaFrequencia,
+                sltResponsavelEntradaFrequencia,
+              ];
+
+              let erro = false;
+              for (let i = 0; i < campos.length; i++) {
+                if (!campos[i].checkValidity()) {
+                  campos[i].reportValidity();
+                  erro = true;
+                  break;
+                }
+              }
+
+              if (!erro) {
+                AppService.postData(
+                  "frequencia/entrada",
+                  {
+                    idAlunoTurma: confirmacao.idAlunoTurma,
+                    horaEntrada: inputHorarioEntradaFrequencia.value,
+                    dataFrequencia: dataFiltro,
+                    observacaoEntrada: inputObservacaoEntradaFrequencia.value,
+                    nomeResponsavelEntrega:
+                      sltResponsavelEntradaFrequencia.value,
+                  },
+                  {
+                    onSuccess: onSuccessFrequencia,
+                    onError: (res) => {
+                      Swal.fire({
+                        title: res.message,
+                        icon: "error",
+                        timer: 3000,
+                      });
+                    },
+                    onResponse: renderizarConfirmacoes,
+                  }
+                );
+              }
             });
-            window.mostrarToast('info', 'Todos Presentes', 'Status alterado para presente. Clique em Salvar.');
-        });
 
-        btnSalvarFrequencias?.addEventListener('click', salvarTodasFrequencias);
+            let loadSaida = false;
+            $(btnRegistrarSaidaFrequencia).on("click", () => {
+              if (loadSaida) return;
+              loadSaida = true;
 
-        // Delegar evento para botões de histórico (simulado)
-        tabelaFrequenciaCorpo?.addEventListener('click', (e) => {
-            if(e.target.closest('.btn-historico-aluno')){
-                const alunoId = e.target.closest('.btn-historico-aluno').dataset.alunoId;
-                const aluno = window.alunosMatriculados.find(a => a.id == alunoId);
-                window.mostrarToast('info', `Histórico de ${aluno?.nome || 'Aluno'}`, 'Exibindo histórico de frequência... (Simulado)');
-            }
-        });
-        // Mudar cor do select ao alterar status
-        tabelaFrequenciaCorpo?.addEventListener('change', (e) => {
-            if(e.target.matches('.select-status-frequencia')){
-                const select = e.target;
-                select.className = `select-status-frequencia custom-select-nexus status-${select.value}`;
-            }
-        });
-    }
+              btnRegistrarSaidaFrequencia.innerHTML =
+                '<i class="fas fa-spinner fa-spin my-3 mx-1"></i>';
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && entry.target.id === 'frequencia' && entry.target.classList.contains('ativa')) {
-                inicializarModuloFrequencia();
-            }
-        });
-    }, { threshold: 0.01 });
-    observer.observe(secaoFrequencia);
-    window.inicializarModuloFrequencia = inicializarModuloFrequencia;
+              const campos = [
+                inputHorarioSaidaFrequencia,
+                sltResponsavelSaidaFrequencia,
+              ];
+
+              let erro = false;
+              for (let i = 0; i < campos.length; i++) {
+                if (!campos[i].checkValidity()) {
+                  campos[i].reportValidity();
+                  erro = true;
+                  break;
+                }
+              }
+
+              if (!erro) {
+                AppService.postData(
+                  "frequencia/saida",
+                  {
+                    idFrequenciaAlunoTurma: frequencia?.idFrequenciaAlunoTurma,
+                    horaSaida: inputHorarioSaidaFrequencia.value,
+                    observacaoSaida: inputObservacaoSaidaFrequencia.value,
+                    nomeResponsavelBusca: sltResponsavelSaidaFrequencia.value,
+                  },
+                  {
+                    onSuccess: onSuccessFrequencia,
+                    onError: (res) => {
+                      Swal.fire({
+                        title: res.message,
+                        icon: "error",
+                        timer: 3000,
+                      });
+                    },
+                    onResponse: renderizarConfirmacoes,
+                  }
+                );
+              }
+            });
+
+            tbodyFrequencia.appendChild(template);
+          });
+        },
+        onResponse: () => $(preload).fadeOut(),
+      }
+    );
+  }
+
+  async function carregarTurmas() {
+    AppService.getData(
+      "turmas",
+      { eliminado: false, items: 500000 },
+      {
+        onSuccess: (res) => {
+          turmasCarregadas = res.body;
+          sltFiltroTurmaFrequencia.innerHTML = "";
+          sltFiltroTurmaFrequencia.innerHTML = `<option value="" selected disabled>Selecione uma turma...</option>`;
+          turmasCarregadas.forEach((turma) => {
+            const option = document.createElement("option");
+            option.value = turma.idTurma;
+            option.textContent = `${turma.nome} (${turma.descFaixaEtaria})`;
+            sltFiltroTurmaFrequencia.appendChild(option);
+          });
+        },
+        onError: (res) => {
+          console.error(res);
+        },
+      }
+    );
+  }
+
+  function inicializarModuloFrequencia() {
+    if (!secaoFrequencia.classList.contains("ativa")) return;
+
+    carregarTurmas();
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (
+          entry.isIntersecting &&
+          entry.target.id === "frequencia" &&
+          entry.target.classList.contains("ativa")
+        ) {
+          inicializarModuloFrequencia();
+        }
+      });
+    },
+    { threshold: 0.01 }
+  );
+  observer.observe(secaoFrequencia);
+  window.inicializarModuloFrequencia = inicializarModuloFrequencia;
 })();

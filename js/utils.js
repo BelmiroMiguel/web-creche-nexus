@@ -1,5 +1,51 @@
+import { AppService, armazenamento } from "./app_service.js";
+import { Duration, listenerSession } from "./block-secion.js";
+
 window.onload = () => {
   $(preload).fadeOut();
+
+  listenerSession({
+    duration: Duration({ second: 60 }),
+    onLocked: () => {
+      armazenamento.clear();
+      window.location.href = "/login.html";
+    },
+    onCounter: (counter) => {
+      if (counter < 30) {
+        let alerta = document.getElementById("alerta-inatividade");
+        if (!alerta) {
+          alerta = document.createElement("div");
+          alerta.id = "alerta-inatividade";
+          alerta.style.position = "fixed";
+          alerta.style.top = "20px";
+          alerta.style.right = "30px";
+          alerta.style.background = "#fff3cd";
+          alerta.style.color = "#856404";
+          alerta.style.border = "1px solid #ffeeba";
+          alerta.style.padding = "12px 20px";
+          alerta.style.borderRadius = "6px";
+          alerta.style.boxShadow = "0 2px 8px rgba(0,0,0,0.08)";
+          alerta.style.zIndex = 9999;
+          alerta.style.fontSize = "15px";
+          alerta.textContent = `Você será bloqueado por inatividade em ${counter} segundo${
+            counter === 1 ? "" : "s"
+          }!`;
+          document.body.appendChild(alerta);
+        } else {
+          alerta.textContent = `Você será bloqueado por inatividade em ${counter} segundo${
+            counter === 1 ? "" : "s"
+          }!`;
+        }
+      } else {
+        const alerta = document.getElementById("alerta-inatividade");
+        if (alerta) alerta.remove();
+      }
+    },
+    onReset: () => {
+      const alerta = document.getElementById("alerta-inatividade");
+      if (alerta) alerta.remove();
+    },
+  });
 };
 
 // Função para capitalizar a primeira letra de cada palavra
@@ -81,6 +127,8 @@ export function renderPaginacao({
 }) {
   // Limpa o conteúdo anterior
   container.innerHTML = "";
+
+  if (totalItens == 0) return;
 
   // Garante que os valores sejam válidos
   totalPaginas = Math.max(1, totalPaginas);

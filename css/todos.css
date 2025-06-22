@@ -2125,6 +2125,14 @@ body.modo-escuro .botao-estilizado:focus-visible {
     box-shadow: var(--sombra-card-claro), 0 0 15px var(--cor-primaria-brilho-nexus);
 }
 
+
+.botao-estilizado.registro-entrada:hover:not(:disabled) {
+    background-color: #e1f5ebbe !important;
+    border-color: #4ed694 !important;
+    transform: translateY(-2.5px);
+    box-shadow: var(--sombra-card-claro), 0 0 15px var(--cor-primaria-brilho-nexus);
+}
+
 .botao-estilizado.primario:active:not(:disabled) {
     background-color: var(--cor-primaria-active-nexus);
     border-color: var(--cor-primaria-active-nexus);
@@ -2996,7 +3004,7 @@ body.modo-escuro .tabela-container-nexus {
 
 /* Cabeçalho da Tabela */
 .tabela-moderna-nexus thead th {
-    background-color: var(--cor-fundo-hover-claro);
+    background: var(--cor-fundo-hover-claro);
     color: var(--cor-texto-principal-claro);
     font-family: var(--fonte-destaque);
     /* Orbitron/Poppins */
@@ -3011,6 +3019,10 @@ body.modo-escuro .tabela-container-nexus {
     z-index: calc(var(--z-elemento-secao) + 5);
     white-space: nowrap;
     transition: background-color var(--transicao-padrao), color var(--transicao-padrao), border-color var(--transicao-padrao);
+}
+
+.tabela-moderna-nexus thead .th-x{
+    background-color: auto;
 }
 
 .tabela-moderna-nexus thead th:first-child {
@@ -3082,6 +3094,15 @@ body.modo-escuro .tabela-moderna-nexus.tabela-listrada tbody tr:hover {
 /* Células da Tabela (td) */
 .tabela-moderna-nexus tbody td {
     padding: var(--esp-md) var(--esp-lg);
+    color: var(--cor-texto-principal-claro);
+    vertical-align: middle;
+    border-bottom: 1px solid var(--cor-borda-claro);
+    /* Linha fina entre as linhas */
+    transition: color var(--transicao-padrao), border-color var(--transicao-padrao);
+}
+
+.tabela-moderna-nexus-x tbody td {
+    padding: 8px;
     color: var(--cor-texto-principal-claro);
     vertical-align: middle;
     border-bottom: 1px solid var(--cor-borda-claro);
@@ -3767,7 +3788,7 @@ body.modo-escuro .item-evento-nexus:hover {
     /* Para text-overflow funcionar em flex items */
 }
 
-.item-dado-nexus .info-principal-item .aluno-nome {
+.item-dado-nexus .info-principal-item .aluno-nome, .p{
     font-size: 1.05rem;
     font-weight: var(--peso-semibold);
     color: var(--cor-texto-principal-claro);
