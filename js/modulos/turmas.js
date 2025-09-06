@@ -46,199 +46,6 @@ import {
   );
   const templateCardTurma = document.getElementById("template-card-turma");
 
-  // Usar a variável global de turmas, se existir, ou simular
-  let turmas = window.turmasDisponiveisGlobais || [
-    {
-      id: "bercario1",
-      nome: "Berçário I Alfa",
-      educadorPrincipal: "Ana Paula",
-      faixaEtaria: "0-1 ano",
-      capacidade: 10,
-      ocupadas: 8,
-      cor: "#29B6F6",
-    },
-    {
-      id: "maternal1",
-      nome: "Maternal I Estrelas",
-      educadorPrincipal: "Sofia Lima",
-      faixaEtaria: "2-3 anos",
-      capacidade: 15,
-      ocupadas: 15,
-      cor: "#66BB6A",
-    },
-    {
-      id: "jardim2",
-      nome: "Jardim II Exploradores",
-      educadorPrincipal: "Carlos Dias",
-      faixaEtaria: "4-5 anos",
-      capacidade: 20,
-      ocupadas: 17,
-      cor: "#FFA726",
-    },
-    {
-      id: "jardim2",
-      nome: "Jardim II Exploradores",
-      educadorPrincipal: "Carlos Dias",
-      faixaEtaria: "4-5 anos",
-      capacidade: 20,
-      ocupadas: 17,
-      cor: "#FFA726",
-    },
-    {
-      id: "jardim2",
-      nome: "Jardim II Exploradores",
-      educadorPrincipal: "Carlos Dias",
-      faixaEtaria: "4-5 anos",
-      capacidade: 20,
-      ocupadas: 17,
-      cor: "#FFA726",
-    },
-    {
-      id: "jardim2",
-      nome: "Jardim II Exploradores",
-      educadorPrincipal: "Carlos Dias",
-      faixaEtaria: "4-5 anos",
-      capacidade: 20,
-      ocupadas: 17,
-      cor: "#FFA726",
-    },
-    {
-      id: "jardim2",
-      nome: "Jardim II Exploradores",
-      educadorPrincipal: "Carlos Dias",
-      faixaEtaria: "4-5 anos",
-      capacidade: 20,
-      ocupadas: 17,
-      cor: "#FFA726",
-    },
-    {
-      id: "jardim2",
-      nome: "Jardim II Exploradores",
-      educadorPrincipal: "Carlos Dias",
-      faixaEtaria: "4-5 anos",
-      capacidade: 20,
-      ocupadas: 17,
-      cor: "#FFA726",
-    },
-    {
-      id: "jardim2",
-      nome: "Jardim II Exploradores",
-      educadorPrincipal: "Carlos Dias",
-      faixaEtaria: "4-5 anos",
-      capacidade: 20,
-      ocupadas: 17,
-      cor: "#FFA726",
-    },
-    {
-      id: "jardim2",
-      nome: "Jardim II Exploradores",
-      educadorPrincipal: "Carlos Dias",
-      faixaEtaria: "4-5 anos",
-      capacidade: 20,
-      ocupadas: 17,
-      cor: "#FFA726",
-    },
-    {
-      id: "jardim2",
-      nome: "Jardim II Exploradores",
-      educadorPrincipal: "Carlos Dias",
-      faixaEtaria: "4-5 anos",
-      capacidade: 20,
-      ocupadas: 17,
-      cor: "#FFA726",
-    },
-    {
-      id: "jardim2",
-      nome: "Jardim II Exploradores",
-      educadorPrincipal: "Carlos Dias",
-      faixaEtaria: "4-5 anos",
-      capacidade: 20,
-      ocupadas: 17,
-      cor: "#FFA726",
-    },
-    {
-      id: "jardim2",
-      nome: "Jardim II Exploradores",
-      educadorPrincipal: "Carlos Dias",
-      faixaEtaria: "4-5 anos",
-      capacidade: 20,
-      ocupadas: 17,
-      cor: "#FFA726",
-    },
-    {
-      id: "jardim2",
-      nome: "Jardim II Exploradores",
-      educadorPrincipal: "Carlos Dias",
-      faixaEtaria: "4-5 anos",
-      capacidade: 20,
-      ocupadas: 17,
-      cor: "#FFA726",
-    },
-    {
-      id: "jardim2",
-      nome: "Jardim II Exploradores",
-      educadorPrincipal: "Carlos Dias",
-      faixaEtaria: "4-5 anos",
-      capacidade: 20,
-      ocupadas: 17,
-      cor: "#FFA726",
-    },
-    {
-      id: "jardim2",
-      nome: "Jardim II Exploradores",
-      educadorPrincipal: "Carlos Dias",
-      faixaEtaria: "4-5 anos",
-      capacidade: 20,
-      ocupadas: 17,
-      cor: "#FFA726",
-    },
-    {
-      id: "jardim2",
-      nome: "Jardim II Exploradores",
-      educadorPrincipal: "Carlos Dias",
-      faixaEtaria: "4-5 anos",
-      capacidade: 20,
-      ocupadas: 17,
-      cor: "#FFA726",
-    },
-    {
-      id: "jardim2",
-      nome: "Jardim II Exploradores",
-      educadorPrincipal: "Carlos Dias",
-      faixaEtaria: "4-5 anos",
-      capacidade: 20,
-      ocupadas: 17,
-      cor: "#FFA726",
-    },
-    {
-      id: "jardim2",
-      nome: "Jardim II Exploradores",
-      educadorPrincipal: "Carlos Dias",
-      faixaEtaria: "4-5 anos",
-      capacidade: 20,
-      ocupadas: 17,
-      cor: "#FFA726",
-    },
-    {
-      id: "jardim2",
-      nome: "Jardim II Exploradores",
-      educadorPrincipal: "Carlos Dias",
-      faixaEtaria: "4-5 anos",
-      capacidade: 20,
-      ocupadas: 17,
-      cor: "#FFA726",
-    },
-    {
-      id: "jardim2",
-      nome: "Jardim II Exploradores",
-      educadorPrincipal: "Carlos Dias",
-      faixaEtaria: "4-5 anos",
-      capacidade: 20,
-      ocupadas: 17,
-      cor: "#FFA726",
-    },
-  ];
-
   function carregarFuncionarios() {
     AppService.getData(
       "usuarios",
@@ -509,9 +316,8 @@ import {
       <div class="info-grid-turma">
         <div class="info-item-turma">
           <span class="info-label-turma">Educador Principal</span>
-          <span class="info-value-turma">${
-            turma.educador?.nome || "A definir"
-          }</span>
+          <span class="info-value-turma">${turma.educador?.nome || "A definir"
+      }</span>
         </div>
         
         <div class="info-item-turma">
@@ -524,37 +330,34 @@ import {
         <div class="info-item-turma">
           <span class="info-label-turma">Período</span>
           <span class="info-value-turma">
-            ${formatDate(turma.dataInicio)} ${
-      turma.dataTermino ? `a ${formatDate(turma.dataTermino)}` : ""
-    }
+            ${formatDate(turma.dataInicio)} ${turma.dataTermino ? `a ${formatDate(turma.dataTermino)}` : ""
+      }
           </span>
         </div>
         
         <div class="info-item-turma">
           <span class="info-label-turma">Status</span>
           <span class="info-value-turma">
-            ${
-              isEliminada
-                ? '<span class="status-badge status-inactive">Eliminada</span>'
-                : isTerminada
-                ? '<span class="status-badge status-inactive">Encerrada</span>'
-                : '<span class="status-badge status-active">Ativa</span>'
-            }
+            ${isEliminada
+        ? '<span class="status-badge status-inactive">Eliminada</span>'
+        : isTerminada
+          ? '<span class="status-badge status-inactive">Encerrada</span>'
+          : '<span class="status-badge status-active">Ativa</span>'
+      }
           </span>
         </div>
         
         <div class="info-item-turma">
           <span class="info-label-turma">Data de Cadastro</span>
           <span class="info-value-turma">${formatDate(
-            turma.dataCadastro
-          )}</span>
+        turma.dataCadastro
+      )}</span>
         </div>
         
         <div class="info-item-turma">
           <span class="info-label-turma">Registrado por</span>
-          <span class="info-value-turma">${
-            turma.educador?.nome || "Sistema"
-          }</span>
+          <span class="info-value-turma">${turma.educador?.nome || "Sistema"
+      }</span>
         </div>
       </div>
       
@@ -568,15 +371,14 @@ import {
         </div>
       </div>
       
-      ${
-        turma.descricao
-          ? `
+      ${turma.descricao
+        ? `
         <div class="info-item-turma" style="grid-column: span 2">
           <span class="info-label-turma">Descrição</span>
           <span class="info-value-turma">${turma.descricao}</span>
         </div>
       `
-          : ""
+        : ""
       }
     </div>
     

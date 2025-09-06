@@ -5,7 +5,7 @@ window.onload = () => {
   $(preload).fadeOut();
 
   listenerSession({
-    duration: Duration({ second: 60 }),
+    duration: Duration({ second: 160 }),
     onLocked: () => {
       armazenamento.clear();
       window.location.href = "/login.html";
@@ -27,14 +27,12 @@ window.onload = () => {
           alerta.style.boxShadow = "0 2px 8px rgba(0,0,0,0.08)";
           alerta.style.zIndex = 9999;
           alerta.style.fontSize = "15px";
-          alerta.textContent = `Você será bloqueado por inatividade em ${counter} segundo${
-            counter === 1 ? "" : "s"
-          }!`;
+          alerta.textContent = `Você será bloqueado por inatividade em ${counter} segundo${counter === 1 ? "" : "s"
+            }!`;
           document.body.appendChild(alerta);
         } else {
-          alerta.textContent = `Você será bloqueado por inatividade em ${counter} segundo${
-            counter === 1 ? "" : "s"
-          }!`;
+          alerta.textContent = `Você será bloqueado por inatividade em ${counter} segundo${counter === 1 ? "" : "s"
+            }!`;
         }
       } else {
         const alerta = document.getElementById("alerta-inatividade");
@@ -210,9 +208,8 @@ export function renderPaginacao({
   );
 
   const desc = document.createElement("div");
-  desc.textContent = ` ${totalPaginas} página${
-    totalPaginas > 1 ? "s" : ""
-  } de ${totalItens} ite${totalItens > 1 ? "ns" : "m"}`;
+  desc.textContent = ` de  ${totalPaginas} página${totalPaginas > 1 ? "s" : ""
+    } de ${totalItens} ite${totalItens > 1 ? "ns" : "m"}`;
   desc.style.display = "inline-block";
   desc.style.marginLeft = "12px";
   desc.style.fontSize = "14px";

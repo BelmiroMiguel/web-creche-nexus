@@ -3021,7 +3021,7 @@ body.modo-escuro .tabela-container-nexus {
     transition: background-color var(--transicao-padrao), color var(--transicao-padrao), border-color var(--transicao-padrao);
 }
 
-.tabela-moderna-nexus thead .th-x{
+.tabela-moderna-nexus thead .th-x {
     background-color: auto;
 }
 
@@ -3788,7 +3788,8 @@ body.modo-escuro .item-evento-nexus:hover {
     /* Para text-overflow funcionar em flex items */
 }
 
-.item-dado-nexus .info-principal-item .aluno-nome, .p{
+.item-dado-nexus .info-principal-item .aluno-nome,
+.p {
     font-size: 1.05rem;
     font-weight: var(--peso-semibold);
     color: var(--cor-texto-principal-claro);
@@ -4498,6 +4499,18 @@ button.item-selecao-relatorio:focus-visible {
     outline: none;
 }
 
+.ativo-relatorio {
+    box-shadow: var(--sombra-elevada-claro) !important;
+    border-color: #FF7700 !important;
+    background-color: #eeeae2 !important;
+    outline: none !important;
+}
+
+.ativo-relatorio i {
+    color: rgb(100, 100, 243) !important;
+    transform: scale(1.2) rotate(-10deg);
+}
+
 body.modo-escuro button.item-selecao-relatorio:hover,
 body.modo-escuro button.item-selecao-relatorio:focus-visible {
     box-shadow: var(--sombra-elevada-escuro);
@@ -4544,11 +4557,10 @@ body.modo-escuro button.item-selecao-relatorio p {
 }
 
 #container-visualizacao-relatorio {
-    margin-top: var(--esp-xl);
     padding: var(--esp-xl);
     border: 1px solid var(--cor-borda-claro);
     border-radius: var(--raio-borda-lg);
-    min-height: 350px;
+    min-height: 150px;
     background-color: var(--cor-fundo-hover-claro);
     display: flex;
     align-items: center;
@@ -5829,6 +5841,7 @@ body.modo-escuro .lista-atividades-recentes .tempo-atividade {
     }
 }
 
-.bg-modal-hearder{
+.bg-modal-hearder {
     background: #FF7700;
 }
+

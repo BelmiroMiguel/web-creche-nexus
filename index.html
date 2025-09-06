@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+<!--npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch-->
 
 <head>
     <meta charset="UTF-8" />
@@ -26,6 +27,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet" />
 
     <link rel="stylesheet" href="css/todos.css" />
+    <link rel="stylesheet" href="css/filtros_relatorios.css" />
+    <link rel="stylesheet" href="css/tailwind-output.css" />
 
     <style>
         .campo-form-nexus {
@@ -172,6 +175,197 @@
             .responsive-tabela-funcionario {
                 height: auto;
             }
+        }
+    </style>
+    <style>
+        /* Estilos Customizados para a Modal de Turma */
+        .modal-overlay.aberto {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-container {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            max-width: 900px;
+            width: 90%;
+        }
+
+
+        .modal-cabecalho h3 {
+            margin: 0;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .modal-botao-fechar {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .modal-botao-fechar:hover {
+            opacity: 1;
+        }
+
+        .modal-corpo {
+            padding: 1.5rem;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        /* Componentes Específicos */
+        .avatar-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .avatar-circle-sm {
+            width: 30px;
+            height: 30px;
+            font-size: 0.9rem;
+        }
+
+        .icon-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .info-card {
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            overflow: hidden;
+        }
+
+        .info-card-header {
+            padding: 0.75rem 1rem;
+            background-color: #f8f9fc;
+            border-bottom: 1px solid #e0e0e0;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-card-body {
+            padding: 1rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-item-vertical {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-item-horizontal {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .info-icon {
+            font-size: 1.1rem;
+            margin-right: 0.75rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        .color-box {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .badge {
+            padding: 0.35em 0.65em;
+            font-size: 0.75em;
+            font-weight: 700;
+            border-radius: 0.25rem;
+        }
+
+        /* Rodapé da Modal */
+        .modal-rodape {
+            padding: 1rem 1.5rem;
+            background-color: #f8f9fc;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .botao-estilizado {
+            padding: 0.5rem 1.25rem;
+            border-radius: 6px;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .botao-estilizado.primario {
+            background-color: #4e73df;
+            color: white;
+        }
+
+        .botao-estilizado.primario:hover {
+            background-color: #3a60c5;
+        }
+
+        .botao-estilizado.secundario {
+            background-color: #f8f9fa;
+            color: #4e73df;
+            border: 1px solid #d1d3e2;
+        }
+
+        .botao-estilizado.secundario:hover {
+            background-color: #eaecf4;
+        }
+
+        .botao-estilizado.perigo {
+            background-color: #f8f9fa;
+            color: #e74a3b;
+            border: 1px solid #d1d3e2;
+        }
+
+        .botao-estilizado.perigo:hover {
+            background-color: #f2dede;
+        }
+
+        /* Efeito Glow Border */
+        .modal-glow-border {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4e73df 0%, #224abe 50%, #4e73df 100%);
+            opacity: 0.7;
         }
     </style>
 </head>
@@ -880,6 +1074,11 @@
                                                 }, 250);
                                                 btn.querySelector('span').textContent = 'Adicionar mais responsáveis';
                                             }
+                                            setTimeout(() => {
+                                                document.getElementById('conteudo-principal-app').scrollTo({
+                                                    top: document.getElementById('conteudo-principal-app').scrollHeight, behavior: 'smooth'
+                                                })
+                                            }, 260);
                                         });
                                     }
                                 });
@@ -962,7 +1161,7 @@
                                     </select>
                                 </div>
 
-
+                                $$
                                 <div class="col-md-auto mt-1 mt-md-0">
                                     <select id="sltFitroEstadoConfirmacaoAlunoMatricula" class="select-filtro-nexus"
                                         aria-label="Filtrar por status do funcionário">
@@ -1041,7 +1240,7 @@
                 </li>
             </template>
 
-            <!-- Seção de **Frequência -->
+            <!-- Seção de Frequência -->
             <section id="frequencia" class="secao-app" aria-labelledby="titulo-frequencia">
                 <h2 class="titulo-secao" id="titulo-frequencia">
                     <i class="fas fa-calendar-alt"></i> Alunos & Frequência
@@ -1114,8 +1313,9 @@
                                 <thead>
                                     <tr>
                                         <th scope="col" style="max-width: 120px; min-width: 120px;">Nome do Aluno</th>
-                                        <th scope="col" colspan="2" class="table-success text-center">Registro de
-                                            Entrada</th>
+                                        <th scope="col" colspan="2" class="table-success text-center">
+                                            Registro de Entrada
+                                        </th>
                                         <th scope="col" colspan="2" class="table-danger text-center">Registro de Saída
                                         </th>
                                     </tr>
@@ -1133,7 +1333,13 @@
                                 <tr class="linha-frequencia">
                                     <td rowspan="2" class="-0"
                                         style="max-width: 200px !important; min-width: 180px !important;">
-                                        <div class="d-flex flex-column w-100">
+                                        <div class="d-flex flex-column w-100 p-relative" style="position: relative;">
+                                            <div class="">
+                                                <span id="labelQuantidade" class="px-1 rounded circle  " style="position: absolute; top: -25px; left: -8px; font-size: 10px; color: rgb(15, 2, 71);
+                                                    background: rgba(217, 234, 245, 0.267);">
+                                                    1
+                                                </span>
+                                            </div>
                                             <span id="labelNomeAlunoFrequencia"
                                                 style="font-size: 0.9rem; max-lines: 2 !important; overflow: hidden !important; text-overflow: ellipsis !important;">
                                                 Adalgisa Margarida Francisco Chipanda
@@ -2453,11 +2659,12 @@
                 </div>
             </template>
 
-            <!-- Seção Relatórios -->
+            <!-- Seção **Relatórios -->
             <section id="relatorios" class="secao-app" aria-labelledby="titulo-relatorios">
                 <h2 class="titulo-secao" id="titulo-relatorios">
                     <i class="fas fa-chart-pie"></i> Central de Relatórios
                 </h2>
+
                 <div class="container-conteudo-secao">
                     <p class="descricao-secao-nexus">
                         Selecione um tipo de relatório abaixo para gerar e visualizar
@@ -2467,44 +2674,94 @@
                         <h3 id="label-selecao-relatorios" class="sr-only">
                             Tipos de Relatório Disponíveis
                         </h3>
-                        <button class="item-selecao-relatorio" data-tipo-relatorio="frequencia_geral">
+                        <button class="item-selecao-relatorio" id="btnRelatorioFrequencia"
+                            data-tipo-relatorio="frequencia_geral">
                             <i class="fas fa-calendar-check" aria-hidden="true"></i>
                             <h4>Frequência Geral</h4>
                             <p>Visão consolidada da frequência de todas as turmas.</p>
                         </button>
-                        <button class="item-selecao-relatorio" data-tipo-relatorio="financeiro_consolidado">
+                        <button class="item-selecao-relatorio" id="btnRelatorioFinanceiro"
+                            data-tipo-relatorio="financeiro_consolidado">
                             <i class="fas fa-hand-holding-usd" aria-hidden="true"></i>
                             <h4>Financeiro Consolidado</h4>
                             <p>Receitas, despesas e inadimplência geral.</p>
                         </button>
                         <button class="item-selecao-relatorio" data-tipo-relatorio="matriculas_periodo">
                             <i class="fas fa-user-friends" aria-hidden="true"></i>
-                            <h4>Matrículas por Período</h4>
-                            <p>Novas matrículas, transferências e evasões.</p>
-                        </button>
-                        <button class="item-selecao-relatorio" data-tipo-relatorio="desempenho_turmas">
-                            <i class="fas fa-graduation-cap" aria-hidden="true"></i>
-                            <h4>Desempenho das Turmas</h4>
-                            <p>Comparativo pedagógico e de ocupação.</p>
+                            <h4>Matrículas e Confirmações</h4>
+                            <p>Alunos confimados e novas mtrículas</p>
                         </button>
                         <button class="item-selecao-relatorio" data-tipo-relatorio="lista_aniversariantes">
                             <i class="fas fa-birthday-cake" aria-hidden="true"></i>
                             <h4>Aniversariantes do Mês</h4>
                             <p>Lista de alunos e funcionários.</p>
                         </button>
-                        <button class="item-selecao-relatorio" data-tipo-relatorio="entrada_saida_consolidado">
-                            <i class="fas fa-stopwatch" aria-hidden="true"></i>
-                            <h4>Entradas e Saídas (Consolidado)</h4>
-                            <p>Análise de horários e fluxo de alunos.</p>
-                        </button>
                     </div>
-                    <div id="container-visualizacao-relatorio" style="margin-top: 30px" aria-live="polite"
-                        aria-atomic="true">
-                        <p class="sem-dados">
-                            Selecione um relatório acima para visualizar os dados.
+                    <div id="container-visualizacao-relatorio"
+                        class="flex-column justify-content-center justify-items-center align-items-center w-100 my-5"
+                        aria-live="polite" aria-atomic="true">
+                        ##
+                        <div id="contentFiltro" data-tipo-relatorio=""
+                            class="row align-items-end mb-0 col-12 w-100  justify-content-center  ">
+                            <div class="col-md-6 col-lg-3  mt-2 mt-md-0 d-none frequencia_geral financeiro_consolidado">
+                                <label for="sltFiltroTurmaRelatorio">Turma *</label>
+                                <select id="sltFiltroTurmaRelatorio" class="select-filtro-nexus w-100">
+                                    <option value="" selected disabled>Buscando aguarde...</option>
+                                    <!-- Opções carregadas por JS -->
+                                </select>
+                            </div>
+                            <div class="col-md-6 col-lg-3 mt-2 mt-lg-0 d-none  ">
+                                <label for="sltFiltroStatusRelatorio">Status *</label>
+                                <select id="sltFiltroStatusRelatorio" class="select-filtro-nexus w-100">
+                                    <option value="">Todos (Presentes/Ausentes)</option>
+                                    <option value="presente">Presentes</option>
+                                    <option value="ausente">Ausentes</option>
+                                </select>
+                            </div>
+                            <div class="col-md-auto mt-1 mt-md-0 d-none matriculas_periodo ">
+                                <label for="sltFitroEstadoConfirmacaoAlunoMatriculaRelatorio">Status *</label>
+                                <select id="sltFitroEstadoConfirmacaoAlunoMatriculaRelatorio" class="select-filtro-nexus"
+                                    aria-label="Filtrar por status do funcionário">
+                                    <option value="" selected>Todos (Confirmados/Matriculados)</option>
+                                    <option value="0">Confirmados</option>
+                                    <option value="1">Apenas Matrícula</option>
+                                </select>
+                            </div>
+                            <div class="col-md-auto mt-1 mt-md-0 d-none matriculas_periodo ">
+                                <label for="inpFiltroPeriodoRelatorio">Período</label>
+                                <input type="month" id="inpFiltroPeriodoRelatorio" class="input-filtro-nexus"
+                                    aria-label="Selecionar Mês e Ano de Referência" />
+                            </div>
+                            <div class="col-md-6 col-lg-2 mt-2 mt-lg-0 d-none frequencia_geral">
+                                <label for="inpFiltroDataRelatorio">Data *</label>
+                                <input type="date" id="inpFiltroDataRelatorio" class="input-filtro-nexus w-100" />
+                            </div>
+                        </div> <br>
+
+                        <p id="labelInfoRelatorio" class="">
+                            Aguardando tipo de relatório
                         </p>
-                        <!-- O relatório gerado (tabela, gráfico, texto) será inserido aqui por JS -->
-                        <!-- Se o relatório for uma lista paginável, a paginação será adicionada aqui DENTRO pelo JS -->
+
+                        <p id="labelInfoFiltroVazio" class="">
+                            Nenhum dados foi encontrado
+                        </p>
+
+                        <button id="btnImprimirRelatorioCentral"
+                            class="mt-4 m-md-0 botao-estilizado primario com-icone">
+                            <i class="fas fa-print"></i>
+                            <span>Busca Completa, Imprimir Relatório</span>
+                        </button>
+
+                        <p id="labelInfoSelecionarFiltroRelatorio" class=""
+                            style="font-size: 14px; color: rgb(141, 134, 134);">
+                            Modifique os campos para filtrar
+                        </p>
+
+                        <p id="labelLoadRelatorio" class="">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            Gerando relatório aguarde um momento...
+                        </p>
+
                     </div>
                 </div>
             </section>
@@ -2679,7 +2936,7 @@
                     <i class="fas fa-sliders-h"></i> Configurações do Sistema
                 </h2>
                 <div class="container-conteudo-secao">
-                    <div class="tabs-nexus" role="tablist" aria-label="Navegação das configurações do sistema">
+                    <div class="d-none tabs-nexus" role="tablist" aria-label="Navegação das configurações do sistema">
                         <button class="tab-link-nexus ativo" role="tab" aria-selected="true"
                             aria-controls="tab-config-gerais-panel" id="tab-config-gerais-btn">
                             Gerais
@@ -2704,7 +2961,7 @@
 
                     <div id="tab-config-gerais-panel" class="tab-conteudo-nexus ativo" role="tabpanel"
                         aria-labelledby="tab-config-gerais-btn" tabindex="0">
-                        <h4>
+                        <h4 class="d-none">
                             <i class="fas fa-cogs"></i> Configurações Gerais da Creche
                         </h4>
                         <form id="form-config-gerais" class="form-moderno-nexus needs-validation">
@@ -3151,197 +3408,6 @@
             </form>
         </div>
 
-        <style>
-            /* Estilos Customizados para a Modal de Turma */
-            .modal-overlay.aberto {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                background: rgba(0, 0, 0, 0.5);
-            }
-
-            .modal-container {
-                background: white;
-                border-radius: 12px;
-                overflow: hidden;
-                max-width: 900px;
-                width: 90%;
-            }
-
-
-            .modal-cabecalho h3 {
-                margin: 0;
-                font-size: 1.5rem;
-                display: flex;
-                align-items: center;
-            }
-
-            .modal-botao-fechar {
-                position: absolute;
-                top: 1rem;
-                right: 1rem;
-                background: transparent;
-                border: none;
-                color: white;
-                font-size: 1.5rem;
-                cursor: pointer;
-                opacity: 0.8;
-                transition: opacity 0.2s;
-            }
-
-            .modal-botao-fechar:hover {
-                opacity: 1;
-            }
-
-            .modal-corpo {
-                padding: 1.5rem;
-                max-height: 70vh;
-                overflow-y: auto;
-            }
-
-            /* Componentes Específicos */
-            .avatar-circle {
-                width: 50px;
-                height: 50px;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 1.25rem;
-            }
-
-            .avatar-circle-sm {
-                width: 30px;
-                height: 30px;
-                font-size: 0.9rem;
-            }
-
-            .icon-circle {
-                width: 40px;
-                height: 40px;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 1rem;
-            }
-
-            .info-card {
-                border-radius: 8px;
-                border: 1px solid #e0e0e0;
-                overflow: hidden;
-            }
-
-            .info-card-header {
-                padding: 0.75rem 1rem;
-                background-color: #f8f9fc;
-                border-bottom: 1px solid #e0e0e0;
-                font-weight: 600;
-                display: flex;
-                align-items: center;
-            }
-
-            .info-card-body {
-                padding: 1rem;
-            }
-
-            .info-item {
-                display: flex;
-                align-items: center;
-                margin-bottom: 0.5rem;
-            }
-
-            .info-item-vertical {
-                display: flex;
-                flex-direction: column;
-            }
-
-            .info-item-horizontal {
-                display: flex;
-                justify-content: space-between;
-            }
-
-            .info-icon {
-                font-size: 1.1rem;
-                margin-right: 0.75rem;
-                width: 24px;
-                text-align: center;
-            }
-
-            .color-box {
-                width: 24px;
-                height: 24px;
-                border-radius: 4px;
-                border: 1px solid #e0e0e0;
-            }
-
-            .badge {
-                padding: 0.35em 0.65em;
-                font-size: 0.75em;
-                font-weight: 700;
-                border-radius: 0.25rem;
-            }
-
-            /* Rodapé da Modal */
-            .modal-rodape {
-                padding: 1rem 1.5rem;
-                background-color: #f8f9fc;
-                border-top: 1px solid #e0e0e0;
-                display: flex;
-                justify-content: flex-end;
-            }
-
-            .botao-estilizado {
-                padding: 0.5rem 1.25rem;
-                border-radius: 6px;
-                font-weight: 500;
-                border: none;
-                cursor: pointer;
-                transition: all 0.2s;
-                display: inline-flex;
-                align-items: center;
-            }
-
-            .botao-estilizado.primario {
-                background-color: #4e73df;
-                color: white;
-            }
-
-            .botao-estilizado.primario:hover {
-                background-color: #3a60c5;
-            }
-
-            .botao-estilizado.secundario {
-                background-color: #f8f9fa;
-                color: #4e73df;
-                border: 1px solid #d1d3e2;
-            }
-
-            .botao-estilizado.secundario:hover {
-                background-color: #eaecf4;
-            }
-
-            .botao-estilizado.perigo {
-                background-color: #f8f9fa;
-                color: #e74a3b;
-                border: 1px solid #d1d3e2;
-            }
-
-            .botao-estilizado.perigo:hover {
-                background-color: #f2dede;
-            }
-
-            /* Efeito Glow Border */
-            .modal-glow-border {
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                height: 4px;
-                background: linear-gradient(90deg, #4e73df 0%, #224abe 50%, #4e73df 100%);
-                opacity: 0.7;
-            }
-        </style>
         <!-- Toast Notifications Container -->
         <div hidden id="toast-container" role="status" aria-live="polite" aria-atomic="true">
             <!-- Toasts serão inseridos aqui por JavaScript -->
@@ -3355,6 +3421,96 @@
         </div>
     </div>
     <!-- Fim do #app-wrapper -->
+
+    <template id="templateCabecalhoRelatorioFrequencia">
+        <div class="w-100 flex flex-col justify-between">
+            <div class="flex gap-2 text-[14px]">
+                <span id="nomeEmpresa" class="text-black font-semibold">Nome da creche aqui</span>
+                <span class=" text-[12px]">imprenço aos <span id="dataImprencao">25/05/2025</span> </span>
+            </div>
+            <div class="flex flex-1 flex-row flex-gap-7">
+                <img src="./assets/img/blank-profile-picture-png.webp" id="imgImagemEmpresa" alt="" class="h-25! w-25!">
+                <div class="flex flex-col gap-1 text-md flex-1 px-4">
+                    <span class="text-[18px] text-center w-full text-black font-semibold">
+                        Relatório de Frequência
+                    </span>
+
+                    <div class="grid-cols-3 grid gap-5 mt-3 ">
+                        <div class="col-span-1 flex-col flex text-[14px]">
+                            <span class="text-black font-semibold  border-b-black! border-b-1! ">Turma</span>
+                            <span id="nomeTurma" class="pt-1">turma</span>
+                        </div>
+                        <div class="col-span-1 flex-col flex text-[14px]">
+                            <span class="text-black font-semibold  border-b-black! border-b-1! ">Educador</span>
+                            <span id="nomeEducador" class="pt-1">educador</span>
+                        </div>
+                        <div class="col-span-1 flex-col flex text-[14px]">
+                            <span class="text-black font-semibold  border-b-black! border-b-1! ">
+                                Data de Presença
+                            </span>
+                            <span id=dataPresenca class="pt-1">25/05/2025</span>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="templateTabelaRelatorioFrequencia">
+        <table id="table" class="tabela-moderna-nexus tabela-moderna-nexus-x table  table-bordered ">
+            <caption class="sr-only">Tabela de Frequência dos Alunos</caption>
+            <thead>
+                <tr>
+                    <th scope="col" style="max-width: 120px; min-width: 120px;">Nome do Aluno</th>
+                    <th scope="col" colspan="2" class="table-success text-center">
+                        Registro de Entrada
+                    </th>
+                    <th scope="col" colspan="2" class="table-danger text-center">Registro de Saída
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="tbodyRelatorio" class="tbodyRelatorio" aria-live="polite">
+            </tbody>
+        </table>
+    </template>
+
+    <div id="contentRelatorioPdf"
+        style="position: absolute !important; top: 0; left: 0; background-color: white; min-height: 100vh; width: 100%; z-index: 99999; ;">
+        <table class="tabela-moderna-nexus tabela-moderna-nexus-x table  table-bordered ">
+            <caption class="sr-only">Tabela de Frequência dos Alunos</caption>
+            <thead>
+                <tr>
+                    <th scope="col" style="max-width: 120px; min-width: 120px;">Nome do Aluno</th>
+                    <th scope="col" colspan="2" class="table-success text-center">
+                        Registro de Entrada
+                    </th>
+                    <th scope="col" colspan="2" class="table-danger text-center">Registro de Saída
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="tbodyRelatorioFrequencia" aria-live="polite">
+                <tr>
+                    <td colspan="5" class="sem-dados">
+                        Nenhuma frequência encontrada, cadastre ou verifique os filtros.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
     <div id="preload" class="center" style="
         position: absolute;

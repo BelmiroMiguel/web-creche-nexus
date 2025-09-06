@@ -21,6 +21,7 @@ import {
   let turmaSelecionada = null;
   let turmasCarregadas = [];
   let confirmacoesTurmaSelecionada = [];
+  let totalItemsPorPagina = 15;
 
   let paginacaoFrequencia = {
     page: 0,
@@ -44,7 +45,7 @@ import {
     const dataFiltro = inpFiltroDataFrequencia.value || new Date();
 
     labelTotalAlunosFrequencia.textContent =
-      turmaSelecionada.confirmacoes?.length ?? 0;
+      turmaSelecionada?.confirmacoes?.length ?? 0;
     labelTotalMeninosFrequencia.textContent =
       turmaSelecionada.confirmacoes?.filter((c) => c.aluno.genero === "m")
         .length ?? 0;
@@ -60,7 +61,7 @@ import {
         idTurma: turmaSelecionada.idTurma,
         statusFrequencia: sltFiltroStatusFrequencia.value,
         dataFiltro: dataFiltro,
-        items: 15,
+        items: totalItemsPorPagina,
         page: pagina,
       },
       {
@@ -76,8 +77,9 @@ import {
             onPageClick: (pagina) => renderizarConfirmacoes(pagina),
           });
 
-          confirmacoesCarregadas.forEach((confirmacao) => {
-            const frequencia = confirmacao?.frequencias.find(
+          confirmacoesCarregadas.forEach((confirmacao, index) => {
+            //frequencia = confirmacao?.frequencias?.[0];
+            let frequencia = confirmacao?.frequencias.find(
               (freq) =>
                 formatarDataInput(freq.dataFrequencia) ==
                 formatarDataInput(dataFiltro)
@@ -90,6 +92,7 @@ import {
             const labelStatusAlunoFrequencia = template.querySelector(
               "#labelStatusAlunoFrequencia"
             );
+
             labelStatusAlunoFrequencia.textContent = frequencia
               ? "Presente"
               : "Ausente";
@@ -132,6 +135,8 @@ import {
               "#sltResponsavelSaidaFrequencia"
             );
 
+            template.querySelector("#labelQuantidade").innerText = (index + 1 + ((pagina - 1) * totalItemsPorPagina)).toString();
+
             // Cria um array de responsáveis a partir dos campos disponíveis em frequencia
             const responsaveis = [];
             for (let i = 1; i <= 4; i++) {
@@ -155,28 +160,36 @@ import {
             if (
               frequencia &&
               !responsaveis.some(
-                (r) => r.nome == frequencia.nomeResponsavelEntrega
+                (r) => r.nome == frequencia.nomeResponsavelEntrega?.split('-')[0]
               )
             ) {
+              const nome = frequencia.nomeResponsavelEntrega.split('-')[0];
+              const telefone = frequencia.nomeResponsavelEntrega.split('-')?.[1] ?? "sem";
+              const grauParentesco = frequencia.nomeResponsavelEntrega.split('-')?.[2] ?? "sem";
               responsaveis.push({
-                nome: frequencia.nomeResponsavelEntrega,
-                telefone: "-",
-                grauParentesco: "-",
+                nome,
+                telefone,
+                grauParentesco,
+                disabled: true// como o nome ja fo editado para nao se escolher novamente
               });
             }
 
             if (
               frequencia &&
-              frequencia.nomeResponsavelBusca &&
+              frequencia.nomeResponsavelBusca?.split('-')[0] &&
               frequencia.horaSaida &&
               !responsaveis.some(
                 (r) => r.nome == frequencia.nomeResponsavelBusca
               )
             ) {
+              const nome = frequencia.nomeResponsavelBusca.split('-')[0];
+              const telefone = frequencia.nomeResponsavelBusca.split('-')?.[1] ?? "sem";
+              const grauParentesco = frequencia.nomeResponsavelBusca.split('-')?.[2] ?? "sem";
               responsaveis.push({
-                nome: frequencia.nomeResponsavelBusca,
-                telefone: "-",
-                grauParentesco: "-",
+                nome,
+                telefone,
+                grauParentesco,
+                disabled: true
               });
             }
 
@@ -193,6 +206,9 @@ import {
               const option2 = document.createElement("option");
               option2.value = option.value = resp.nome;
 
+              option.setAttribute("data-disabled", resp.disabled);
+              option2.setAttribute("data-disabled", resp.disabled);
+
               option2.textContent = option.textContent = `${capitalizeWords(
                 resp.nome
               )} (${capitalizeWords(resp.grauParentesco)})`;
@@ -200,21 +216,33 @@ import {
                 option.setAttribute("data-telefone", resp.telefone);
                 option2.setAttribute("data-telefone", resp.telefone);
               }
-              if (resp.grauParentesco) {
-                option.setAttribute("data-grauparentesco", resp.grauParentesco);
-                option2.setAttribute(
-                  "data-grauparentesco",
-                  resp.grauParentesco
-                );
-              }
+              option.setAttribute("data-grau-parentesco", resp.grauParentesco);
+              option2.setAttribute(
+                "data-grau-parentesco",
+                resp.grauParentesco
+              );
+
               sltResponsavelEntradaFrequencia.appendChild(option);
               sltResponsavelSaidaFrequencia.appendChild(option2);
             });
 
+
             sltResponsavelEntradaFrequencia.value =
-              frequencia?.nomeResponsavelEntrega ?? "";
+              frequencia?.nomeResponsavelEntrega?.split('-')?.[0] ?? "";
             sltResponsavelSaidaFrequencia.value =
-              frequencia?.nomeResponsavelBusca ?? "";
+              frequencia?.nomeResponsavelBusca?.split('-')?.[0] ?? "";
+            console.log("tetse");
+
+            const labelTelefoneResponsavelEntradaFrequencia = template.querySelector(
+              "#labelTelefoneResponsavelEntradaFrequencia"
+            );
+            labelTelefoneResponsavelEntradaFrequencia.innerText = sltResponsavelEntradaFrequencia.options[sltResponsavelEntradaFrequencia.selectedIndex].dataset.telefone ?? '';
+
+            const labelTelefoneResponsavelSaidaFrequencia = template.querySelector(
+              "#labelTelefoneResponsavelSaidaFrequencia"
+            );
+            labelTelefoneResponsavelSaidaFrequencia.innerText = sltResponsavelSaidaFrequencia.options[sltResponsavelSaidaFrequencia.selectedIndex].dataset.telefone ?? '';
+
 
             const btnRegistrarEntradaFrequencia = template.querySelector(
               "#btnRegistrarEntradaFrequencia"
@@ -223,6 +251,20 @@ import {
             const btnRegistrarSaidaFrequencia = template.querySelector(
               "#btnRegistrarSaidaFrequencia"
             );
+
+            btnRegistrarEntradaFrequencia.disabled = true
+            $(sltResponsavelEntradaFrequencia).on('change', () => {
+              const option = sltResponsavelEntradaFrequencia.options[sltResponsavelEntradaFrequencia.selectedIndex];
+              labelTelefoneResponsavelEntradaFrequencia.innerText = option.dataset.telefone ?? '';
+              btnRegistrarEntradaFrequencia.disabled = !option.dataset.disabled || option.dataset.disabled == 'true'
+            })
+
+            btnRegistrarSaidaFrequencia.disabled = true
+            $(sltResponsavelSaidaFrequencia).on('change', () => {
+              const option = sltResponsavelSaidaFrequencia.options[sltResponsavelSaidaFrequencia.selectedIndex];
+              labelTelefoneResponsavelSaidaFrequencia.innerText = option.dataset.telefone ?? '';
+              btnRegistrarSaidaFrequencia.disabled = !option.dataset.disabled || option.dataset.disabled == 'true'
+            })
 
             const onSuccessFrequencia = (res) => {
               const frequencia = res.body;
@@ -255,12 +297,6 @@ import {
 
             let loadEntrada = false;
             $(btnRegistrarEntradaFrequencia).on("click", () => {
-              if (loadEntrada) return;
-              loadEntrada = true;
-
-              btnRegistrarEntradaFrequencia.innerHTML =
-                '<i class="fas fa-spinner fa-spin my-3 mx-1"></i>';
-
               const campos = [
                 inputHorarioEntradaFrequencia,
                 sltResponsavelEntradaFrequencia,
@@ -275,6 +311,14 @@ import {
                 }
               }
 
+              if (loadEntrada || erro) return;
+              loadEntrada = true;
+
+              btnRegistrarEntradaFrequencia.innerHTML =
+                '<i class="fas fa-spinner fa-spin my-3 mx-1"></i>';
+
+              const option = sltResponsavelEntradaFrequencia.options[sltResponsavelEntradaFrequencia.selectedIndex];
+
               if (!erro) {
                 AppService.postData(
                   "frequencia/entrada",
@@ -283,8 +327,7 @@ import {
                     horaEntrada: inputHorarioEntradaFrequencia.value,
                     dataFrequencia: dataFiltro,
                     observacaoEntrada: inputObservacaoEntradaFrequencia.value,
-                    nomeResponsavelEntrega:
-                      sltResponsavelEntradaFrequencia.value,
+                    nomeResponsavelEntrega: `${option.value}-${option.dataset.telefone ?? ''}-${option.dataset.grauParentesco ?? ''}`
                   },
                   {
                     onSuccess: onSuccessFrequencia,
@@ -303,12 +346,6 @@ import {
 
             let loadSaida = false;
             $(btnRegistrarSaidaFrequencia).on("click", () => {
-              if (loadSaida) return;
-              loadSaida = true;
-
-              btnRegistrarSaidaFrequencia.innerHTML =
-                '<i class="fas fa-spinner fa-spin my-3 mx-1"></i>';
-
               const campos = [
                 inputHorarioSaidaFrequencia,
                 sltResponsavelSaidaFrequencia,
@@ -323,6 +360,14 @@ import {
                 }
               }
 
+              if (loadSaida || erro) return;
+              loadSaida = true;
+
+              btnRegistrarSaidaFrequencia.innerHTML =
+                '<i class="fas fa-spinner fa-spin my-3 mx-1"></i>';
+
+              const option = btnRegistrarSaidaFrequencia.options[btnRegistrarSaidaFrequencia.selectedIndex];
+
               if (!erro) {
                 AppService.postData(
                   "frequencia/saida",
@@ -330,7 +375,7 @@ import {
                     idFrequenciaAlunoTurma: frequencia?.idFrequenciaAlunoTurma,
                     horaSaida: inputHorarioSaidaFrequencia.value,
                     observacaoSaida: inputObservacaoSaidaFrequencia.value,
-                    nomeResponsavelBusca: sltResponsavelSaidaFrequencia.value,
+                    nomeResponsavelBusca: `${option.value}-${option.dataset.telefone ?? ''}-${option.dataset.grauParentesco ?? ''}`
                   },
                   {
                     onSuccess: onSuccessFrequencia,

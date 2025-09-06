@@ -1,248 +1,314 @@
  :root {
-            /* Adicione ou ajuste variáveis de cor conforme necessário para os novos componentes */
-            --cor-fundo-input: #fff; /* Exemplo, ajuste se seu modo escuro/claro já define isso */
-            --cor-borda-input: #ddd; /* Exemplo */
-            --cor-texto-principal: #333; /* Exemplo */
-            --cor-texto-secundario: #666; /* Exemplo */
-            --cor-primaria: #ff7700; /* Exemplo, já deve estar definido */
-            --cor-primaria-rgb: 255, 119, 0; /* Exemplo */
-            --cor-fundo-botao-secundario: #f0f0f0; /* Exemplo */
-            --cor-texto-botao-secundario: #333; /* Exemplo */
-            --cor-borda-botao-secundario: #ccc; /* Exemplo */
-            --cor-fundo-botao-secundario-hover: #e0e0e0; /* Exemplo */
-            --cor-borda-botao-secundario-hover: #bbb; /* Exemplo */
-            --raio-borda: 6px; /* Exemplo */
-            --cor-borda-leve: #eee; /* Exemplo */
-            --cor-status-entrada: #28a745; /* Verde para entrada */
-            --cor-status-saida: #ffc107;   /* Amarelo para saída */
-            --cor-status-ausente-es: #dc3545; /* Vermelho para ausente/não registrado */
-        }
+     /* Adicione ou ajuste variáveis de cor conforme necessário para os novos componentes */
+     --cor-fundo-input: #fff;
+     /* Exemplo, ajuste se seu modo escuro/claro já define isso */
+     --cor-borda-input: #ddd;
+     /* Exemplo */
+     --cor-texto-principal: #333;
+     /* Exemplo */
+     --cor-texto-secundario: #666;
+     /* Exemplo */
+     --cor-primaria: #ff7700;
+     /* Exemplo, já deve estar definido */
+     --cor-primaria-rgb: 255, 119, 0;
+     /* Exemplo */
+     --cor-fundo-botao-secundario: #f0f0f0;
+     /* Exemplo */
+     --cor-texto-botao-secundario: #333;
+     /* Exemplo */
+     --cor-borda-botao-secundario: #ccc;
+     /* Exemplo */
+     --cor-fundo-botao-secundario-hover: #e0e0e0;
+     /* Exemplo */
+     --cor-borda-botao-secundario-hover: #bbb;
+     /* Exemplo */
+     --raio-borda: 6px;
+     /* Exemplo */
+     --cor-borda-leve: #eee;
+     /* Exemplo */
+     --cor-status-entrada: #28a745;
+     /* Verde para entrada */
+     --cor-status-saida: #ffc107;
+     /* Amarelo para saída */
+     --cor-status-ausente-es: #dc3545;
+     /* Vermelho para ausente/não registrado */
+ }
 
-        /* Estilos para Paginação */
-        .paginacao-nexus {
-            display: flex;
-            align-items: start;
-            justify-content: flex-end;
-            gap: 10px;
-            margin-top: 5px;
-            padding: 5px 0;
-            border-top: 1px solid var(--cor-borda-leve);
-            font-family: 'Poppins', sans-serif;
-        }
+ /* Estilos para Paginação */
+ .paginacao-nexus {
+     display: flex;
+     align-items: start;
+     justify-content: flex-end;
+     gap: 10px;
+     margin-top: 5px;
+     padding: 5px 0;
+     border-top: 1px solid var(--cor-borda-leve);
+     font-family: 'Poppins', sans-serif;
+ }
 
-        .select-paginacao-nexus {
-            padding: 8px 12px;
-            border: 1px solid var(--cor-borda-input);
-            border-radius: var(--raio-borda);
-            background-color: var(--cor-fundo-input);
-            color: var(--cor-texto-principal);
-            font-size: 0.9rem;
-            min-width: 100px;
-            cursor: pointer;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
+ .select-paginacao-nexus {
+     padding: 8px 12px;
+     border: 1px solid var(--cor-borda-input);
+     border-radius: var(--raio-borda);
+     background-color: var(--cor-fundo-input);
+     color: var(--cor-texto-principal);
+     font-size: 0.9rem;
+     min-width: 100px;
+     cursor: pointer;
+     transition: border-color 0.3s ease, box-shadow 0.3s ease;
+ }
 
-        .select-paginacao-nexus:focus {
-            outline: none;
-            border-color: var(--cor-primaria);
-            box-shadow: 0 0 0 2px rgba(var(--cor-primaria-rgb), 0.2);
-        }
+ .select-paginacao-nexus:focus {
+     outline: none;
+     border-color: var(--cor-primaria);
+     box-shadow: 0 0 0 2px rgba(var(--cor-primaria-rgb), 0.2);
+ }
 
-        .btn-paginacao-nav {
-            background-color: var(--cor-fundo-botao-secundario);
-            color: var(--cor-texto-botao-secundario);
-            border: 1px solid var(--cor-borda-botao-secundario);
-            padding: 8px 12px;
-            border-radius: var(--raio-borda);
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            line-height: 1; /* Para alinhar ícone melhor */
-        }
+ .btn-paginacao-nav {
+     background-color: var(--cor-fundo-botao-secundario);
+     color: var(--cor-texto-botao-secundario);
+     border: 1px solid var(--cor-borda-botao-secundario);
+     padding: 8px 12px;
+     border-radius: var(--raio-borda);
+     cursor: pointer;
+     font-size: 0.9rem;
+     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     line-height: 1;
+     /* Para alinhar ícone melhor */
+ }
 
-        .btn-paginacao-nav:hover:not(:disabled) {
-            background-color: var(--cor-fundo-botao-secundario-hover);
-            border-color: var(--cor-borda-botao-secundario-hover);
-        }
+ .btn-paginacao-nav:hover:not(:disabled) {
+     background-color: var(--cor-fundo-botao-secundario-hover);
+     border-color: var(--cor-borda-botao-secundario-hover);
+ }
 
-        .btn-paginacao-nav:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
+ .btn-paginacao-nav:disabled {
+     opacity: 0.6;
+     cursor: not-allowed;
+ }
 
-        .info-paginacao-nexus {
-            font-size: 0.9rem;
-            color: var(--cor-texto-secundario);
-            margin: 0 5px;
-        }
+ .info-paginacao-nexus {
+     font-size: 0.9rem;
+     color: var(--cor-texto-secundario);
+     margin: 0 5px;
+ }
 
-        /* Estilos para Nova Seção: Entrada e Saída */
-        #entrada-saida .filtros-entrada-saida {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-            align-items: center;
-            flex-wrap: wrap; /* Para responsividade */
-        }
+ /* Estilos para Nova Seção: Entrada e Saída */
+ #entrada-saida .filtros-entrada-saida {
+     display: flex;
+     gap: 15px;
+     margin-bottom: 20px;
+     align-items: center;
+     flex-wrap: wrap;
+     /* Para responsividade */
+ }
 
-        #entrada-saida .filtros-entrada-saida .campo-form-nexus {
-            margin-bottom: 0; /* Remover margem inferior padrão do campo-form-nexus se estiver dentro dos filtros */
-            flex-grow: 1;
-        }
-        #entrada-saida .filtros-entrada-saida .input-filtro-nexus,
-        #entrada-saida .filtros-entrada-saida .select-filtro-nexus {
-            width: auto; /* Ajustar para o tamanho do conteúdo ou usar flex-basis */
-            min-width: 200px; /* Mínimo para não ficar muito pequeno */
-        }
+ #entrada-saida .filtros-entrada-saida .campo-form-nexus {
+     margin-bottom: 0;
+     /* Remover margem inferior padrão do campo-form-nexus se estiver dentro dos filtros */
+     flex-grow: 1;
+ }
+
+ #entrada-saida .filtros-entrada-saida .input-filtro-nexus,
+ #entrada-saida .filtros-entrada-saida .select-filtro-nexus {
+     width: auto;
+     /* Ajustar para o tamanho do conteúdo ou usar flex-basis */
+     min-width: 200px;
+     /* Mínimo para não ficar muito pequeno */
+ }
 
 
-        #entrada-saida .form-registro-entrada-saida {
-            background-color: var(--cor-fundo-card, #ffffff); /* Use a variável de cor de fundo do card */
-            padding: 25px;
-            border-radius: var(--raio-borda-grande, 12px);
-            box-shadow: var(--sombra-card-suave, 0 4px 15px rgba(0,0,0,0.08));
-            margin-bottom: 30px;
-        }
-        #entrada-saida .form-registro-entrada-saida h3 {
-            margin-top: 0;
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-            color: var(--cor-primaria);
-            border-bottom: 2px solid var(--cor-primaria-transparente, rgba(var(--cor-primaria-rgb), 0.2));
-            padding-bottom: 10px;
-        }
+ #entrada-saida .form-registro-entrada-saida {
+     background-color: var(--cor-fundo-card, #ffffff);
+     /* Use a variável de cor de fundo do card */
+     padding: 25px;
+     border-radius: var(--raio-borda-grande, 12px);
+     box-shadow: var(--sombra-card-suave, 0 4px 15px rgba(0, 0, 0, 0.08));
+     margin-bottom: 30px;
+ }
 
-        #entrada-saida .form-grid-entrada-saida {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
+ #entrada-saida .form-registro-entrada-saida h3 {
+     margin-top: 0;
+     margin-bottom: 20px;
+     font-size: 1.5rem;
+     color: var(--cor-primaria);
+     border-bottom: 2px solid var(--cor-primaria-transparente, rgba(var(--cor-primaria-rgb), 0.2));
+     padding-bottom: 10px;
+ }
 
-        #entrada-saida .tabela-moderna-nexus .status-entrada-saida {
-            padding: 5px 10px;
-            border-radius: var(--raio-borda);
-            color: white;
-            font-weight: 500;
-            text-align: center;
-            font-size: 0.85em;
-        }
-        #entrada-saida .tabela-moderna-nexus .status-entrada-saida.entrada {
-            background-color: var(--cor-status-entrada);
-        }
-        #entrada-saida .tabela-moderna-nexus .status-entrada-saida.saida {
-            background-color: var(--cor-status-saida);
-            color: #333; /* Texto mais escuro para fundo amarelo */
-        }
-        #entrada-saida .tabela-moderna-nexus .status-entrada-saida.ausente {
-            background-color: var(--cor-status-ausente-es);
-        }
-        #entrada-saida .tabela-moderna-nexus .status-entrada-saida.pendente {
-            background-color: var(--cor-texto-secundario);
-        }
+ #entrada-saida .form-grid-entrada-saida {
+     display: grid;
+     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+     gap: 20px;
+ }
 
-        #entrada-saida .acoes-topo-secao {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            flex-wrap: wrap; /* Para responsividade */
-            gap: 15px;
-        }
-        #entrada-saida .filtros-tabela-entrada-saida {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            flex-grow: 1; /* Para ocupar espaço disponível */
-        }
-        #entrada-saida .filtros-tabela-entrada-saida .input-filtro-nexus {
-            max-width: 250px; /* Limitar largura do campo de busca */
-        }
+ #entrada-saida .tabela-moderna-nexus .status-entrada-saida {
+     padding: 5px 10px;
+     border-radius: var(--raio-borda);
+     color: white;
+     font-weight: 500;
+     text-align: center;
+     font-size: 0.85em;
+ }
 
-         /* Ajustes para os ícones dentro dos campos de formulário na nova seção, se necessário */
-        #entrada-saida .campo-form-nexus .icone-input-form {
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--cor-primaria); /* Para dar destaque */
-        }
+ #entrada-saida .tabela-moderna-nexus .status-entrada-saida.entrada {
+     background-color: var(--cor-status-entrada);
+ }
 
-        body.modo-escuro .select-paginacao-nexus {
-            background-color: var(--cor-fundo-input-escuro, #2c3e50);
-            color: var(--cor-texto-principal-escuro, #ecf0f1);
-            border-color: var(--cor-borda-input-escuro, #34495e);
-        }
-        body.modo-escuro .btn-paginacao-nav {
-            background-color: var(--cor-fundo-botao-secundario-escuro, #34495e);
-            color: var(--cor-texto-botao-secundario-escuro, #ecf0f1);
-            border-color: var(--cor-borda-botao-secundario-escuro, #4a6278);
-        }
-        body.modo-escuro .btn-paginacao-nav:hover:not(:disabled) {
-            background-color: var(--cor-fundo-botao-secundario-hover-escuro, #4a6278);
-            border-color: var(--cor-borda-botao-secundario-hover-escuro, #5c7a94);
-        }
-        body.modo-escuro .info-paginacao-nexus {
-            color: var(--cor-texto-secundario-escuro, #bdc3c7);
-        }
-        body.modo-escuro #entrada-saida .form-registro-entrada-saida {
-            background-color: var(--cor-fundo-card-escuro, #1e2a38);
-            box-shadow: var(--sombra-card-suave-escuro, 0 4px 15px rgba(0,0,0,0.2));
-        }
-        body.modo-escuro #entrada-saida .tabela-moderna-nexus .status-entrada-saida.saida {
-            color: #fff; /* Em modo escuro, amarelo pode precisar de texto branco */
-        }
+ #entrada-saida .tabela-moderna-nexus .status-entrada-saida.saida {
+     background-color: var(--cor-status-saida);
+     color: #333;
+     /* Texto mais escuro para fundo amarelo */
+ }
 
-        /* Em seu arquivo CSS principal */
-#toast-container {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 10000;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    max-width: 350px;
-}
+ #entrada-saida .tabela-moderna-nexus .status-entrada-saida.ausente {
+     background-color: var(--cor-status-ausente-es);
+ }
 
-.toast-notificacao {
-    background-color: #333;
-    color: white;
-    padding: 15px 20px;
-    border-radius: var(--raio-borda, 6px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    opacity: 0;
-    transform: translateX(100%);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.9rem;
-}
+ #entrada-saida .tabela-moderna-nexus .status-entrada-saida.pendente {
+     background-color: var(--cor-texto-secundario);
+ }
 
-.toast-notificacao.mostrar {
-    opacity: 1;
-    transform: translateX(0);
-}
+ #entrada-saida .acoes-topo-secao {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     margin-bottom: 20px;
+     flex-wrap: wrap;
+     /* Para responsividade */
+     gap: 15px;
+ }
 
-.toast-notificacao i {
-    font-size: 1.2rem;
-}
+ #entrada-saida .filtros-tabela-entrada-saida {
+     display: flex;
+     gap: 10px;
+     align-items: center;
+     flex-grow: 1;
+     /* Para ocupar espaço disponível */
+ }
 
-.toast-notificacao.info {
-    background-color: var(--cor-info, #17a2b8); /* Azul para info */
-    color: white;
-}
-.toast-notificacao.sucesso {
-    background-color: var(--cor-sucesso, #28a745); /* Verde para sucesso */
-    color: white;
-}
-.toast-notificacao.aviso {
-    background-color: var(--cor-aviso, #ffc107); /* Amarelo para aviso */
-    color: #212529; /* Texto escuro para fundo amarelo */
-}
-.toast-notificacao.erro {
-    background-color: var(--cor-perigo, #dc3545); /* Vermelho para erro */
-    color: white;
-}
+ #entrada-saida .filtros-tabela-entrada-saida .input-filtro-nexus {
+     max-width: 250px;
+     /* Limitar largura do campo de busca */
+ }
+
+ /* Ajustes para os ícones dentro dos campos de formulário na nova seção, se necessário */
+ #entrada-saida .campo-form-nexus .icone-input-form {
+     top: 50%;
+     transform: translateY(-50%);
+     color: var(--cor-primaria);
+     /* Para dar destaque */
+ }
+
+ body.modo-escuro .select-paginacao-nexus {
+     background-color: var(--cor-fundo-input-escuro, #2c3e50);
+     color: var(--cor-texto-principal-escuro, #ecf0f1);
+     border-color: var(--cor-borda-input-escuro, #34495e);
+ }
+
+ body.modo-escuro .btn-paginacao-nav {
+     background-color: var(--cor-fundo-botao-secundario-escuro, #34495e);
+     color: var(--cor-texto-botao-secundario-escuro, #ecf0f1);
+     border-color: var(--cor-borda-botao-secundario-escuro, #4a6278);
+ }
+
+ body.modo-escuro .btn-paginacao-nav:hover:not(:disabled) {
+     background-color: var(--cor-fundo-botao-secundario-hover-escuro, #4a6278);
+     border-color: var(--cor-borda-botao-secundario-hover-escuro, #5c7a94);
+ }
+
+ body.modo-escuro .info-paginacao-nexus {
+     color: var(--cor-texto-secundario-escuro, #bdc3c7);
+ }
+
+ body.modo-escuro #entrada-saida .form-registro-entrada-saida {
+     background-color: var(--cor-fundo-card-escuro, #1e2a38);
+     box-shadow: var(--sombra-card-suave-escuro, 0 4px 15px rgba(0, 0, 0, 0.2));
+ }
+
+ body.modo-escuro #entrada-saida .tabela-moderna-nexus .status-entrada-saida.saida {
+     color: #fff;
+     /* Em modo escuro, amarelo pode precisar de texto branco */
+ }
+
+ /* Em seu arquivo CSS principal */
+ #toast-container {
+     position: fixed;
+     top: 20px;
+     right: 20px;
+     z-index: 10000;
+     display: flex;
+     flex-direction: column;
+     gap: 10px;
+     max-width: 350px;
+ }
+
+ .toast-notificacao {
+     background-color: #333;
+     color: white;
+     padding: 15px 20px;
+     border-radius: var(--raio-borda, 6px);
+     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+     display: flex;
+     align-items: center;
+     gap: 10px;
+     opacity: 0;
+     transform: translateX(100%);
+     transition: opacity 0.5s ease, transform 0.5s ease;
+     font-family: 'Poppins', sans-serif;
+     font-size: 0.9rem;
+ }
+
+ .toast-notificacao.mostrar {
+     opacity: 1;
+     transform: translateX(0);
+ }
+
+ .toast-notificacao i {
+     font-size: 1.2rem;
+ }
+
+ .toast-notificacao.info {
+     background-color: var(--cor-info, #17a2b8);
+     /* Azul para info */
+     color: white;
+ }
+
+ .toast-notificacao.sucesso {
+     background-color: var(--cor-sucesso, #28a745);
+     /* Verde para sucesso */
+     color: white;
+ }
+
+ .toast-notificacao.aviso {
+     background-color: var(--cor-aviso, #ffc107);
+     /* Amarelo para aviso */
+     color: #212529;
+     /* Texto escuro para fundo amarelo */
+ }
+
+ .toast-notificacao.erro {
+     background-color: var(--cor-perigo, #dc3545);
+     /* Vermelho para erro */
+     color: white;
+ }
+
+
+ .desc-parent-relatorio {
+     font-size: 13 !important;
+     font-weight: bold !important;
+     padding-top: 10px !important;
+ }
+
+ .desc-parent-relatorio-falta {
+     font-size: 13 !important;
+     font-weight: bold !important;
+     padding-top: 10px !important;
+     color: rgb(95, 40, 40) !important;
+ }
+
+
+ 
