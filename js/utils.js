@@ -27,12 +27,14 @@ window.onload = () => {
           alerta.style.boxShadow = "0 2px 8px rgba(0,0,0,0.08)";
           alerta.style.zIndex = 9999;
           alerta.style.fontSize = "15px";
-          alerta.textContent = `Você será bloqueado por inatividade em ${counter} segundo${counter === 1 ? "" : "s"
-            }!`;
+          alerta.textContent = `Você será bloqueado por inatividade em ${counter} segundo${
+            counter === 1 ? "" : "s"
+          }!`;
           document.body.appendChild(alerta);
         } else {
-          alerta.textContent = `Você será bloqueado por inatividade em ${counter} segundo${counter === 1 ? "" : "s"
-            }!`;
+          alerta.textContent = `Você será bloqueado por inatividade em ${counter} segundo${
+            counter === 1 ? "" : "s"
+          }!`;
         }
       } else {
         const alerta = document.getElementById("alerta-inatividade");
@@ -81,6 +83,40 @@ export function formatarDataInput(data) {
   const ano = d.getFullYear();
   data = `${ano}-${mes}-${dia}`;
   return data;
+}
+
+export function formatarTempo(dataISO) {
+  const data = new Date(dataISO);
+  const agora = new Date();
+  const diffMs = agora - data;
+
+  const segundos = Math.floor(diffMs / 1000);
+  const minutos = Math.floor(segundos / 60);
+  const horas = Math.floor(minutos / 60);
+  const dias = Math.floor(horas / 24);
+
+  if (segundos < 60) return `Há ${segundos} seg`;
+  if (minutos < 60) return `Há ${minutos} min`;
+  if (horas < 24) return `Há ${horas} ${horas === 1 ? "hora" : "horas"}`;
+  if (dias === 1) return "Ontem";
+  if (dias <= 7) return `Há ${dias} dias`;
+
+  // se passou de 7 dias → formata data completa
+  const meses = [
+    "Jan",
+    "Fev",
+    "Mar",
+    "Abr",
+    "Mai",
+    "Jun",
+    "Jul",
+    "Ago",
+    "Set",
+    "Out",
+    "Nov",
+    "Dez",
+  ];
+  return `${data.getDate()} ${meses[data.getMonth()]}. ${data.getFullYear()}`;
 }
 
 /**
@@ -208,8 +244,9 @@ export function renderPaginacao({
   );
 
   const desc = document.createElement("div");
-  desc.textContent = ` de  ${totalPaginas} página${totalPaginas > 1 ? "s" : ""
-    } de ${totalItens} ite${totalItens > 1 ? "ns" : "m"}`;
+  desc.textContent = ` de  ${totalPaginas} página${
+    totalPaginas > 1 ? "s" : ""
+  } de ${totalItens} ite${totalItens > 1 ? "ns" : "m"}`;
   desc.style.display = "inline-block";
   desc.style.marginLeft = "12px";
   desc.style.fontSize = "14px";
@@ -229,4 +266,80 @@ export function fotoPreview({ inputFileImagem, docImg }) {
       reader.readAsDataURL(file);
     }
   });
+}
+
+export function formatMoney(value, currency = "AOA") {
+  if (isNaN(value)) return `0,00 ${currency}`;
+  return new Intl.NumberFormat("pt-AO", {
+    style: "currency",
+    currency: "AOA",
+    minimumFractionDigits: 2,
+  })
+    .format(value)
+    .replace("AOA", currency)
+    .replace("Kz", currency);
+}
+
+// Função Global para Toasts (se você não tiver uma no script principal)
+export function toastGlobal(mensagem, tipo = "info", duracao = 4000) {
+  const toastContainer = document.createElement("div");
+  toastContainer.id = "toast-container-login"; // ID diferente para não conflitar com o global se houver
+  Object.assign(toastContainer.style, {
+    position: "fixed",
+    top: "20px",
+    right: "20px",
+    zIndex: "10000",
+    display: "flex",
+    flexDirection: "column",
+    gap: "10px",
+  });
+  document.body.appendChild(toastContainer);
+
+  const toast = document.createElement("div");
+  toast.className = `toast-notificacao ${tipo}`; // Reutiliza classes do CSS global
+  // Adaptação do estilo do toast para login
+  Object.assign(toast.style, {
+    padding: "15px 20px",
+    borderRadius: "8px",
+    display: "flex",
+    alignItems: "center",
+    gap: "10px",
+    minWidth: "300px",
+    opacity: "0",
+    transform: "translateX(100%)",
+    transition: "opacity 0.3s ease, transform 0.3s ease",
+  });
+  // Cores baseadas no tema do body
+  const isModoEscuro = document.body.classList.contains("modo-escuro");
+  toast.style.backgroundColor = isModoEscuro ? "#2c3344" : "#ffffff";
+  toast.style.color = isModoEscuro ? "#e0e6f1" : "#2c3e50";
+  toast.style.boxShadow = isModoEscuro
+    ? "0 5px 15px rgba(0,0,0,0.2)"
+    : "0 5px 15px rgba(0,0,0,0.1)";
+
+  let iconeClasse = "fas fa-info-circle";
+  if (tipo === "sucesso") iconeClasse = "fas fa-check-circle";
+  else if (tipo === "aviso") iconeClasse = "fas fa-exclamation-triangle";
+  else if (tipo === "erro") iconeClasse = "fas fa-times-circle";
+
+  toast.innerHTML = `<i class="${iconeClasse}" style="font-size: 1.5rem; color: var(--login-cor-${tipo}-claro, inherit);"></i> <p>${mensagem}</p>`;
+
+  toastContainer.appendChild(toast);
+  requestAnimationFrame(() => {
+    toast.style.opacity = "1";
+    toast.style.transform = "translateX(0)";
+  });
+
+  setTimeout(() => {
+    toast.style.opacity = "0";
+    toast.style.transform = "translateX(100%)";
+    toast.addEventListener(
+      "transitionend",
+      () => {
+        toast.remove();
+        if (toastContainer.childElementCount === 0) toastContainer.remove();
+      },
+      { once: true }
+    );
+  }, duracao);
 }

@@ -4638,10 +4638,10 @@ body.modo-escuro #calendario-plugin-container {
     margin-left: auto;
     margin-right: auto;
     padding: var(--esp-xl);
-    background-color: var(--cor-fundo-hover-claro);
-    /* Distingue o form do fundo da seção */
+    /* background-color: var(--cor-fundo-hover-claro); */
+    /* Distingue o form do fundo da seção 
     border-radius: var(--raio-borda-lg);
-    border: 1px solid var(--cor-borda-claro);
+    border: 1px solid var(--cor-borda-claro);*/
 }
 
 body.modo-escuro #configuracoes .form-moderno-nexus,

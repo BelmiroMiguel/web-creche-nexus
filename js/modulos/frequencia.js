@@ -366,7 +366,7 @@ import {
               btnRegistrarSaidaFrequencia.innerHTML =
                 '<i class="fas fa-spinner fa-spin my-3 mx-1"></i>';
 
-              const option = btnRegistrarSaidaFrequencia.options[btnRegistrarSaidaFrequencia.selectedIndex];
+              const option = sltResponsavelSaidaFrequencia.options[sltResponsavelSaidaFrequencia.selectedIndex];
 
               if (!erro) {
                 AppService.postData(

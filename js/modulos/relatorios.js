@@ -34,22 +34,16 @@ import { OnGeneratePdf } from "./build_pdf.js";
     function gerarRelatorio() {
         if (!tipoRelatorioSelecionado) return
 
-        contentRelatorioPdf.innerHTML = ""
         $(preload).fadeIn(200);
-        $(contentRelatorioPdf).fadeIn(100)
 
         switch (tipoRelatorioSelecionado) {
             case 'frequencia_geral':
-                renderizarConfirmacoes();
                 break;
             default:
                 break;
         }
 
         $(preload).fadeOut(0);
-        setTimeout(() => {
-            $(contentRelatorioPdf).fadeOut(0)
-        }, 200);
         print()
     }
 
@@ -138,137 +132,6 @@ import { OnGeneratePdf } from "./build_pdf.js";
         );
     }
 
-    function renderizarConfirmacoes() {
-        const dataFiltro = inpFiltroDataRelatorio.value;
-
-        OnGeneratePdf({
-            array: confirmacoesCarregadasRelatorio, itensPorPagina: 3,
-            onHeader: () => {
-                const template = document.createElement('div');
-                template.innerHTML = templateCabecalhoRelatorioFrequencia.innerHTML;
-                contentRelatorioPdf.appendChild(template)
-
-                template.querySelector("#nomeEmpresa").textContent = capitalizeWords(getEmpresaLogada().nome);
-                template.querySelector("#dataImprencao").textContent = formatarData(new Date());
-                template.querySelector("#imgImagemEmpresa").src = getEmpresaLogada().srcImagem;
-            },
-            onCreateBody: () => {
-                const template = document.createElement('div');
-                template.innerHTML = templateTabelaRelatorioFrequencia.innerHTML
-                contentRelatorioPdf.append(template)
-                const tbody = template.querySelector("#tbodyRelatorio")
-
-                return tbody;
-            },
-            onBody: (tbody, confirmacao, index, array) => { //frequencia = confirmacao?.frequencias?.[0];
-                let frequencia = confirmacao?.frequencias.find(
-                    (freq) =>
-                        formatarDataInput(freq.dataFrequencia) ==
-                        formatarDataInput(dataFiltro)
-                );
-                const template = templateLinhaFrequencia.content.cloneNode(true);
-
-                template.querySelector("#labelNomeAlunoFrequencia").textContent =
-                    capitalizeWords(confirmacao.aluno.nome);
-
-                const labelStatusAlunoFrequencia = template.querySelector(
-                    "#labelStatusAlunoFrequencia"
-                );
-
-                labelStatusAlunoFrequencia.textContent = frequencia
-                    ? "Presente"
-                    : "Ausente";
-                labelStatusAlunoFrequencia.classList.add(
-                    frequencia ? "bg-success" : "bg-danger"
-                );
-
-                template.querySelector("#labelDataEntradaFrequencia").textContent =
-                    formatarData(frequencia?.dataEntrada ?? '');
-
-                template.querySelector("#labelDataSaidaFrequencia").textContent =
-                    formatarData(frequencia?.dataSaida ?? '');
-
-                const inputHorarioEntradaFrequencia = template.querySelector(
-                    "#inputHorarioEntradaFrequencia"
-                );
-                inputHorarioEntradaFrequencia.value = frequencia?.horaEntrada;
-                inputHorarioEntradaFrequencia.readOnly = true
-
-                const inputHorarioSaidaFrequencia = template.querySelector(
-                    "#inputHorarioSaidaFrequencia"
-                );
-                inputHorarioSaidaFrequencia.value = frequencia?.horaSaida;
-                inputHorarioSaidaFrequencia.readOnly = true
-
-                const inputObservacaoEntradaFrequencia = template.querySelector(
-                    "#inputObservacaoEntradaFrequencia"
-                );
-                inputObservacaoEntradaFrequencia.value =
-                    frequencia?.observacaoEntrada ?? "";
-                inputObservacaoEntradaFrequencia.readOnly = true
-
-                const inputObservacaoSaidaFrequencia = template.querySelector(
-                    "#inputObservacaoSaidaFrequencia"
-                );
-                inputObservacaoSaidaFrequencia.value =
-                    frequencia?.observacaoSaida ?? "";
-                inputObservacaoSaidaFrequencia.readOnly = true
-
-                const sltResponsavelEntradaFrequencia = template.querySelector(
-                    "#sltResponsavelEntradaFrequencia"
-                );
-                const sltResponsavelSaidaFrequencia = template.querySelector(
-                    "#sltResponsavelSaidaFrequencia"
-                );
-
-                template.querySelector("#labelQuantidade").innerText = ""; // (index + 1).toString();
-
-                const nomeEntrada = frequencia?.nomeResponsavelEntrega?.split('-')?.[0] ?? 'Faltou';
-                const telefoneEntrada = frequencia?.nomeResponsavelEntrega?.split('-')?.[1] ?? "";
-                let grauParentescoEntrada = frequencia?.nomeResponsavelEntrega?.split('-')?.[2] ?? null;
-                grauParentescoEntrada = grauParentescoEntrada ? ' - (' + grauParentescoEntrada + ')' : '';
-
-                const nomeBusca = frequencia?.nomeResponsavelBusca?.split('-')?.[0] ?? 'Faltou';
-                const telefoneBusca = frequencia?.nomeResponsavelBusca?.split('-')?.[1] ?? "";
-                let grauParentescoBusca = frequencia?.nomeResponsavelBusca?.split('-')?.[2] ?? null;
-                grauParentescoBusca = grauParentescoBusca ? ' - (' + grauParentescoBusca + ')' : '';
-
-                template.querySelector(
-                    "#labelTelefoneResponsavelEntradaFrequencia"
-                ).innerText = telefoneEntrada;
-
-                template.querySelector(
-                    "#labelTelefoneResponsavelSaidaFrequencia"
-                ).innerText = telefoneBusca;
-
-                template.querySelector(
-                    "#sltResponsavelEntradaFrequencia"
-                ).outerHTML = `<p class='desc-parent-relatorio'>${nomeEntrada} ${grauParentescoEntrada}</p>`;
-
-                template.querySelector(
-                    "#sltResponsavelSaidaFrequencia"
-                ).outerHTML = `<p class='desc-parent-relatorio-falta'>${nomeBusca} ${grauParentescoBusca}</p>`;
-
-
-                template.querySelector(
-                    "#btnRegistrarEntradaFrequencia"
-                ).remove();
-
-                template.querySelector(
-                    "#btnRegistrarSaidaFrequencia"
-                ).remove();
-
-                template.querySelector(
-                    "#btnVerPerfilFrequencia"
-                ).remove();
-
-                tbody.appendChild(template);
-            },
-            onFooter: (totalIitens, pagina, totalPaginas) => {
-            },
-        })
-    }
-
 
     async function carregarTurmas() {
         AppService.getData(
@@ -298,7 +161,6 @@ import { OnGeneratePdf } from "./build_pdf.js";
     $(labelInfoRelatorio).fadeOut(0)
     $(labelInfoSelecionarFiltroRelatorio).fadeOut(0)
     $(labelLoadRelatorio).fadeOut(0)
-    $(contentRelatorioPdf).fadeOut(0)
     $(labelInfoFiltroVazio).fadeOut(0)
     $(btnImprimirRelatorioCentral).fadeOut(0)
 
@@ -309,7 +171,6 @@ import { OnGeneratePdf } from "./build_pdf.js";
         $(labelInfoRelatorio).fadeOut(0)
         $(labelInfoSelecionarFiltroRelatorio).fadeOut(0)
         $(labelLoadRelatorio).fadeOut(0)
-        $(contentRelatorioPdf).fadeOut(0)
         $(labelInfoFiltroVazio).fadeOut(0)
         $(btnImprimirRelatorioCentral).fadeOut(0)
 
