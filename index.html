@@ -34,14 +34,14 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
+    <!--link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
     <link
       href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap"
       rel="stylesheet"
-    />
+    /-->
 
     <link rel="stylesheet" href="css/todos.css" />
     <link rel="stylesheet" href="css/filtros_relatorios.css" />
@@ -1474,10 +1474,10 @@
                       class="select-filtro-nexus"
                       aria-label="Filtrar por status do funcionário"
                     >
-                      <option value="">
+                      <option value="" selected>
                         Todos (Confirmados/Não Confirmados)...
                       </option>
-                      <option value="0" selected>Confirmados</option>
+                      <option value="0">Confirmados</option>
                       <option value="1">Não Confirmados</option>
                     </select>
                   </div>
@@ -1591,6 +1591,7 @@
             </div>
             <div class="col-auto">
               <button
+                hidden
                 id="btnImprimirRelatorioFrequencia"
                 class="mt-4 m-md-0 botao-estilizado primario com-icone"
               >
@@ -1765,7 +1766,7 @@
                               left: -8px;
                               font-size: 10px;
                               color: rgb(15, 2, 71);
-                              background: rgba(217, 234, 245, 0.267);
+                              background: rgba(194, 224, 245, 0.267);
                             "
                           >
                             1
@@ -1791,6 +1792,7 @@
                         </p>
                         <div class="w-100 m-0 p-0">
                           <button
+                            hidden
                             id="btnVerPerfilFrequencia"
                             class="px-1 mt-2 botao-estilizado secundario shadow-sm"
                             style="font-size: 0.7rem"
@@ -3532,17 +3534,23 @@
                             <option value="" disabled selected>
                               Idade mínima...
                             </option>
-                            <option value="2m">2 Meses</option>
-                            <option value="3m">3 Meses</option>
-                            <option value="6m">6 Meses</option>
-                            <option value="1a">1 ano</option>
-                            <option value="2a">2 ano</option>
-                            <option value="3a">3 ano</option>
-                            <option value="5a">5 ano</option>
-                            <option value="6a">6 ano</option>
-                            <option value="9a">9 ano</option>
-                            <option value="10a">10 ano</option>
-                            <option value="12a">12 ano</option>
+                            <option value="0m">Menos de 1 mês</option>
+                            <option value="1m">1 Mês</option>
+                            <option value="2m">2 Mêses</option>
+                            <option value="3m">3 Mêses</option>
+                            <option value="4m">4 Mêses</option>
+                            <option value="5m">5 Mêses</option>
+                            <option value="6m">6 Mêses</option>
+                            <option value="7m">7 Mêses</option>
+                            <option value="8m">8 Mêses</option>
+                            <option value="9m">9 Mêses</option>
+                            <option value="10m">10 Mêses</option>
+                            <option value="11m">11 Mêses</option>
+                            <option value="1a">1 Ano</option>
+                            <option value="2a">2 Anos</option>
+                            <option value="3a">3 Anos</option>
+                            <option value="4a">4 Anos</option>
+                            <option value="5a">5 Anos</option>
                           </select>
                         </div>
                       </div>
@@ -3562,23 +3570,26 @@
                             name="sltFaixaEtariaMax"
                             required
                           >
-                            <option value="" selected disabled>
-                              Selecione a Faixa Etária...
-                            </option>
                             <option value="" disabled selected>
                               Idade máxima...
                             </option>
-                            <option value="2m">2 Meses</option>
-                            <option value="3m">3 Meses</option>
-                            <option value="6m">6 Meses</option>
-                            <option value="1a">1 ano</option>
-                            <option value="2a">2 ano</option>
-                            <option value="3a">3 ano</option>
-                            <option value="5a">5 ano</option>
-                            <option value="6a">6 ano</option>
-                            <option value="9a">9 ano</option>
-                            <option value="10a">10 ano</option>
-                            <option value="12a">12 ano</option>
+                            <option value="0m">Menos de 1 mês</option>
+                            <option value="1m">1 Mês</option>
+                            <option value="2m">2 Mêses</option>
+                            <option value="3m">3 Mêses</option>
+                            <option value="4m">4 Mêses</option>
+                            <option value="5m">5 Mêses</option>
+                            <option value="6m">6 Mêses</option>
+                            <option value="7m">7 Mêses</option>
+                            <option value="8m">8 Mêses</option>
+                            <option value="9m">9 Mêses</option>
+                            <option value="10m">10 Mêses</option>
+                            <option value="11m">11 Mêses</option>
+                            <option value="1a">1 Ano</option>
+                            <option value="2a">2 Anos</option>
+                            <option value="3a">3 Anos</option>
+                            <option value="4a">4 Anos</option>
+                            <option value="5a">5 Anos</option>
                           </select>
                         </div>
                       </div>
@@ -4594,8 +4605,238 @@
           <h2 class="titulo-secao" id="titulo-perfil">
             <i class="fas fa-user-astronaut"></i> Meu Perfil
           </h2>
+
           <div class="container-conteudo-secao">
-            <form id="form-meu-perfil" class="form-moderno-nexus">
+            <form
+              id="formEditarPerfil"
+              class="form-moderno-nexus card p-4 shadow-lg container my-4"
+              style="max-width: 1000px"
+            >
+              <h3 class="mb-4">
+                <i class="fas fa-child"></i>
+                <span id="labelTituloCadastroFuncionario"
+                  >Editar Meus Dados</span
+                >
+              </h3>
+
+              <div class="row">
+                <!-- Campo de Imagem -->
+                <div class="col-auto mx-auto mb-3">
+                  <input
+                    type="file"
+                    id="inpFotoFuncionarioEditar"
+                    accept="image/*"
+                    hidden
+                  />
+                  <label for="inpFotoFuncionario" class="sr-onl"
+                    >Foto de Perfil</label
+                  >
+                  <img
+                    id="fotoPreviewFuncionarioEditar"
+                    src="./assets/img/blank-profile-picture-png.webp"
+                    alt="Foto do Funcionário"
+                    class="img-thumbnail shadow"
+                    style="
+                      cursor: pointer;
+                      width: 100%;
+                      max-width: 150px;
+                      height: 100%;
+                      max-height: 150px;
+                    "
+                  />
+                </div>
+
+                <div class="col-12 col-md-auto"></div>
+
+                <!-- Dados do Formulário -->
+                <div class="col-12 col-lg-9 mx-aut">
+                  <div class="row g-">
+                    <div class="col-md-6 col-lg-6 campo-form-nexus">
+                      <label for="inpNomeFuncionario" class="sr-onl"
+                        >Nome Completo</label
+                      >
+                      <i
+                        class="fas fa-user icone-input-form"
+                        aria-hidden="true"
+                      ></i>
+                      <input
+                        type="text"
+                        name="inpNomeFuncionario"
+                        id="inpNomeFuncionario"
+                        placeholder="Nome Completo do Funcionário"
+                        required
+                      />
+                    </div>
+
+                    <div class="col-md-6 col-lg-6 campo-form-nexus">
+                      <label for="inpDataNascimentoFuncionario" class="sr-onl">
+                        Data de Nascimento
+                        <span id="labelIdadeFuncionario"></span>
+                      </label>
+                      <i
+                        class="fas fa-calendar-day icone-input-form"
+                        aria-hidden="true"
+                      ></i>
+                      <input
+                        type="date"
+                        name="inpDataNascimentoFuncionario"
+                        id="inpDataNascimentoFuncionario"
+                        required
+                      />
+                    </div>
+
+                    <div class="col-md-6 col-lg-6 campo-form-nexus">
+                      <label for="sltGeneroFuncionario">Gênero</label>
+                      <i
+                        class="fas fa-genderless icone-input-form"
+                        aria-hidden="true"
+                      ></i>
+                      <select
+                        name="sltGeneroFuncionario"
+                        id="sltGeneroFuncionario"
+                        required
+                      >
+                        <option value="" disabled selected>
+                          Selecionar...
+                        </option>
+                        <option value="m">Masculino</option>
+                        <option value="f">Feminino</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-6 col-lg-6 campo-form-nexus">
+                      <label for="inpTelefoneFuncionario" class="sr-onl"
+                        >Telefone</label
+                      >
+                      <i
+                        class="fas fa-phone icone-input-form"
+                        aria-hidden="true"
+                      ></i>
+                      <input
+                        type="text"
+                        name="inpTelefoneFuncionario"
+                        id="inpTelefoneFuncionario"
+                        placeholder="Telefone"
+                        required
+                      />
+                    </div>
+
+                    <div class="col-md-6 col-lg-6 campo-form-nexus">
+                      <label for="inpEmailFuncionario" class="sr-onl"
+                        >Email</label
+                      >
+                      <i
+                        class="fas fa-envelope icone-input-form"
+                        aria-hidden="true"
+                      ></i>
+                      <input
+                        type="email"
+                        name="inpEmailFuncionario"
+                        id="inpEmailFuncionario"
+                        placeholder="Email"
+                        required
+                      />
+                    </div>
+
+                    <div class="col-md-6 col-lg-6 campo-form-nexus">
+                      <label for="inpEnderecoFuncionario" class="sr-onl"
+                        >Endereço</label
+                      >
+                      <i
+                        class="fas fa-map-pin icone-input-form"
+                        aria-hidden="true"
+                      ></i>
+                      <input
+                        type="text"
+                        name="inpEnderecoFuncionario"
+                        id="inpEnderecoFuncionario"
+                        placeholder="Município, Bairro, Rua, Casa"
+                        required
+                      />
+                    </div>
+
+                    <div class="col-md-6 campo-form-nexus">
+                      <label for="sltFuncaoFuncionario">Função</label>
+                      <i
+                        class="fas fa-gears icone-input-form"
+                        aria-hidden="true"
+                      ></i>
+                      <select
+                        name="sltFuncaoFuncionario"
+                        id="sltFuncaoFuncionario"
+                        required
+                      >
+                        <option value="" disabled selected>
+                          Selecionar...
+                        </option>
+                        <option value="diretor">Diretor(a)</option>
+                        <option value="coordenador">Coordenador(a)</option>
+                        <option value="secretario">Secretário(a)</option>
+                        <option value="professor">Professor(a)</option>
+                        <option value="auxiliar_professor">
+                          Auxiliar de Professor(a)
+                        </option>
+                        <option value="cuidador">Cuidador(a)</option>
+                        <option value="merendeira">Merendeira</option>
+                        <option value="limpeza">Serviços Gerais</option>
+                        <option value="porteiro">Porteiro(a)</option>
+                        <option value="seguranca">Segurança</option>
+                        <option value="psicologo">Psicólogo(a)</option>
+                        <option value="fonoaudiologo">Fonoaudiólogo(a)</option>
+                        <option value="assistente_social">
+                          Assistente Social
+                        </option>
+                        <option value="enfermeiro">Enfermeiro(a)</option>
+                        <option value="estagiario">Estagiário(a)</option>
+                        <option value="outro">Outro</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-6 campo-form-nexus">
+                      <label for="sltNivelFuncionario">Nível de Acesso</label>
+                      <i
+                        class="fab fa-deezer icone-input-form"
+                        aria-hidden="true"
+                      ></i>
+                      <select
+                        name="sltNivelFuncionario"
+                        id="sltNivelFuncionario"
+                        required
+                      >
+                        <option value="" disabled selected>
+                          Selecionar...
+                        </option>
+                        <option value="usuario">Usuário</option>
+                        <option value="educador">Educador</option>
+                        <option value="auxiliar">Auxiliar de Educador</option>
+                        <option value="gestao">Gestão</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Botões -->
+              <div class="mt-2 d-flex justify-content-end flex-wrap gap-3">
+                <button
+                  type="submit"
+                  id="btnSalvarEditarPerfil"
+                  class="col-12 col-md-auto botao-estilizado primario com-icone"
+                >
+                  <i class="fas fa-save"></i>
+                  <span id="labelBtnCadastrarFuncionario">Salvar Edição</span>
+                </button>
+                <button
+                  type="button"
+                  id="btnCancelarEditarPerfil"
+                  class="botao-estilizado secundario com-icone"
+                >
+                  <i class="fas fa-ban"></i> <span>Cancelar</span>
+                </button>
+              </div>
+            </form>
+
+            <forma id="contetPerfilFuncionario" class="form-moderno-nexus">
               <div class="perfil-avatar-container">
                 <img
                   src=""
@@ -4718,19 +4959,18 @@
                 >
                 <input
                   type="password"
-                  id="perfil-confirma-nova-senha"
                   placeholder="Confirmar Nova Senha"
                   autocomplete="new-password"
                 />
               </div>
               <button
-                hidden
-                type="submit"
+                id="btnEditarDadosPerfil"
+                type="button"
                 class="botao-estilizado primario com-icone"
               >
-                <i class="fas fa-user-edit"></i> Salvar Alterações no Perfil
+                <i class="fas fa-user-edit"></i> Editar Dados do Perfil
               </button>
-            </form>
+            </forma>
           </div>
         </section>
       </main>

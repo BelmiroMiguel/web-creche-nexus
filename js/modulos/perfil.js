@@ -1,4 +1,5 @@
-import { getUsuarioLogado } from "../app_service.js";
+import { AppService, armazenamento, getUsuarioLogado } from "../app_service.js";
+import { formatarDataInput, fotoPreview } from "../utils.js";
 
 // js/modulos/perfil.js
 (function () {
@@ -6,18 +7,30 @@ import { getUsuarioLogado } from "../app_service.js";
 
   const secaoPerfil = document.getElementById("perfil");
   if (!secaoPerfil) return;
+  $(formEditarPerfil).on("submit", salvarFuncionario);
+  $(btnEditarDadosPerfil).on("click", () =>
+    abilitarEditarFuncionario(getUsuarioLogado())
+  );
+  let funcionarioSelecionado = null;
 
-  const formMeuPerfil = secaoPerfil.querySelector("#form-meu-perfil");
+  $(btnCancelarEditarPerfil).on("click", () => abilitarNovoFuncionaario(false));
+  const formMeuPerfil = secaoPerfil.querySelector("#contetPerfilFuncionario");
   const avatarPerfilGrande = secaoPerfil.querySelector("#avatar-perfil-grande");
   const uploadAvatarPerfil = secaoPerfil.querySelector("#upload-avatar-perfil");
   const btnTrocarAvatarPerfil = secaoPerfil.querySelector(
     "#btn-trocar-avatar-perfil"
   );
 
+  fotoPreview({
+    inputFileImagem: inpFotoFuncionarioEditar,
+    docImg: fotoPreviewFuncionarioEditar,
+  });
+
   // dados do usuário logado
   let usuarioLogado = getUsuarioLogado();
 
   function carregarDadosPerfil() {
+    usuarioLogado = getUsuarioLogado();
     if (!formMeuPerfil) return;
     formMeuPerfil.querySelector("#perfil-nome-usuario").value =
       usuarioLogado.nome;
@@ -34,6 +47,7 @@ import { getUsuarioLogado } from "../app_service.js";
   }
 
   function handleSalvarPerfil(event) {
+    return;
     event.preventDefault();
     const email = formMeuPerfil.querySelector("#perfil-email-usuario").value;
     const senhaAtual = formMeuPerfil.querySelector("#perfil-senha-atual").value;
@@ -93,10 +107,138 @@ import { getUsuarioLogado } from "../app_service.js";
     }, 1500);
   }
 
+  function salvarFuncionario(event) {
+    event.preventDefault();
+
+    const nome = formEditarPerfil.inpNomeFuncionario.value;
+    const dataNascimento = formEditarPerfil.inpDataNascimentoFuncionario.value;
+    const genero = formEditarPerfil.sltGeneroFuncionario.value;
+    const telefone = formEditarPerfil.inpTelefoneFuncionario.value;
+    const email = formEditarPerfil.inpEmailFuncionario.value;
+    const funcao = formEditarPerfil.sltFuncaoFuncionario.value;
+    const nivel = formEditarPerfil.sltNivelFuncionario.value;
+    const endereco = formEditarPerfil.inpEnderecoFuncionario.value;
+
+    // Pega a imagem do input
+    const fotoFile = formEditarPerfil.inpFotoFuncionarioEditar.files[0];
+
+    // Monta o FormData
+    const formDataFuncionario = new FormData();
+    formDataFuncionario.append("nome", nome);
+    formDataFuncionario.append("dataNascimento", dataNascimento);
+    formDataFuncionario.append("genero", genero);
+    formDataFuncionario.append("telefone", telefone);
+    formDataFuncionario.append("email", email);
+    formDataFuncionario.append("funcao", funcao);
+    formDataFuncionario.append("nivel", nivel);
+    formDataFuncionario.append("endereco", endereco);
+    if (fotoFile) formDataFuncionario.append("imagem", fotoFile);
+    formDataFuncionario.append("idUsuario", funcionarioSelecionado.idUsuario);
+
+    const textBtn = btnCadastrarFuncionario.innerHTML;
+    btnCadastrarFuncionario.disabled = true;
+    btnCadastrarFuncionario.innerHTML = `<span class='pr-3' >Validando...</span> <i class="fas fa-spinner fa-spin"></i>`;
+
+    AppService.postData("usuarios/editar", formDataFuncionario, {
+      onSuccess: (res) => {
+        Swal.fire({
+          title: res.message,
+          icon: "success",
+          timer: 3000,
+        });
+        armazenamento.setItem("nexus-usuario", JSON.stringify(res.body));
+        carregarDadosPerfil();
+
+        abilitarNovoFuncionaario(false);
+        resetarFormularioFuncionario();
+      },
+      onError: (res) => {
+        Swal.fire({
+          title: res.message,
+          icon: "error",
+        });
+      },
+      onResponse: () => {
+        btnCadastrarFuncionario.innerHTML = textBtn;
+        btnCadastrarFuncionario.disabled = false;
+      },
+    });
+
+    return false;
+  }
+
+  async function resetarFormularioFuncionario() {
+    if (typeof formEditarPerfil !== "undefined" && formEditarPerfil) {
+      formEditarPerfil.reset();
+      if (
+        typeof fotoPreviewFuncionario !== "undefined" &&
+        fotoPreviewFuncionario
+      ) {
+        fotoPreviewFuncionario.src =
+          "./assets/img/blank-profile-picture-png.webp";
+      }
+    }
+
+    inpFotoFuncionario.value = "";
+    labelTituloCadastroFuncionario.innerHTML = "Registrar Novo Funcionário";
+    labelBtnCadastrarFuncionario.innerHTML = "Cadastrar Funcionário";
+    labelIdadeFuncionario.innerHTML = "";
+    funcionarioSelecionado = null;
+  }
+
+  async function abilitarNovoFuncionaario(status = false) {
+    resetarFormularioFuncionario();
+    if (typeof formEditarPerfil !== "undefined" && formEditarPerfil) {
+      if (status) {
+        $(contetPerfilFuncionario).fadeOut(0);
+        $(formEditarPerfil).fadeIn(300);
+      } else {
+        $(formEditarPerfil).fadeOut(0);
+        $(contetPerfilFuncionario).fadeIn(300);
+      }
+    }
+  }
+
+  async function abilitarEditarFuncionario(funcionario) {
+    abilitarNovoFuncionaario(true);
+    funcionarioSelecionado = funcionario;
+
+    labelTituloCadastroFuncionario.innerHTML = "Editar Dados do Funcionário";
+    labelBtnCadastrarFuncionario.innerHTML = "Salvar Dados da Edição";
+    formEditarPerfil.inpNomeFuncionario.value = funcionario.nome || "";
+    formEditarPerfil.inpDataNascimentoFuncionario.value =
+      formatarDataInput(funcionario.dataNascimento) || "";
+    formEditarPerfil.sltGeneroFuncionario.value = funcionario.genero || "";
+    formEditarPerfil.inpTelefoneFuncionario.value = funcionario.telefone || "";
+    formEditarPerfil.inpEmailFuncionario.value = funcionario.email || "";
+    formEditarPerfil.sltFuncaoFuncionario.value = funcionario.funcao || "";
+    formEditarPerfil.sltNivelFuncionario.value = funcionario.nivel || "";
+    formEditarPerfil.inpEnderecoFuncionario.value = funcionario.endereco || "";
+
+    // calcular idade.
+    if (funcionario.dataNascimento) {
+      const dataNasc = new Date(funcionario.dataNascimento);
+      const hoje = new Date();
+      let idade = hoje.getFullYear() - dataNasc.getFullYear();
+      const m = hoje.getMonth() - dataNasc.getMonth();
+      if (m < 0 || (m === 0 && hoje.getDate() < dataNasc.getDate())) {
+        idade--;
+      }
+      labelIdadeFuncionario.innerHTML = ` / ${idade} anos`;
+    } else labelIdadeFuncionario.innerHTML = "";
+
+    if (
+      typeof fotoPreviewFuncionarioEditar !== "undefined" &&
+      fotoPreviewFuncionarioEditar
+    ) {
+      fotoPreviewFuncionarioEditar.src =
+        funcionario.imagem || "./assets/img/blank-profile-picture-png.webp";
+    }
+  }
+
   function inicializarModuloPerfil() {
     if (!secaoPerfil.classList.contains("ativa")) return;
     console.log("Módulo Perfil inicializado.");
-
     carregarDadosPerfil();
 
     formMeuPerfil?.addEventListener("submit", handleSalvarPerfil);
@@ -126,6 +268,8 @@ import { getUsuarioLogado } from "../app_service.js";
     });
   }
 
+  $(formEditarPerfil).fadeOut(0);
+  $(contetPerfilFuncionario).fadeIn(300);
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {

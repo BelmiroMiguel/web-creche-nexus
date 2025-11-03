@@ -386,7 +386,7 @@ import {
     const novoEstado = aluno.eliminado ? 0 : 1;
 
     return Swal.fire({
-      title: `Deseja ${novoEstado ? "desativar" : "ativar"} este funcionário?`,
+      title: `Deseja ${novoEstado ? "desativar" : "ativar"} este aluno?`,
       icon: "question",
       showCancelButton: true,
       confirmButtonText: novoEstado ? "Desativar" : "Ativar",

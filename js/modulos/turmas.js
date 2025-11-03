@@ -316,8 +316,9 @@ import {
       <div class="info-grid-turma">
         <div class="info-item-turma">
           <span class="info-label-turma">Educador Principal</span>
-          <span class="info-value-turma">${turma.educador?.nome || "A definir"
-      }</span>
+          <span class="info-value-turma">${
+            turma.educador?.nome || "A definir"
+          }</span>
         </div>
         
         <div class="info-item-turma">
@@ -330,34 +331,37 @@ import {
         <div class="info-item-turma">
           <span class="info-label-turma">Período</span>
           <span class="info-value-turma">
-            ${formatDate(turma.dataInicio)} ${turma.dataTermino ? `a ${formatDate(turma.dataTermino)}` : ""
-      }
+            ${formatDate(turma.dataInicio)} ${
+      turma.dataTermino ? `a ${formatDate(turma.dataTermino)}` : ""
+    }
           </span>
         </div>
         
         <div class="info-item-turma">
           <span class="info-label-turma">Status</span>
           <span class="info-value-turma">
-            ${isEliminada
-        ? '<span class="status-badge status-inactive">Eliminada</span>'
-        : isTerminada
-          ? '<span class="status-badge status-inactive">Encerrada</span>'
-          : '<span class="status-badge status-active">Ativa</span>'
-      }
+            ${
+              isEliminada
+                ? '<span class="status-badge status-inactive">Eliminada</span>'
+                : isTerminada
+                ? '<span class="status-badge status-inactive">Encerrada</span>'
+                : '<span class="status-badge status-active">Ativa</span>'
+            }
           </span>
         </div>
         
         <div class="info-item-turma">
           <span class="info-label-turma">Data de Cadastro</span>
           <span class="info-value-turma">${formatDate(
-        turma.dataCadastro
-      )}</span>
+            turma.dataCadastro
+          )}</span>
         </div>
         
         <div class="info-item-turma">
           <span class="info-label-turma">Registrado por</span>
-          <span class="info-value-turma">${turma.educador?.nome || "Sistema"
-      }</span>
+          <span class="info-value-turma">${
+            turma.educador?.nome || "Sistema"
+          }</span>
         </div>
       </div>
       
@@ -371,14 +375,15 @@ import {
         </div>
       </div>
       
-      ${turma.descricao
-        ? `
+      ${
+        turma.descricao
+          ? `
         <div class="info-item-turma" style="grid-column: span 2">
           <span class="info-label-turma">Descrição</span>
           <span class="info-value-turma">${turma.descricao}</span>
         </div>
       `
-        : ""
+          : ""
       }
     </div>
     
@@ -408,6 +413,7 @@ import {
         modal.remove();
         modalOverlay.remove();
         document.body.style.overflow = "";
+        turmaSelecionada = null;
       }
     });
 
@@ -416,6 +422,7 @@ import {
       modal.remove();
       modalOverlay.remove();
       document.body.style.overflow = "";
+      turmaSelecionada = null;
     };
 
     // Event listeners
@@ -466,13 +473,15 @@ import {
     });
   }
 
-  async function resetarFormularioTurma() {
+  function resetarFormularioTurma() {
     if (typeof formNovaTurma !== "undefined" && formNovaTurma) {
       formNovaTurma.reset();
     }
   }
 
-  async function abilitarNovaTurma(status = false) {
+  function abilitarNovaTurma(status = false) {
+    turmaSelecionada = null;
+    isEditarTurma = false;
     resetarFormularioTurma();
     if (typeof formNovaTurma !== "undefined" && formNovaTurma) {
       if (status) {
@@ -483,13 +492,15 @@ import {
         $(contentTurma).fadeIn(300);
       }
     }
+
+    labelTituloCadastroTurma.innerHTML = "Criar Nova Turma";
+    labelBtnCadastrarTurma.innerHTML = "Salvar Dados";
   }
 
   async function abilitarEditarTurma(turma) {
     abilitarNovaTurma(true);
     turmaSelecionada = turma;
     isEditarTurma = true;
-    console.log(turma);
 
     inpNomeTurma.value = turma.nome || "";
     sltEducadorTurma.value = turma.idEducador || "";
