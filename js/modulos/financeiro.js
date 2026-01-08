@@ -155,6 +155,8 @@ import { formatarData, formatMoney, renderPaginacao } from "../utils.js";
     let value = $("#inpFiltroMesesPagamentos").val(); // exemplo: "2025-09"
     let [ano, mes] = value.split("-");
 
+    btnImprimirRelatorioPropinas.href = `http://localhost:8000/api/pdf/propinas?value=${inpFiltroPagamentos.value}&ano=${ano}&mes=${mes}&statusPagamento=${sltFitroEstadoPagamentos.value}`;
+
     AppService.getData(
       "propinas",
       {

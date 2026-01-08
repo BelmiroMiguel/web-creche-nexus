@@ -73,8 +73,9 @@ import {
           turmasCarregadas.forEach((turma) => {
             const option = document.createElement("option");
             option.value = turma.idTurma;
-            option.textContent = `${capitalizeWords(turma.nome)} - (${turma.descFaixaEtaria
-              })`;
+            option.textContent = `${capitalizeWords(turma.nome)} - (${
+              turma.descFaixaEtaria
+            })`;
             sltTurmaConfirmacao.innerHTML += option.outerHTML;
           });
         },
@@ -182,6 +183,7 @@ import {
 
   async function carregarAlunos(page = 0) {
     $(preload).fadeIn();
+    btnImprimirRelatorioMatriculas.href = `http://localhost:8000/api/pdf/matriculas?value=${inpFiltroAlunoMatricula.value}&eliminado=${sltFitroEstadoAlunoMatricula.value}&confirmacao_terminado=${sltFitroEstadoConfirmacaoAlunoMatricula.value}`;
 
     if (sltFitroEstadoAlunoMatricula.value == 1) {
       sltFitroEstadoConfirmacaoAlunoMatricula.value = 1;
@@ -485,10 +487,6 @@ import {
       aluno.telefoneResponsavel || "";
     inpEnderecoAlunoMatricula.value = aluno.endereco || "";
 
-
-
-
-
     inpNomeResponsavel2AlunoMatricula.value = aluno.nomeResponsavel2 || "";
     inpTelefoneResponsavel2AlunoMatricula.value =
       aluno.telefoneResponsavel2 || "";
@@ -539,45 +537,53 @@ import {
                 <td class="px-4 py-3">${itemIndex}</td>
                 <td class="px-4 py-3 aluno-nome">${aluno.nome}</td>
                 <td class="px-4 py-3 aluno-funcao">${calcularIdade(
-        aluno.dataNascimento
-      )}</td>
+                  aluno.dataNascimento
+                )}</td>
                 <td class="px-4 py-3 aluno-turno">${aluno.matricula}</td>
                 <td class="px-4 py-3 aluno-contato">${aluno.endereco}</td>
-                <td class="px-4 py-3 aluno-contato">${aluno.nomeResponsavel
-        }</td>
+                <td class="px-4 py-3 aluno-contato">${
+                  aluno.nomeResponsavel
+                }</td>
                 <td class="px-4 py-3 aluno-status">
-                    <span class="badge  ${aluno.eliminado ? "bg-danger" : "bg-success"
-        }">
+                    <span class="badge  ${
+                      aluno.eliminado ? "bg-danger" : "bg-success"
+                    }">
                         ${aluno.eliminado ? "Inativo" : "Ativo"}
                     </span>
-                    <span ${!aluno.confirmacao?.terminado ? "" : "hidden"
-        } class="badge bg-primary ">
+                    <span ${
+                      !aluno.confirmacao?.terminado ? "" : "hidden"
+                    } class="badge bg-primary ">
                         Confirmado
                     </span>
                 </td>
                 <td class="px-4 py-3 aluno-acoes">
                     <button class="botao-pequeno-nexus info btn-ver-perfil-aluno" title="Ajustes de Confirmação"><i class="fas fa-user-gear"></i></button>
-                    <button ${aluno.eliminado ? "disabled" : ""
-        }  class="botao-pequeno-nexus editar btn-editar-aluno"
-                        title="${aluno.eliminado
-          ? "Aluno Inativo"
-          : "Editar Dados do Aluno"
-        }">
+                    <button ${
+                      aluno.eliminado ? "disabled" : ""
+                    }  class="botao-pequeno-nexus editar btn-editar-aluno"
+                        title="${
+                          aluno.eliminado
+                            ? "Aluno Inativo"
+                            : "Editar Dados do Aluno"
+                        }">
                         <i class="fas fa-user-edit"></i>
                      </button>
                     <button 
                         ${!aluno.confirmacao?.terminado ? "disabled" : ""} 
-                        class="botao-pequeno-nexus ${!aluno.eliminado ? "perigo" : "sucesso"
-        } 
+                        class="botao-pequeno-nexus ${
+                          !aluno.eliminado ? "perigo" : "sucesso"
+                        } 
                         btn-alterar-status-aluno" 
-                        title="${!aluno.confirmacao?.terminado
-          ? "Aluno Possue Confirmação"
-          : !aluno.eliminado
-            ? "Desativar Aluno"
-            : "Ativar Aluno"
-        }">
-                        <i class="fas ${!aluno.eliminado ? "fa-user-slash" : "fa-user-check"
-        }"></i>
+                        title="${
+                          !aluno.confirmacao?.terminado
+                            ? "Aluno Possue Confirmação"
+                            : !aluno.eliminado
+                            ? "Desativar Aluno"
+                            : "Ativar Aluno"
+                        }">
+                        <i class="fas ${
+                          !aluno.eliminado ? "fa-user-slash" : "fa-user-check"
+                        }"></i>
                     </button>  
                 </td>
             `;
@@ -599,6 +605,24 @@ import {
       tr.querySelector(".btn-ver-perfil-aluno").addEventListener(
         "click",
         () => {
+          const detailTrAberto = tbodyAlunosMatricula.querySelector(
+            `#tr-detalhe-aluno-${aluno.idAluno}`
+          );
+
+          console.log(detailTrAberto);
+
+          if (detailTrAberto) {
+            tr.style.background = "#F3EBBF98";
+
+            setTimeout(() => {
+              tr.style.background = "";
+            }, 750);
+
+            detailTrAberto.remove();
+            tr.scrollIntoView({ behavior: "smooth", block: "center" });
+            return;
+          }
+
           tr.style.background = "#e9ecef";
 
           // Remove qualquer linha de detalhes aberta anteriormente
@@ -611,131 +635,180 @@ import {
           const detailTr = document.createElement("tr");
           detailTr.classList.add("aluno-detalhes-row");
           detailTr.style.background = "#e9ecef";
+          detailTr.id = `tr-detalhe-aluno-${aluno.idAluno}`;
           const detailTd = document.createElement("td");
           detailTd.colSpan = 8;
 
           const isTerminadoConfirmacao = confirmacao?.terminado ?? false;
 
           detailTd.innerHTML = `
-                    <div class="detalhes-aluno px-0 py-0" title='Toque para fechar'>
+                    <div class="detalhes-aluno px-0 py-0" title='Detalhes do aluno, dois toque para fechar'>
                         <div style="display: flex; align-items: center; gap: 16px;flex-wrap: wrap;">
-                            <img src="${aluno.imagem ||
-            "./assets/img/blank-profile-picture-png.webp"
-            }" alt="${capitalizeWords(
-              aluno.nome
-            )}" class="avatar-tabela-nexus shadow" style="width:150px;height:150px;border-radius:0%;">
+                            <img src="${
+                              aluno.imagem ||
+                              "./assets/img/blank-profile-picture-png.webp"
+                            }" alt="${capitalizeWords(
+            aluno.nome
+          )}" class="avatar-tabela-nexus shadow" style="width:150px;height:150px;border-radius:0%;">
                             <div style="align-self:start">
                                 <strong>${capitalizeWords(
-              aluno.nome
-            )}</strong> <br>
+                                  aluno.nome
+                                )}</strong> <br>
                                 <span style="margin-left:16px;">Data de Nascimento: <span class="text-primary" style="color:#1976d2; margin-left:8px;">${formatarData(
-              aluno.dataNascimento
-            )}</span></span><br>
+                                  aluno.dataNascimento
+                                )}</span></span><br>
                                 <span style="margin-left:16px;">Idade: <span class="text-primary" style="color:#1976d2; margin-left:8px;">${calcularIdade(
-              aluno.dataNascimento
-            )}</span></span><br>
-                                <span style="margin-left:16px;">Genêro: <span class="text-primary" style="color:#1976d2; margin-left:8px;">${aluno.genero || "-"
-            }</span></span><br>
-                                <span style="margin-left:16px;">Status: <span class="text-primary" style="color:#1976d2; margin-left:8px;">${aluno.status
-              ? toUpperCase(aluno.status)
-              : !aluno.eliminado
-                ? "Ativo"
-                : "Inativo"
-            }</span></span><br>
+                                  aluno.dataNascimento
+                                )}</span></span><br>
+                                <span style="margin-left:16px;">Genêro: <span class="text-primary" style="color:#1976d2; margin-left:8px;">${
+                                  aluno.genero || "-"
+                                }</span></span><br>
+                                <span style="margin-left:16px;">Status: <span class="text-primary" style="color:#1976d2; margin-left:8px;">${
+                                  aluno.status
+                                    ? toUpperCase(aluno.status)
+                                    : !aluno.eliminado
+                                    ? "Ativo"
+                                    : "Inativo"
+                                }</span></span><br>
                             </div>
 
 
                             <!-- Dados da turma -->
                               <div class="mx-5" style="align-self:start">
-                                <span style="font-weight: 400">Dados Escolares</span> :
-                                <span style="font-weight: 600">${capitalizeWords(aluno.matricula) || "-"
-            }</span> <br>
-                                <span style="margin-left:16px;">Turma: <span class="text-primary" style="color:#1976d2; margin-left:8px;">${confirmacao?.turma?.nome || "-"
-            }</span></span>
-                                <span hidden style="margin-left:16px;">Turno: <span class="text-primary" style="color:#1976d2; margin-left:8px;">${confirmacao?.turno || "-"
-            }</span></span><br>
-                                <span style="margin-left:16px;">Educador(a): <span class="text-primary" style="color:#1976d2; margin-left:8px;">${confirmacao?.turma?.educador?.nome || "-"
-            }</span></span><br>
-                                <span style="margin-left:16px;">Data Matrícula: <span class="text-primary" style="color:#1976d2; margin-left:8px;">${formatarData(confirmacao?.dataCadastro) || "-"
-            }</span></span><br>
-                                <div ${confirmacao && isTerminadoConfirmacao
-              ? ""
-              : "hidden"
-            }>
+                                <span style="font-weight: 400">Dados Escolar</span> :
+                                <span style="font-weight: 600">${
+                                  capitalizeWords(aluno.matricula) || "-"
+                                }</span> <br>
+                                <span style="margin-left:16px;">Turma: <span class="text-primary" style="color:#1976d2; margin-left:8px;">${
+                                  confirmacao?.turma?.nome || "-"
+                                }</span></span>
+                                <span hidden style="margin-left:16px;">Turno: <span class="text-primary" style="color:#1976d2; margin-left:8px;">${
+                                  confirmacao?.turno || "-"
+                                }</span></span><br>
+                                <span style="margin-left:16px;">Educador(a): <span class="text-primary" style="color:#1976d2; margin-left:8px;">${
+                                  confirmacao?.turma?.educador?.nome || "-"
+                                }</span></span><br>
+                                <span style="margin-left:16px;">Data Matrícula: <span class="text-primary" style="color:#1976d2; margin-left:8px;">${
+                                  formatarData(confirmacao?.dataCadastro) || "-"
+                                }</span></span><br>
+                                <div ${
+                                  confirmacao && isTerminadoConfirmacao
+                                    ? ""
+                                    : "hidden"
+                                }>
                                     <span style="margin-left:16px;"><span class="badge bg-danger" style="; margin: 3px 8px;">ENCERRADA</span></span>
-                                    <span style="margin-left:16px;">Data Encerramento    : <span class="text-primary" style="color:#1976d2; margin-left:8px;">${formatarData(confirmacao?.dataTermino) ||
-            "-"
-            }</span></span><br>
-                                    <span style="margin-left:16px;">Usuario Encerramento: <span class="text-primary" style="color:#1976d2; margin-left:8px;">${confirmacao?.usuario_termino?.nome || "-"
-            }</span></span><br>
+                                    <span style="margin-left:16px;">Data Encerramento    : <span class="text-primary" style="color:#1976d2; margin-left:8px;">${
+                                      formatarData(confirmacao?.dataTermino) ||
+                                      "-"
+                                    }</span></span><br>
+                                    <span style="margin-left:16px;">Usuario Encerramento: <span class="text-primary" style="color:#1976d2; margin-left:8px;">${
+                                      confirmacao?.usuario_termino?.nome || "-"
+                                    }</span></span><br>
                                 </div>
                                 </div>
 
                             <!-- Dados do Responsável -->
                             <div class="mx-5" style="align-self:start">
                                 <span style="font-weight: 400">Responsável</span> :
-                                <span style="font-weight: 600">${capitalizeWords(aluno.nomeResponsavel) || "-"
-            }</span> <br>
-                                <span style="margin-left:16px;">Grau Parentesco: <span class="text-primary" style="color:#1976d2; margin-left:8px;">${aluno.parentesco || "-"
-            }</span></span><br>
-                                <span style="margin-left:16px;">Contato: <span class="text-primary" style="color:#1976d2; margin-left:8px;">${aluno.telefoneResponsavel || "-"
-            }</span></span><br>
-                                <span style="margin-left:16px;">Email: <span class="text-primary" style="color:#1976d2; margin-left:8px;">${aluno.emailResponsavel || "-"
-            }</span></span><br>
-                                <span style="margin-left:16px;">Endereço: <span class="text-primary" style="color:#1976d2; margin-left:8px;">${capitalizeWords(aluno.endereco) || "-"
-            }</span></span><br>
+                                <span style="font-weight: 600">${
+                                  capitalizeWords(aluno.nomeResponsavel) || "-"
+                                }</span> <br>
+                                <span class='uppercase' style="margin-left:16px;">Grau Parentesco: <span class="text-primary" style="color:#1976d2; margin-left:8px;">${
+                                  aluno.grauParentesco || "-"
+                                }</span></span><br>
+                                <span style="margin-left:16px;">Contato: <span class="text-primary" style="color:#1976d2; margin-left:8px;">${
+                                  aluno.telefoneResponsavel || "-"
+                                }</span></span><br>
+                                <span style="margin-left:16px;">Email: <span class="text-primary" style="color:#1976d2; margin-left:8px;">${
+                                  aluno.emailResponsavel || "-"
+                                }</span></span><br>
+                                <span style="margin-left:16px;">Endereço: <span class="text-primary" style="color:#1976d2; margin-left:8px;">${
+                                  capitalizeWords(aluno.endereco) || "-"
+                                }</span></span><br>
                             </div>
-                            <div class="col-12" style="align-self:start">
-                                <button hidden ${aluno.eliminado ? "disabled" : ""
-            }
-                                    title=' ${aluno.eliminado
-              ? "Aluno Inativo, Abilita Primeiro"
-              : ""
-            }'
+                            <div class="col-12 flex" style="align-self:start">
+                                <button hidden ${
+                                  aluno.eliminado ? "disabled" : ""
+                                }
+                                    title=' ${
+                                      aluno.eliminado
+                                        ? "Aluno Inativo, Abilita Primeiro"
+                                        : ""
+                                    }'
                                     id='btn-restaurar-aluno'
-                                    ${confirmacao && !isTerminadoConfirmacao
-              ? "hidden"
-              : ""
-            }
+                                    ${
+                                      confirmacao && !isTerminadoConfirmacao
+                                        ? "hidden"
+                                        : ""
+                                    }
                                     type="button" class="btn btn-sm btn-outline-success mx-1" style="font-size: 0.8rem; margin: 5px; font-weight: 600; padding:7px 7px;min-width:unset;" >
                                     <i class="fas fa-arrow-rotate-left me-1"></i>
                                     Restaurar Confirmação
                                 </button>
 
                                 <button ${aluno.eliminado ? "disabled" : ""}
-                                    title=' ${aluno.eliminado
-              ? "Aluno Inativo, Abilita Primeiro"
-              : ""
-            }'
+                                    title=' ${
+                                      aluno.eliminado
+                                        ? "Aluno Inativo, Abilita Primeiro"
+                                        : ""
+                                    }'
                                     id='btn-confimacao-aluno'
-                                    ${confirmacao && !isTerminadoConfirmacao
-              ? "hidden"
-              : ""
-            }
+                                    ${
+                                      confirmacao && !isTerminadoConfirmacao
+                                        ? "hidden"
+                                        : ""
+                                    }
                                     type="button" class="btn btn-sm btn-success mx-1" style="font-size: 0.8rem; margin: 5px; font-weight: 600; padding:7px 7px;min-width:unset;" >
                                     <i class="fas fa-check-circle me-1"></i>
                                     Comfirmação do Aluno (NOVA TURMA)
                                 </button>
                                 
-                                <button  ${aluno.eliminado ? "disabled" : ""
-            }   title=' ${aluno.eliminado ? "Aluno Inativo, Abilita Primeiro" : ""
-            }'  id='btn-trocar-turma-aluno' ${!confirmacao || (confirmacao && isTerminadoConfirmacao)
+                                <button  ${
+                                  aluno.eliminado ? "disabled" : ""
+                                }   title=' ${
+            aluno.eliminado ? "Aluno Inativo, Abilita Primeiro" : ""
+          }'  id='btn-trocar-turma-aluno' ${
+            !confirmacao || (confirmacao && isTerminadoConfirmacao)
               ? "hidden"
               : ""
-            } type="button" class="btn btn-sm btn-outline-primary mx-1" style="font-size: 0.8rem; margin: 5px; font-weight: 600; padding:7px 7px;min-width:unset;" >
+          } type="button" class="btn btn-sm btn-outline-primary mx-1" style="font-size: 0.8rem; margin: 5px; font-weight: 600; padding:7px 7px;min-width:unset;" >
                                     <i class="fas fa-exchange-alt"></i>
                                     Trocar de Turma
                                 </button>
 
-                                <button  ${aluno.eliminado ? "disabled" : ""
-            }  title=' ${aluno.eliminado ? "Aluno Inativo, Abilita Primeiro" : ""
-            }'  id='btn-terminar-confirmacao-aluno' ${!confirmacao || (confirmacao && isTerminadoConfirmacao)
+                                <button  ${
+                                  aluno.eliminado ? "disabled" : ""
+                                }  title=' ${
+            aluno.eliminado ? "Aluno Inativo, Abilita Primeiro" : ""
+          }'  id='btn-terminar-confirmacao-aluno' ${
+            !confirmacao || (confirmacao && isTerminadoConfirmacao)
               ? "hidden"
               : ""
-            } type="button" class="btn btn-sm btn-outline-danger mx-1" style="font-size: 0.8rem; margin: 5px; font-weight: 600; padding:7px 7px;min-width:unset;" >
+          } type="button" class="btn btn-sm btn-outline-danger mx-1" style="font-size: 0.8rem; margin: 5px; font-weight: 600; padding:7px 7px;min-width:unset;" >
                                     <i class="fas fa-times-circle"></i>
                                     Terminar a Confirmacao
                                 </button>
+
+                                <div class='h-[48px] w-2 bg-gray-300 rounded-4xl! shadow-gray-600! shadow-2xl! ml-10! mr-2! '></div>
+
+                                <a href='${
+                                  aluno.linkMatricula
+                                }' target='_blanck' class="btn btn-sm btn-info mx-1" style="font-size: 0.8rem; margin: 5px; font-weight: 600; padding:7px 7px;min-width:unset;" >
+                                    <i class="fas fa-print"></i>
+                                    Ficha de Matrícula
+                                </a>
+
+                                <a  ${
+                                  !confirmacao ||
+                                  (confirmacao && isTerminadoConfirmacao)
+                                    ? "hidden"
+                                    : ""
+                                }
+                                  href='${aluno.linkConfirmacao}'
+                                  target='_blanck' class="btn btn-sm btn-info mx-1" style="font-size: 0.8rem; margin: 5px; font-weight: 600; padding:7px 7px;min-width:unset;" >
+                                    <i class="fas fa-print"></i>
+                                    Ficha de Confirmacao
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -754,8 +827,8 @@ import {
           trAnterior = tr;
 
           // Fecha detalhes ao clicar novamente
-          detailTr.addEventListener("click", () => {
-            tr.style.background = "#e0c11298";
+          detailTr.addEventListener("dblclick", () => {
+            tr.style.background = "#F3EBBF98";
 
             setTimeout(() => {
               tr.style.background = "";

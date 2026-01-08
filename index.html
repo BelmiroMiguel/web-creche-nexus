@@ -1074,10 +1074,10 @@
                           Selecionar...
                         </option>
                         <option value="pai">Pai</option>
-                        <option value="mae">Mãe</option>
-                        <option value="tio">Tio / Tia</option>
+                        <option value="mãe">Mãe</option>
+                        <option value="tio(a)">Tio / Tia</option>
                         <option value="avo">Avó</option>
-                        <option value="primo">Primo(a)</option>
+                        <option value="primo(a)">Primo(a)</option>
                         <option value="outro">Outro</option>
                       </select>
                     </div>
@@ -1187,10 +1187,10 @@
                         <select id="sltGrauParentescoResponsavel2Matricula">
                           <option value="" selected>Sem grau...</option>
                           <option value="pai">Pai</option>
-                          <option value="mae">Mãe</option>
-                          <option value="tio">Tio / Tia</option>
+                          <option value="mãe">Mãe</option>
+                          <option value="tio(a)">Tio / Tia</option>
                           <option value="avo">Avó</option>
-                          <option value="primo">Primo(a)</option>
+                          <option value="primo(a)">Primo(a)</option>
                           <option value="outro">Outro</option>
                         </select>
                       </div>
@@ -1242,10 +1242,10 @@
                         <select id="sltGrauParentescoResponsavel3Matricula">
                           <option value="" selected>Sem grau...</option>
                           <option value="pai">Pai</option>
-                          <option value="mae">Mãe</option>
-                          <option value="tio">Tio / Tia</option>
+                          <option value="mãe">Mãe</option>
+                          <option value="tio(a)">Tio / Tia</option>
                           <option value="avo">Avó</option>
-                          <option value="primo">Primo(a)</option>
+                          <option value="primo(a)">Primo(a)</option>
                           <option value="outro">Outro</option>
                         </select>
                       </div>
@@ -1297,10 +1297,10 @@
                         <select id="sltGrauParentescoResponsavel4Matricula">
                           <option value="" selected>Sem grau...</option>
                           <option value="pai">Pai</option>
-                          <option value="mae">Mãe</option>
-                          <option value="tio">Tio / Tia</option>
+                          <option value="mãe">Mãe</option>
+                          <option value="tio(a)">Tio / Tia</option>
                           <option value="avo">Avó</option>
-                          <option value="primo">Primo(a)</option>
+                          <option value="primo(a)">Primo(a)</option>
                           <option value="outro">Outro</option>
                         </select>
                       </div>
@@ -1491,6 +1491,18 @@
                       <i class="fas fa-user-plus"></i>
                       <span>Nova Matrícula</span>
                     </button>
+                  </div>
+
+                  <div class="col-md-auto">
+                    <a
+                      id="btnImprimirRelatorioMatriculas"
+                      target="_blanck"
+                      style="width: 100%"
+                      class="mt-4 m-md-0 botao-estilizado info com-icone"
+                    >
+                      <i class="fas fa-print"></i>
+                      <span>Imprimir</span>
+                    </a>
                   </div>
 
                   <div class="col-12 mt-3">
@@ -2452,6 +2464,18 @@
                     class="input-filtro-nexus w-100"
                   />
                 </div>
+
+                 <div class="col-md-auto">
+                    <a
+                      id="btnImprimirRelatorioPropinas"
+                      target="_blanck"
+                      style="width: 100%"
+                      class="mt-4 m-md-0 botao-estilizado info com-icone"
+                    >
+                      <i class="fas fa-print"></i>
+                      <span>Imprimir</span>
+                    </a>
+                  </div>
               </div>
             </div>
 
@@ -3877,7 +3901,7 @@
                 </div>
                 <div class="col-auto me-4">
                   <div class="row">
-                    <button
+                    <button hidden
                       class="col-12 botao-pequeno-nexus editar btn-ver-alunos-turma"
                       title="Editar Informações da Turma fw-bold"
                       style="font-weight: 500 !important"

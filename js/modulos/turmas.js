@@ -388,7 +388,7 @@ import {
     </div>
     
     <div class="modal-footer-turma">
-      <button class="btn-modal-turma btn-primary-turma btn-ver-alunos">
+      <button hidden class="btn-modal-turma btn-primary-turma btn-ver-alunos">
         <i class="fas fa-eye"></i> Ver Alunos
       </button>
       <button class="btn-modal-turma btn-outline-turma btn-editar-turma">
