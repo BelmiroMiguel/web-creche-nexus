@@ -18,6 +18,7 @@ import {
     return;
   }
 
+  let idTurmaSelecionada = null;
   let turmaSelecionada = null;
   let turmasCarregadas = [];
   let confirmacoesTurmaSelecionada = [];
@@ -135,7 +136,11 @@ import {
               "#sltResponsavelSaidaFrequencia"
             );
 
-            template.querySelector("#labelQuantidade").innerText = (index + 1 + ((pagina - 1) * totalItemsPorPagina)).toString();
+            template.querySelector("#labelQuantidade").innerText = (
+              index +
+              1 +
+              (pagina - 1) * totalItemsPorPagina
+            ).toString();
 
             // Cria um array de responsáveis a partir dos campos disponíveis em frequencia
             const responsaveis = [];
@@ -160,36 +165,41 @@ import {
             if (
               frequencia &&
               !responsaveis.some(
-                (r) => r.nome == frequencia.nomeResponsavelEntrega?.split('-')[0]
+                (r) =>
+                  r.nome == frequencia.nomeResponsavelEntrega?.split("-")[0]
               )
             ) {
-              const nome = frequencia.nomeResponsavelEntrega.split('-')[0];
-              const telefone = frequencia.nomeResponsavelEntrega.split('-')?.[1] ?? "sem";
-              const grauParentesco = frequencia.nomeResponsavelEntrega.split('-')?.[2] ?? "sem";
+              const nome = frequencia.nomeResponsavelEntrega.split("-")[0];
+              const telefone =
+                frequencia.nomeResponsavelEntrega.split("-")?.[1] ?? "sem";
+              const grauParentesco =
+                frequencia.nomeResponsavelEntrega.split("-")?.[2] ?? "sem";
               responsaveis.push({
                 nome,
                 telefone,
                 grauParentesco,
-                disabled: true// como o nome ja fo editado para nao se escolher novamente
+                disabled: true, // como o nome ja fo editado para nao se escolher novamente
               });
             }
 
             if (
               frequencia &&
-              frequencia.nomeResponsavelBusca?.split('-')[0] &&
+              frequencia.nomeResponsavelBusca?.split("-")[0] &&
               frequencia.horaSaida &&
               !responsaveis.some(
                 (r) => r.nome == frequencia.nomeResponsavelBusca
               )
             ) {
-              const nome = frequencia.nomeResponsavelBusca.split('-')[0];
-              const telefone = frequencia.nomeResponsavelBusca.split('-')?.[1] ?? "sem";
-              const grauParentesco = frequencia.nomeResponsavelBusca.split('-')?.[2] ?? "sem";
+              const nome = frequencia.nomeResponsavelBusca.split("-")[0];
+              const telefone =
+                frequencia.nomeResponsavelBusca.split("-")?.[1] ?? "sem";
+              const grauParentesco =
+                frequencia.nomeResponsavelBusca.split("-")?.[2] ?? "sem";
               responsaveis.push({
                 nome,
                 telefone,
                 grauParentesco,
-                disabled: true
+                disabled: true,
               });
             }
 
@@ -217,32 +227,35 @@ import {
                 option2.setAttribute("data-telefone", resp.telefone);
               }
               option.setAttribute("data-grau-parentesco", resp.grauParentesco);
-              option2.setAttribute(
-                "data-grau-parentesco",
-                resp.grauParentesco
-              );
+              option2.setAttribute("data-grau-parentesco", resp.grauParentesco);
 
               sltResponsavelEntradaFrequencia.appendChild(option);
               sltResponsavelSaidaFrequencia.appendChild(option2);
             });
 
-
             sltResponsavelEntradaFrequencia.value =
-              frequencia?.nomeResponsavelEntrega?.split('-')?.[0] ?? "";
+              frequencia?.nomeResponsavelEntrega?.split("-")?.[0] ?? "";
             sltResponsavelSaidaFrequencia.value =
-              frequencia?.nomeResponsavelBusca?.split('-')?.[0] ?? "";
+              frequencia?.nomeResponsavelBusca?.split("-")?.[0] ?? "";
             console.log("tetse");
 
-            const labelTelefoneResponsavelEntradaFrequencia = template.querySelector(
-              "#labelTelefoneResponsavelEntradaFrequencia"
-            );
-            labelTelefoneResponsavelEntradaFrequencia.innerText = sltResponsavelEntradaFrequencia.options[sltResponsavelEntradaFrequencia.selectedIndex].dataset.telefone ?? '';
+            const labelTelefoneResponsavelEntradaFrequencia =
+              template.querySelector(
+                "#labelTelefoneResponsavelEntradaFrequencia"
+              );
+            labelTelefoneResponsavelEntradaFrequencia.innerText =
+              sltResponsavelEntradaFrequencia.options[
+                sltResponsavelEntradaFrequencia.selectedIndex
+              ].dataset.telefone ?? "";
 
-            const labelTelefoneResponsavelSaidaFrequencia = template.querySelector(
-              "#labelTelefoneResponsavelSaidaFrequencia"
-            );
-            labelTelefoneResponsavelSaidaFrequencia.innerText = sltResponsavelSaidaFrequencia.options[sltResponsavelSaidaFrequencia.selectedIndex].dataset.telefone ?? '';
-
+            const labelTelefoneResponsavelSaidaFrequencia =
+              template.querySelector(
+                "#labelTelefoneResponsavelSaidaFrequencia"
+              );
+            labelTelefoneResponsavelSaidaFrequencia.innerText =
+              sltResponsavelSaidaFrequencia.options[
+                sltResponsavelSaidaFrequencia.selectedIndex
+              ].dataset.telefone ?? "";
 
             const btnRegistrarEntradaFrequencia = template.querySelector(
               "#btnRegistrarEntradaFrequencia"
@@ -252,19 +265,29 @@ import {
               "#btnRegistrarSaidaFrequencia"
             );
 
-            btnRegistrarEntradaFrequencia.disabled = true
-            $(sltResponsavelEntradaFrequencia).on('change', () => {
-              const option = sltResponsavelEntradaFrequencia.options[sltResponsavelEntradaFrequencia.selectedIndex];
-              labelTelefoneResponsavelEntradaFrequencia.innerText = option.dataset.telefone ?? '';
-              btnRegistrarEntradaFrequencia.disabled = !option.dataset.disabled || option.dataset.disabled == 'true'
-            })
+            btnRegistrarEntradaFrequencia.disabled = true;
+            $(sltResponsavelEntradaFrequencia).on("change", () => {
+              const option =
+                sltResponsavelEntradaFrequencia.options[
+                  sltResponsavelEntradaFrequencia.selectedIndex
+                ];
+              labelTelefoneResponsavelEntradaFrequencia.innerText =
+                option.dataset.telefone ?? "";
+              btnRegistrarEntradaFrequencia.disabled =
+                !option.dataset.disabled || option.dataset.disabled == "true";
+            });
 
-            btnRegistrarSaidaFrequencia.disabled = true
-            $(sltResponsavelSaidaFrequencia).on('change', () => {
-              const option = sltResponsavelSaidaFrequencia.options[sltResponsavelSaidaFrequencia.selectedIndex];
-              labelTelefoneResponsavelSaidaFrequencia.innerText = option.dataset.telefone ?? '';
-              btnRegistrarSaidaFrequencia.disabled = !option.dataset.disabled || option.dataset.disabled == 'true'
-            })
+            btnRegistrarSaidaFrequencia.disabled = true;
+            $(sltResponsavelSaidaFrequencia).on("change", () => {
+              const option =
+                sltResponsavelSaidaFrequencia.options[
+                  sltResponsavelSaidaFrequencia.selectedIndex
+                ];
+              labelTelefoneResponsavelSaidaFrequencia.innerText =
+                option.dataset.telefone ?? "";
+              btnRegistrarSaidaFrequencia.disabled =
+                !option.dataset.disabled || option.dataset.disabled == "true";
+            });
 
             const onSuccessFrequencia = (res) => {
               const frequencia = res.body;
@@ -317,7 +340,10 @@ import {
               btnRegistrarEntradaFrequencia.innerHTML =
                 '<i class="fas fa-spinner fa-spin my-3 mx-1"></i>';
 
-              const option = sltResponsavelEntradaFrequencia.options[sltResponsavelEntradaFrequencia.selectedIndex];
+              const option =
+                sltResponsavelEntradaFrequencia.options[
+                  sltResponsavelEntradaFrequencia.selectedIndex
+                ];
 
               if (!erro) {
                 AppService.postData(
@@ -327,7 +353,9 @@ import {
                     horaEntrada: inputHorarioEntradaFrequencia.value,
                     dataFrequencia: dataFiltro,
                     observacaoEntrada: inputObservacaoEntradaFrequencia.value,
-                    nomeResponsavelEntrega: `${option.value}-${option.dataset.telefone ?? ''}-${option.dataset.grauParentesco ?? ''}`
+                    nomeResponsavelEntrega: `${option.value}-${
+                      option.dataset.telefone ?? ""
+                    }-${option.dataset.grauParentesco ?? ""}`,
                   },
                   {
                     onSuccess: onSuccessFrequencia,
@@ -366,7 +394,10 @@ import {
               btnRegistrarSaidaFrequencia.innerHTML =
                 '<i class="fas fa-spinner fa-spin my-3 mx-1"></i>';
 
-              const option = sltResponsavelSaidaFrequencia.options[sltResponsavelSaidaFrequencia.selectedIndex];
+              const option =
+                sltResponsavelSaidaFrequencia.options[
+                  sltResponsavelSaidaFrequencia.selectedIndex
+                ];
 
               if (!erro) {
                 AppService.postData(
@@ -375,7 +406,9 @@ import {
                     idFrequenciaAlunoTurma: frequencia?.idFrequenciaAlunoTurma,
                     horaSaida: inputHorarioSaidaFrequencia.value,
                     observacaoSaida: inputObservacaoSaidaFrequencia.value,
-                    nomeResponsavelBusca: `${option.value}-${option.dataset.telefone ?? ''}-${option.dataset.grauParentesco ?? ''}`
+                    nomeResponsavelBusca: `${option.value}-${
+                      option.dataset.telefone ?? ""
+                    }-${option.dataset.grauParentesco ?? ""}`,
                   },
                   {
                     onSuccess: onSuccessFrequencia,
@@ -415,6 +448,9 @@ import {
             option.textContent = `${turma.nome} (${turma.descFaixaEtaria})`;
             sltFiltroTurmaFrequencia.appendChild(option);
           });
+          sltFiltroTurmaFrequencia.value = idTurmaSelecionada;
+          menuSeccaoAlunosFrequencia.removeAttribute("data-turma-id");
+          renderizarConfirmacoes();
         },
         onError: (res) => {
           console.error(res);
@@ -425,6 +461,14 @@ import {
 
   function inicializarModuloFrequencia() {
     if (!secaoFrequencia.classList.contains("ativa")) return;
+    //reset filtros
+    sltFiltroTurmaFrequencia.value = "";
+    sltFiltroStatusFrequencia.value = "";
+    inpFiltroDataFrequencia.value = formatarDataInput(new Date());
+    inpFiltroNomeMatriculaFrequencia.value = "";
+
+    idTurmaSelecionada =
+      menuSeccaoAlunosFrequencia.getAttribute("data-turma-id");
 
     carregarTurmas();
   }

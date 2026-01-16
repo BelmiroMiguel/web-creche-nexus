@@ -373,6 +373,10 @@ import { formatarData, formatMoney, renderPaginacao } from "../utils.js";
     let ano = hoje.getFullYear();
     let atual = `${ano}-${mes}`;
 
+    //reset filtros
+    $("#inpFiltroPagamentos").val("");
+    $("#sltFitroEstadoPagamentos").val("0");
+
     $("#inpFiltroMesesPagamentos").val(atual);
     carregarDadosFinanceiros(); // Carga inicial
   }

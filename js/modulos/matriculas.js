@@ -946,6 +946,12 @@ import {
     labelTotalAlunosMatriculaAtivos.innerHTML = `<i class="fa fa-spinner" aria-hidden="true"></i>`;
     labelTotalAlunosMatriculaInativos.innerHTML = `<i class="fa fa-spinner" aria-hidden="true"></i>`;
 
+    //reset filtros
+    inpFiltroAlunoMatricula.value = "";
+    sltFitroEstadoAlunoMatricula.value = "0";
+    sltFitroEstadoConfirmacaoAlunoMatricula.value = "0";
+    sltFitroEstadoConfirmacaoAlunoMatricula.disabled = false;
+
     contarAlunos();
     resetarFormularioNovaMatricula();
     abilitarNovaMatricula(false);

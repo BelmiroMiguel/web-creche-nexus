@@ -257,10 +257,17 @@ import {
       const btnVerDetalheCompletoTurma =
         clone.querySelector(".btn-detalhe-turma");
 
+      const btnVerAlunos = clone.querySelector(".btn-ver-alunos-turma");
+
       // ao clicar abre um container flutuante como popup, com todos os dados da turma bem customizados
 
       btnVerDetalheCompletoTurma.addEventListener("click", (e) => {
         showTurmaModal(turma, e);
+      });
+
+      btnVerAlunos.addEventListener("click", (e) => {
+        menuSeccaoAlunosFrequencia.setAttribute("data-turma-id", turma.idTurma);
+        menuSeccaoAlunosFrequencia.click();
       });
 
       // Adicionar data-id para botões
@@ -388,7 +395,7 @@ import {
     </div>
     
     <div class="modal-footer-turma">
-      <button hidden class="btn-modal-turma btn-primary-turma btn-ver-alunos">
+      <button class="btn-modal-turma btn-primary-turma btn-ver-alunos">
         <i class="fas fa-eye"></i> Ver Alunos
       </button>
       <button class="btn-modal-turma btn-outline-turma btn-editar-turma">
@@ -442,8 +449,9 @@ import {
 
     // Botão Ver Alunos
     modal.querySelector(".btn-ver-alunos").addEventListener("click", () => {
-      console.log("Ver alunos da turma:", turma.id);
       closeModal();
+      menuSeccaoAlunosFrequencia.setAttribute("data-turma-id", turma.idTurma);
+      menuSeccaoAlunosFrequencia.click();
     });
 
     // Botão Editar
@@ -517,6 +525,9 @@ import {
 
   function inicializarModuloTurmas() {
     if (!secaoTurmas.classList.contains("ativa")) return;
+    //reset filtros
+    inpFiltroTurma.value = "";
+    sltFitroEstadoTurma.value = "0";
 
     carregarTurmas();
     abilitarNovaTurma(false);
